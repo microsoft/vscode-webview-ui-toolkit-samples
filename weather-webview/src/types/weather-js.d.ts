@@ -1,1 +1,1 @@
-declare module 'weather-js';
+declare module "weather-js";

@@ -1,47 +1,61 @@
 import {
-  CancellationToken, 
-  Uri, 
-  Webview, 
-  WebviewView, 
-  WebviewViewProvider, 
+  CancellationToken,
+  Uri,
+  Webview,
+  WebviewView,
+  WebviewViewProvider,
   WebviewViewResolveContext,
-} from 'vscode';
-import {getUri} from '../utilities/getUri';
-import {setThemeEventListener} from '../utilities/setThemeEventListener';
-import * as weather from 'weather-js';
+} from "vscode";
+import { getUri } from "../utilities/getUri";
+import { setThemeEventListener } from "../utilities/setThemeEventListener";
+import * as weather from "weather-js";
 
 export class WeatherViewProvider implements WebviewViewProvider {
+  public static readonly viewType = "weather.weatherView";
+  private _view?: WebviewView;
 
-	public static readonly viewType = 'weather.weatherView';
-	private _view?: WebviewView;
+  constructor(private readonly _extensionUri: Uri) {}
 
-	constructor(private readonly _extensionUri: Uri) {}
-
-	public resolveWebviewView(webviewView: WebviewView, context: WebviewViewResolveContext, _token: CancellationToken) {
+  public resolveWebviewView(
+    webviewView: WebviewView,
+    context: WebviewViewResolveContext,
+    _token: CancellationToken
+  ) {
     // Allow scripts in the webview
-		webviewView.webview.options = {
-			enableScripts: true,
-		};
+    webviewView.webview.options = {
+      enableScripts: true,
+    };
 
     // Set the HTML content that will fill the webview view
-		webviewView.webview.html = this._getWebviewContent(webviewView.webview, this._extensionUri);
+    webviewView.webview.html = this._getWebviewContent(webviewView.webview, this._extensionUri);
 
     // Sets up an event listener to listen for messages passed from the webview view context
     // and executes code based on the message that is recieved
-		this._setWebviewMessageListener(webviewView);
+    this._setWebviewMessageListener(webviewView);
 
-		// Sets up an event listener to listen for VSCode theme changes and notifies
-		// the webview view when a change has occurred
-		setThemeEventListener(webviewView);
-	}
+    // Sets up an event listener to listen for VSCode theme changes and notifies
+    // the webview view when a change has occurred
+    setThemeEventListener(webviewView);
+  }
 
-	private _getWebviewContent(webview: Webview, extensionUri: Uri) {
-		const toolkitUri = getUri(webview, extensionUri, ["node_modules", "vscode-webview-toolkit", "dist", "toolkit.js"]);
-		const applyThemeUri = getUri(webview, extensionUri, ["node_modules", "vscode-webview-toolkit", "dist", "applyTheme.js"]);
-		const mainUri = getUri(webview, extensionUri, ["media", "main.js"]);
-		const stylesUri = getUri(webview, extensionUri, ["media", "styles.css"]);
+  private _getWebviewContent(webview: Webview, extensionUri: Uri) {
+    const toolkitUri = getUri(webview, extensionUri, [
+      "node_modules",
+      "vscode-webview-toolkit",
+      "dist",
+      "toolkit.js",
+    ]);
+    const applyThemeUri = getUri(webview, extensionUri, [
+      "node_modules",
+      "vscode-webview-toolkit",
+      "dist",
+      "applyTheme.js",
+    ]);
+    const mainUri = getUri(webview, extensionUri, ["media", "main.js"]);
+    const stylesUri = getUri(webview, extensionUri, ["media", "styles.css"]);
 
-		return /*html*/`
+    // Tip: Install the es6-string-html VS Code extension to enable code highlighting below
+    return /*html*/ `
 			<!DOCTYPE html>
 			<html lang="en">
 				<head>
@@ -77,32 +91,30 @@ export class WeatherViewProvider implements WebviewViewProvider {
 				</body>
 			</html>
 		`;
-	}
+  }
 
   private _setWebviewMessageListener(webviewView: WebviewView) {
-    webviewView.webview.onDidReceiveMessage(
-			message => {
-				const command = message.command;
-				const location = message.location;
-				const unit = message.unit;
+    webviewView.webview.onDidReceiveMessage((message) => {
+      const command = message.command;
+      const location = message.location;
+      const unit = message.unit;
 
-				switch (command) {
-					case 'weather':
-						weather.find({search: location, degreeType: unit}, (err: any, result: any) => {
-							if (err) {
-								return;
-							}
-							// Get the weather forecast results
-							const weatherForecast = result[0];
-							// Pass the weather forecast object to the webview
-							webviewView.webview.postMessage({
-								command: 'weather',
-								payload: JSON.stringify(weatherForecast)
-							});
-						});
-						break;
-				}
-			},
-		);
+      switch (command) {
+        case "weather":
+          weather.find({ search: location, degreeType: unit }, (err: any, result: any) => {
+            if (err) {
+              return;
+            }
+            // Get the weather forecast results
+            const weatherForecast = result[0];
+            // Pass the weather forecast object to the webview
+            webviewView.webview.postMessage({
+              command: "weather",
+              payload: JSON.stringify(weatherForecast),
+            });
+          });
+          break;
+      }
+    });
   }
 }

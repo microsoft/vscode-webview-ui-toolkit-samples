@@ -6,51 +6,60 @@ const vscode = acquireVsCodeApi();
 
 // Just like a regular webpage we need to wait for the webview
 // to load before we can reference any of the components
-window.addEventListener('load', main);
+window.addEventListener("load", main);
 
 function main() {
-  const location = document.getElementById('location');
-  const unit = document.getElementById('unit');
-  const icon = document.getElementById('icon');
-  const summary = document.getElementById('summary');
-
   const checkWeatherButton = document.getElementById("check-weather-button");
-  checkWeatherButton.addEventListener("click", () => {
-      checkWeather(location, unit);
-  });
+  checkWeatherButton.addEventListener("click", checkWeather);
 
-  window.addEventListener('message', event => {
-    const command = event.data.command;
-    const weatherForecastData = JSON.parse(event.data.payload);
+  // Sets up an event listener to listen for messages passed from the VS Code context
+  // and executes code based on the message that is recieved
+  setVSCodeMessageListener();
+}
 
-    switch (command) {
-      case "weather":
-        summary.textContent = getWeatherSummary(weatherForecastData);
-        icon.textContent = getWeatherIcon(weatherForecastData);
-        break;
-    }
-  });
-};
+function checkWeather() {
+  const locationValue = document.getElementById("location").value;
+  const unitValue = document.getElementById("unit").value;
 
-function checkWeather(location, unit) {
+  // Passes a message back to the VSCode context with the location that
+  // should be searched for and the degree unit (F or C) that should be returned
   vscode.postMessage({
-    command: 'weather',
-    location: location.value,
-    unit: unit.value
+    command: "weather",
+    location: locationValue,
+    unit: unitValue,
   });
 }
 
-function getWeatherSummary(weather){
-  const skyText = weather["current"]["skytext"];
-  const temperature = weather["current"]["temperature"];
-  const degreeType = weather["location"]["degreetype"];
-  console.log(weather["location"]);
+function setVSCodeMessageListener() {
+  window.addEventListener("message", (event) => {
+    const command = event.data.command;
+    const weatherData = JSON.parse(event.data.payload);
+
+    switch (command) {
+      case "weather":
+        displayWeatherData(weatherData);
+        break;
+    }
+  });
+}
+
+function displayWeatherData(weatherData) {
+  const icon = document.getElementById("icon");
+  const summary = document.getElementById("summary");
+  summary.textContent = getWeatherSummary(weatherData);
+  icon.textContent = getWeatherIcon(weatherData);
+}
+
+function getWeatherSummary(weatherData) {
+  const skyText = weatherData.current.skytext;
+  const temperature = weatherData.current.temperature;
+  const degreeType = weatherData.location.degreetype;
 
   return `${skyText}, ${temperature}${degreeType}`;
 }
 
-function getWeatherIcon(weather){
-  const skyText = weather["current"]["skytext"].toLowerCase();
+function getWeatherIcon(weatherData) {
+  const skyText = weatherData.current.skytext.toLowerCase();
   let icon = "";
 
   switch (skyText) {
