@@ -1,4 +1,4 @@
-import {WebviewPanel, WebviewView, window} from 'vscode';
+import { WebviewPanel, WebviewView, window } from "vscode";
 
 /**
  * Sets up an event listener to listen for VS Code theme changes and notifies

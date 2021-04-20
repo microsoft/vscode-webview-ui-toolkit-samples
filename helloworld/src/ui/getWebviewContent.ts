@@ -1,13 +1,23 @@
-import {Uri, Webview} from 'vscode';
-import {getUri} from '../utilities/getUri';
+import { Uri, Webview } from "vscode";
+import { getUri } from "../utilities/getUri";
 
 export function getWebviewContent(webview: Webview, extensionUri: Uri) {
-	const toolkitUri = getUri(webview, extensionUri, ["node_modules", "vscode-webview-toolkit", "dist", "toolkit.js"]);
-	const applyThemeUri = getUri(webview, extensionUri, ["node_modules", "vscode-webview-toolkit", "dist", "applyTheme.js"]);
-	const mainUri = getUri(webview, extensionUri, ["media", "main.js"]);
-	
-	// Tip: Install the es6-string-html VS Code extension to enable code highlighting below
-  return /*html*/`
+  const toolkitUri = getUri(webview, extensionUri, [
+    "node_modules",
+    "vscode-webview-toolkit",
+    "dist",
+    "toolkit.js",
+  ]);
+  const applyThemeUri = getUri(webview, extensionUri, [
+    "node_modules",
+    "vscode-webview-toolkit",
+    "dist",
+    "applyTheme.js",
+  ]);
+  const mainUri = getUri(webview, extensionUri, ["media", "main.js"]);
+
+  // Tip: Install the es6-string-html VS Code extension to enable code highlighting below
+  return /*html*/ `
 		<!DOCTYPE html>
 		<html lang="en">
 			<head>

@@ -39,9 +39,9 @@ export function activate(context: ExtensionContext) {
 export function deactivate() {}
 
 /**
- * Sets up an event listener to listen for messages passed from the webview context and 
+ * Sets up an event listener to listen for messages passed from the webview context and
  * executes code based on the message that is recieved.
- * 
+ *
  * @param panel - The current VS Code webview panel
  * @param context - The VS Code extension context
  */
@@ -53,11 +53,11 @@ function setWebviewMessageListener(panel: WebviewPanel, context: ExtensionContex
 
       switch (command) {
         case "hello":
-					// Code that should run in response to the hello command
+          // Code that should run in response to the hello command
           window.showInformationMessage(text);
           return;
-				// Add more switch cases here as more webview message commands
-				// are created within the webview context (i.e. inside main.js)
+        // Add more switch cases here as more webview message commands
+        // are created within the webview context (i.e. inside main.js)
       }
     },
     undefined,
