@@ -1,14 +1,17 @@
-# Project
+# VS Code Webview Toolkit Sample Extensions
 
-> This repo has been populated by an initial template to help get you started. Please
-> make sure to update the content to build a great experience for community-building.
+This is a repository containing all the sample extensions for the [VS Code Webview Toolkit](https://github.com/microsoft/vscode-webview-toolkit). Each sample is a self contained extension and demonstrates some aspect of the toolkit and/or the [VS Code API](https://code.visualstudio.com/api/references/vscode-api) in relation to the toolkit. You can read, play with, or adapt from these samples to create your own extensions.
 
-As the maintainer of this project, please make a few updates:
+## Prerequisites
 
-- Improving this README.MD file to provide a great experience
-- Updating SUPPORT.MD with content about this project's support experience
-- Understanding the security reporting process in SECURITY.MD
-- Remove this section from the README
+You need to have [Node and NPM](https://nodejs.org/en/) installed on your system to run the examples. It is recommended to use the Node version used for VS Code development itself which is documented [here](https://github.com/Microsoft/vscode/wiki/How-to-Contribute#prerequisites).
+
+## Usage
+
+- `git clone https://github.com/microsoft/vscode-webview-toolkit-samples`
+- `code <any-sample-folder>`
+- `npm install` in the terminal, then `F5` to run the sample
+- Alternatively, follow the instructions in each of the sample's README for setting up and running the sample
 
 ## Contributing
 
@@ -31,3 +34,9 @@ trademarks or logos is subject to and must follow
 [Microsoft's Trademark & Brand Guidelines](https://www.microsoft.com/en-us/legal/intellectualproperty/trademarks/usage/general).
 Use of Microsoft trademarks or logos in modified versions of this project must not cause confusion or imply Microsoft sponsorship.
 Any use of third-party trademarks or logos are subject to those third-party's policies.
+
+## License
+
+Copyright (c) Microsoft Corporation. All rights reserved.
+
+Licensed under the [MIT](./LICENSE) License.
