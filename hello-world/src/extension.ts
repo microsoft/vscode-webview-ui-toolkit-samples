@@ -36,8 +36,6 @@ export function activate(context: ExtensionContext) {
   context.subscriptions.push(startCommand);
 }
 
-export function deactivate() {}
-
 /**
  * Sets up an event listener to listen for messages passed from the webview context and
  * executes code based on the message that is recieved.
