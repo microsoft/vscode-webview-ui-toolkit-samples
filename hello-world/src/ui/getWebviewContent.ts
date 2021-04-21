@@ -29,8 +29,8 @@ export function getWebviewContent(webview: Webview, extensionUri: Uri) {
 					<title>Hello World!</title>
 			</head>
 			<body>
-				<h1>Hello World!</h1>
 				<vscode-design-system-provider use-defaults>
+					<h1>Hello World!</h1>
 					<vscode-button id="howdy">Howdy!</vscode-button>
 				</vscode-design-system-provider>
 			</body>
