@@ -10,7 +10,7 @@ import { setThemeEventListener } from "./utilities/setThemeEventListener";
 export function activate(context: ExtensionContext) {
   let panel: WebviewPanel | undefined;
 
-  const startCommand = commands.registerCommand("helloworld.helloWorld", () => {
+  const helloDisposable = commands.registerCommand("helloworld.helloWorld", () => {
     if (panel) {
       // If the webview panel already exists reveal it
       panel.reveal(ViewColumn.One);
@@ -33,7 +33,7 @@ export function activate(context: ExtensionContext) {
     }
   });
 
-  context.subscriptions.push(startCommand);
+  context.subscriptions.push(helloDisposable);
 }
 
 /**
