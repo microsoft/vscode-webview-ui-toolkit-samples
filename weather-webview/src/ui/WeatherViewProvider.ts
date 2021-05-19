@@ -45,12 +45,6 @@ export class WeatherViewProvider implements WebviewViewProvider {
       "dist",
       "toolkit.js",
     ]);
-    const applyThemeUri = getUri(webview, extensionUri, [
-      "node_modules",
-      "vscode-webview-toolkit",
-      "dist",
-      "applyTheme.js",
-    ]);
     const mainUri = getUri(webview, extensionUri, ["media", "main.js"]);
     const stylesUri = getUri(webview, extensionUri, ["media", "styles.css"]);
 
@@ -62,32 +56,29 @@ export class WeatherViewProvider implements WebviewViewProvider {
 					<meta charset="UTF-8">
 					<meta name="viewport" content="width=device-width, initial-scale=1.0">
 					<script type="module" src="${toolkitUri}"></script>
-					<script type="module" src="${applyThemeUri}"></script>
 					<script type="module" src="${mainUri}"></script>
 					<link rel="stylesheet" href="${stylesUri}">
 					<title>Weather Checker</title>
 				</head>
 				<body>
-					<vscode-design-system-provider use-defaults>
-						<h1>Weather Checker</h1>
-						<section id="search-container">
-							<vscode-text-field
-								id="location"
-								placeholder="Location"
-								value="Seattle, WA">
-							</vscode-text-field>
-							<vscode-select id="unit">
-								<vscode-option value="F">Fahrenheit</vscode-option>
-								<vscode-option value="C">Celsius</vscode-option>
-							</vscode-select>
-						</section>
-						<vscode-button id="check-weather-button">Check</vscode-button>
-						<h2>Current Weather</h2>
-						<section id="results-container">
-							<p id="icon"></p>
-							<p id="summary"></p>
-						</section>
-					</vscode-design-system-provider>
+          <h1>Weather Checker</h1>
+          <section id="search-container">
+            <vscode-text-field
+              id="location"
+              placeholder="Location"
+              value="Seattle, WA">
+            </vscode-text-field>
+            <vscode-dropdown id="unit">
+              <vscode-option value="F">Fahrenheit</vscode-option>
+              <vscode-option value="C">Celsius</vscode-option>
+            </vscode-dropdown>
+          </section>
+          <vscode-button id="check-weather-button">Check</vscode-button>
+          <h2>Current Weather</h2>
+          <section id="results-container">
+            <p id="icon"></p>
+            <p id="summary"></p>
+          </section>
 				</body>
 			</html>
 		`;
