@@ -1,11 +1,9 @@
-// To access the VS Code API object, call 'acquireVsCodeApi()' inside the webview.
-// This function can only be invoked once per session.
-// You must hang onto the instance of the VS Code API returned by this method,
-// and hand it out to any other functions that wish to use it.
+// Get access to the VS Code API from within the webview context
 const vscode = acquireVsCodeApi();
 
 // Just like a regular webpage we need to wait for the webview
-// to load before we can reference any of the components
+// DOM to load before we can reference any of the HTML elements 
+// or toolkit components
 window.addEventListener("load", main);
 
 function main() {
@@ -21,7 +19,7 @@ function checkWeather() {
   const locationValue = document.getElementById("location").value;
   const unitValue = document.getElementById("unit").value;
 
-  // Passes a message back to the VSCode context with the location that
+  // Passes a message back to the VS Code context with the location that
   // should be searched for and the degree unit (F or C) that should be returned
   vscode.postMessage({
     command: "weather",
