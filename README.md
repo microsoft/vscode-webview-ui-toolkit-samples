@@ -1,6 +1,6 @@
-# VS Code Webview Toolkit Sample Extensions
+# Webview UI Toolkit Sample Extensions
 
-This is a repository containing all the sample extensions for the [VS Code Webview Toolkit](https://github.com/microsoft/vscode-webview-toolkit). Each sample is a self contained extension and demonstrates some aspect of the toolkit and/or the [VS Code API](https://code.visualstudio.com/api/references/vscode-api) in relation to the toolkit. You can read, play with, or adapt from these samples to create your own extensions.
+This is a repository containing all the sample extensions for the [Webview UI Toolkit for Visual Studio Code](https://github.com/microsoft/vscode-webview-toolkit). Each sample is a self contained extension and demonstrates some aspect of the toolkit and/or the [VS Code API](https://code.visualstudio.com/api/references/vscode-api) in relation to the toolkit. You can read, play with, or adapt these samples to create your own extensions.
 
 ## Prerequisites
 
@@ -15,9 +15,9 @@ You need to have [Node and NPM](https://nodejs.org/en/) installed on your system
 
 ## Contributing
 
-This project welcomes contributions and suggestions.  Most contributions require you to agree to a
+This project welcomes contributions and suggestions. Most contributions require you to agree to a
 Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
-the rights to use your contribution. For details, visit https://cla.opensource.microsoft.com.
+the rights to use your contribution. For details, visit [https://cla.opensource.microsoft.com](https://cla.opensource.microsoft.com).
 
 When you submit a pull request, a CLA bot will automatically determine whether you need to provide
 a CLA and decorate the PR appropriately (e.g., status check, comment). Simply follow the instructions
