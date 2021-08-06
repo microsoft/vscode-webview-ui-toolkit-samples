@@ -1,7 +1,7 @@
 {
   "name": "vscode-weather-webview",
   "displayName": "Check the weather",
-  "description": "",
+  "description": "A sample extension to show off the Webview UI Toolkit for VS Code being used in a webview view.",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.55.0"
