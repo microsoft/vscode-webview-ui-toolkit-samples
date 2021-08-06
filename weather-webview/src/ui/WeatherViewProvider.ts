@@ -7,7 +7,6 @@ import {
   WebviewViewResolveContext,
 } from "vscode";
 import { getUri } from "../utilities/getUri";
-import { setThemeEventListener } from "../utilities/setThemeEventListener";
 import * as weather from "weather-js";
 
 export class WeatherViewProvider implements WebviewViewProvider {
@@ -32,10 +31,6 @@ export class WeatherViewProvider implements WebviewViewProvider {
     // Sets up an event listener to listen for messages passed from the webview view context
     // and executes code based on the message that is recieved
     this._setWebviewMessageListener(webviewView);
-
-    // Sets up an event listener to listen for VSCode theme changes and notifies
-    // the webview view when a change has occurred
-    setThemeEventListener(webviewView);
   }
 
   private _getWebviewContent(webview: Webview, extensionUri: Uri) {
