@@ -12,7 +12,6 @@ export function activate(context: ExtensionContext) {
   const provider = new WeatherViewProvider(context.extensionUri);
 
   // Register the provider for a Webview View
-  // (i.e. a collapsable webview inside the VS Code Explorer)
   const weatherViewDisposable = window.registerWebviewViewProvider(
     WeatherViewProvider.viewType,
     provider
