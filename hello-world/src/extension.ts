@@ -1,11 +1,10 @@
 /**
- * This sample project goes a bit further than the Getting Started Guide on keeping code
+ * This sample extension goes a bit further than the Getting Started Guide on keeping code
  * structure tidy by only importing exactly what we need from the vscode package
- * and moving the getWebviewContent function into a new ui directory.
+ * and moving the getWebviewContent function into a separate ui directory.
  */
 import { commands, ExtensionContext, WebviewPanel, window, ViewColumn } from "vscode";
 import { getWebviewContent } from "./ui/getWebviewContent";
-import { setThemeEventListener } from "./utilities/setThemeEventListener";
 
 export function activate(context: ExtensionContext) {
   let panel: WebviewPanel | undefined;
@@ -22,10 +21,6 @@ export function activate(context: ExtensionContext) {
 
       // Set the HTML content for the new webview panel
       panel.webview.html = getWebviewContent(panel.webview, context.extensionUri);
-
-      // Sets up an event listener to listen for VS Code theme changes and notifies the
-      // webview panel (and therefore the applyTheme utility) when a change has occurred
-      setThemeEventListener(panel);
 
       // Sets up an event listener to listen for messages passed from the webview context
       // and executes code based on the message that is recieved
@@ -55,7 +50,7 @@ function setWebviewMessageListener(panel: WebviewPanel, context: ExtensionContex
           window.showInformationMessage(text);
           return;
         // Add more switch cases here as more webview message commands
-        // are created within the webview context (i.e. inside main.js)
+        // are created within the webview context (i.e. inside media/main.js)
       }
     },
     undefined,

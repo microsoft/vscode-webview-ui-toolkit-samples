@@ -1,7 +1,7 @@
 {
 	"name": "helloworld",
 	"displayName": "helloworld",
-	"description": "A basic example extension to show off the VS Code Webview Toolkit.",
+	"description": "A basic sample extension to show off the Webview UI Toolkit for VS Code.",
 	"version": "0.0.1",
 	"engines": {
 		"vscode": "^1.46.0"
@@ -44,6 +44,6 @@
 		"vscode-test": "^1.5.0"
 	},
 	"dependencies": {
-		"vscode-webview-toolkit": "^0.6.0"
+		"vscode-webview-toolkit": "^0.6.1"
 	}
 }
