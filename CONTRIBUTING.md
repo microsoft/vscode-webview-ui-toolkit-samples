@@ -17,19 +17,19 @@ Once the repo is forked, clone your fork locally using one of the following meth
 **Using SSH**
 
 ```
-git clone git@github.com:{your-github-username}/vscode-webview-toolkit-samples.git
+git clone git@github.com:{your-github-username}/vscode-webview-ui-toolkit-samples.git
 ```
 
 **Using HTTPS**
 
 ```
-git clone https://github.com/{your-github-username}/vscode-webview-toolkit-samples.git
+git clone https://github.com/{your-github-username}/vscode-webview-ui-toolkit-samples.git
 ```
 
 **Using GitHub CLI**
 
 ```
-gh repo clone {your-github-username}/vscode-webview-toolkit-samples
+gh repo clone {your-github-username}/vscode-webview-ui-toolkit-samples
 ```
 
 ### Set an upstream remote
@@ -37,8 +37,8 @@ gh repo clone {your-github-username}/vscode-webview-toolkit-samples
 Next, add an upstream remote pointing to the primary toolkit sample repo.
 
 ```
-cd vscode-webview-toolkit-samples/
-git remote add upstream https://github.com/microsoft/vscode-webview-toolkit-samples.git
+cd vscode-webview-ui-toolkit-samples/
+git remote add upstream https://github.com/microsoft/vscode-webview-ui-toolkit-samples.git
 git fetch upstream main
 ```
 
