@@ -36,7 +36,7 @@ export class WeatherViewProvider implements WebviewViewProvider {
   private _getWebviewContent(webview: Webview, extensionUri: Uri) {
     const toolkitUri = getUri(webview, extensionUri, [
       "node_modules",
-      "vscode-webview-toolkit",
+      "vscode-webview-ui-toolkit",
       "dist",
       "toolkit.js",
     ]);
