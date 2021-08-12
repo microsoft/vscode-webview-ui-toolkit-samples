@@ -8,7 +8,7 @@ You need to have [Node and NPM](https://nodejs.org/en/) installed on your system
 
 ## Usage
 
-- `git clone https://github.com/microsoft/vscode-webview-toolkit-samples`
+- `git clone https://github.com/microsoft/vscode-webview-ui-toolkit-samples.git`
 - `code <any-sample-folder>`
 - `npm install` in the terminal, then `F5` to run the sample
 - Alternatively, follow the instructions in each of the sample's README for setting up and running the sample
