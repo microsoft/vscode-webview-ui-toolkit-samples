@@ -24,7 +24,17 @@
   margin: 0.25rem 0;
 }
 
-vscode-data-grid {
+.component-example {
+  margin-bottom: 0.5rem;
+  width: 100%;
+}
+
+.component-example > p {
+  margin-bottom: 0.5rem;
+}
+
+vscode-data-grid,
+vscode-panels {
   border: 2px dashed #7b61ff;
   border-radius: 5px;
 }
