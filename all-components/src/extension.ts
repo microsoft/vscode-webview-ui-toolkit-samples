@@ -28,40 +28,9 @@ export function activate(context: ExtensionContext) {
 
         // Set the HTML content for the new webview panel
         panel.webview.html = getWebviewContent(panel.webview, context.extensionUri);
-
-        // Sets up an event listener to listen for messages passed from the webview context
-        // and executes code based on the message that is recieved
-        setWebviewMessageListener(panel, context);
       }
     }
   );
 
   context.subscriptions.push(allComponentsDisposable);
-}
-
-/**
- * Sets up an event listener to listen for messages passed from the webview context and
- * executes code based on the message that is recieved.
- *
- * @param panel - The current VS Code webview panel
- * @param context - The VS Code extension context
- */
-function setWebviewMessageListener(panel: WebviewPanel, context: ExtensionContext) {
-  panel.webview.onDidReceiveMessage(
-    (message: any) => {
-      const command = message.command;
-      const text = message.text;
-
-      switch (command) {
-        case "hello":
-          // Code that should run in response to the hello command
-          window.showInformationMessage(text);
-          return;
-        // Add more switch cases here as more webview message commands
-        // are created within the webview context (i.e. inside media/main.js)
-      }
-    },
-    undefined,
-    context.subscriptions
-  );
 }
