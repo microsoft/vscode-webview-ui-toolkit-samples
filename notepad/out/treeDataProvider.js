@@ -24,9 +24,9 @@ class TreeDataProvider {
 }
 exports.TreeDataProvider = TreeDataProvider;
 class TreeItem extends vscode.TreeItem {
-    constructor(label, children) {
-        super(label, children === undefined ? vscode.TreeItemCollapsibleState.None : vscode.TreeItemCollapsibleState.Expanded);
-        this.children = children;
+    constructor(label) {
+        super(label);
+        this.iconPath = new vscode.ThemeIcon('note');
     }
 }
 //# sourceMappingURL=treeDataProvider.js.map
