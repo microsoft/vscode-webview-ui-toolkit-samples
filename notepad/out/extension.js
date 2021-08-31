@@ -11,10 +11,14 @@ function activate(context) {
         canSelectMany: true,
     });
     let createNote = vscode.commands.registerCommand('notepad.createNote', () => {
-        vscode.window.showInformationMessage('Created a note!');
+        vscode.window.showInformationMessage('Created a note');
+    });
+    let deleteNote = vscode.commands.registerCommand('notepad.deleteNote', () => {
+        vscode.window.showInformationMessage('Deleted the note');
     });
     context.subscriptions.push(view);
     context.subscriptions.push(createNote);
+    context.subscriptions.push(deleteNote);
 }
 exports.activate = activate;
 // this method is called when your extension is deactivated

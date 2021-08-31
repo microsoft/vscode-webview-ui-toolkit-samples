@@ -11,7 +11,8 @@
   ],
   "activationEvents": [
     "onView:notepad.notesView",
-    "onCommand:notepad.createNote"
+    "onCommand:notepad.createNote",
+    "onCommand:notepad.deleteNote"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -21,6 +22,11 @@
         "title": "Create a note",
         "icon": "$(add)",
         "category": "Notepad"
+      },
+      {
+        "command": "notepad.deleteNote",
+        "title": "Delete note",
+        "icon": "$(trash)"
       }
     ],
     "viewsContainers": {
@@ -47,6 +53,12 @@
         {
           "command": "notepad.createNote",
           "group": "navigation@1"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "notepad.deleteNote",
+          "group": "inline"
         }
       ]
     }
