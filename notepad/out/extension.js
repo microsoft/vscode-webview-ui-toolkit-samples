@@ -28,7 +28,7 @@ function activate(context) {
         canSelectMany: true,
     });
     let currentNotePanel = undefined;
-    const showNote = vscode.commands.registerCommand('notepad.showNoteDetailView', () => {
+    const openNote = vscode.commands.registerCommand('notepad.showNoteDetailView', () => {
         const columnToShowIn = vscode.window.activeTextEditor ? vscode.window.activeTextEditor.viewColumn : undefined;
         const selectedTreeViewItem = treeView.selection[0];
         // Match the selected Tree View item with the note in the notes array
@@ -37,8 +37,11 @@ function activate(context) {
         const selectedNoteContent = matchingNote ? matchingNote.content : '';
         currentNotePanel
             ? currentNotePanel.reveal(columnToShowIn)
-            : (currentNotePanel = vscode.window.createWebviewPanel('noteDetailView', selectedNoteTitle, vscode.ViewColumn.One, { enableScripts: true }));
+            : (currentNotePanel = vscode.window.createWebviewPanel('noteDetailView', selectedNoteTitle, vscode.ViewColumn.One, {}));
         currentNotePanel.webview.html = getWebviewContent(selectedNoteTitle, selectedNoteContent);
+        currentNotePanel.onDidDispose(() => {
+            currentNotePanel = undefined;
+        }, null, context.subscriptions);
     });
     const createNote = vscode.commands.registerCommand('notepad.createNote', () => {
         vscode.window.showInformationMessage('Created a note');
@@ -47,7 +50,7 @@ function activate(context) {
         vscode.window.showInformationMessage('Deleted the note');
     });
     context.subscriptions.push(treeView);
-    context.subscriptions.push(showNote);
+    context.subscriptions.push(openNote);
     context.subscriptions.push(createNote);
     context.subscriptions.push(deleteNote);
 }

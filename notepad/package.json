@@ -16,11 +16,6 @@
   "contributes": {
     "commands": [
       {
-        "command": "notepad.showNoteDetailView",
-        "title": "Show note",
-        "category": "Notepad"
-      },
-      {
         "command": "notepad.createNote",
         "title": "Create a note",
         "icon": "$(add)",
@@ -48,14 +43,6 @@
           "name": "My Notes",
           "type": "tree",
           "visibility": "visible"
-        },
-        {
-          "id": "notepad.detailView",
-          "name": "Note",
-          "type": "webview",
-          "icon": "$(notebook)",
-          "when": "showNoteDetailView",
-          "contextualTitle": "Note Details"
         }
       ]
     },

@@ -36,7 +36,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   let currentNotePanel: vscode.WebviewPanel | undefined = undefined;
 
-  const showNote = vscode.commands.registerCommand('notepad.showNoteDetailView', () => {
+  const openNote = vscode.commands.registerCommand('notepad.showNoteDetailView', () => {
     const columnToShowIn = vscode.window.activeTextEditor ? vscode.window.activeTextEditor.viewColumn : undefined;
     const selectedTreeViewItem = treeView.selection[0];
 
@@ -52,10 +52,17 @@ export function activate(context: vscode.ExtensionContext) {
           'noteDetailView',
           selectedNoteTitle,
           vscode.ViewColumn.One,
-          { enableScripts: true }
+          {}
         ));
 
     currentNotePanel.webview.html = getWebviewContent(selectedNoteTitle, selectedNoteContent);
+    currentNotePanel.onDidDispose(
+      () => {
+        currentNotePanel = undefined;
+      },
+      null,
+      context.subscriptions
+    );
   });
 
   const createNote = vscode.commands.registerCommand('notepad.createNote', () => {
@@ -67,7 +74,7 @@ export function activate(context: vscode.ExtensionContext) {
   });
 
   context.subscriptions.push(treeView);
-  context.subscriptions.push(showNote);
+  context.subscriptions.push(openNote);
   context.subscriptions.push(createNote);
   context.subscriptions.push(deleteNote);
 }
