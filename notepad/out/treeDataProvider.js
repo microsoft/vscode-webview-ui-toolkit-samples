@@ -27,6 +27,11 @@ class TreeItem extends vscode.TreeItem {
     constructor(label) {
         super(label);
         this.iconPath = new vscode.ThemeIcon('note');
+        this.command = {
+            title: '',
+            command: 'vscode.open',
+            arguments: [vscode.Uri.parse('https://www.google.com')],
+        };
     }
 }
 //# sourceMappingURL=treeDataProvider.js.map

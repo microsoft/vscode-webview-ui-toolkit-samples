@@ -10,13 +10,16 @@
     "Other"
   ],
   "activationEvents": [
-    "onView:notepad.notesView",
-    "onCommand:notepad.createNote",
-    "onCommand:notepad.deleteNote"
+    "onView:notepad.notesList"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
+      {
+        "command": "notepad.showNoteDetailView",
+        "title": "Show note",
+        "category": "Notepad"
+      },
       {
         "command": "notepad.createNote",
         "title": "Create a note",
@@ -41,13 +44,26 @@
     "views": {
       "notepad": [
         {
-          "id": "notepad.notesView",
+          "id": "notepad.notesList",
           "name": "My Notes",
           "type": "tree",
           "visibility": "visible"
+        },
+        {
+          "id": "notepad.detailView",
+          "name": "Note",
+          "type": "webview",
+          "when": "showNoteDetailView",
+          "contextualTitle": "Note Details"
         }
       ]
     },
+    "viewsWelcome": [
+      {
+        "view": "notepad.notesList",
+        "contents": "No notes yet"
+      }
+    ],
     "menus": {
       "view/title": [
         {
