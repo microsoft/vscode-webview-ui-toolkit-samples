@@ -4,27 +4,24 @@ exports.deactivate = exports.activate = void 0;
 const vscode = require("vscode");
 const notesDataProvider_1 = require("./notesDataProvider");
 function activate(context) {
-    const notesData = () => {
-        return [
-            {
-                id: '1',
-                title: 'Note 1',
-                content: 'Note 1 content',
-            },
-            {
-                id: '2',
-                title: 'Note 2',
-                content: 'Note 2 content',
-            },
-            {
-                id: '3',
-                title: 'Note 3',
-                content: 'Note 3 content',
-            },
-        ];
-    };
-    const notes = notesData();
-    const treeDataProvider = new notesDataProvider_1.NoteDataProvider(notes);
+    const notesData = [
+        {
+            id: '1',
+            title: 'Figma plugin idea',
+            content: 'Note 1 content',
+        },
+        {
+            id: '2',
+            title: 'Meeting notes',
+            content: 'Note 2 content',
+        },
+        {
+            id: '3',
+            title: 'Conference notes',
+            content: 'Note 3 content',
+        },
+    ];
+    const treeDataProvider = new notesDataProvider_1.NoteDataProvider(notesData);
     const treeView = vscode.window.createTreeView('notepad.notesList', {
         treeDataProvider,
         showCollapseAll: false,
@@ -35,12 +32,12 @@ function activate(context) {
         const columnToShowIn = vscode.window.activeTextEditor ? vscode.window.activeTextEditor.viewColumn : undefined;
         const selectedTreeViewItem = treeView.selection[0];
         // Match the selected Tree View item with the note in the notes array
-        const matchingNote = notes.find((note) => note.id === selectedTreeViewItem.id);
+        const matchingNote = notesData.find((note) => note.id === selectedTreeViewItem.id);
         const selectedNoteTitle = matchingNote ? matchingNote.title : '';
         const selectedNoteContent = matchingNote ? matchingNote.content : '';
         currentNotePanel
             ? currentNotePanel.reveal(columnToShowIn)
-            : (currentNotePanel = vscode.window.createWebviewPanel('noteDetailView', 'Note', vscode.ViewColumn.One, {}));
+            : (currentNotePanel = vscode.window.createWebviewPanel('noteDetailView', selectedNoteTitle, vscode.ViewColumn.One, { enableScripts: true }));
         currentNotePanel.webview.html = getWebviewContent(selectedNoteTitle, selectedNoteContent);
     });
     const createNote = vscode.commands.registerCommand('notepad.createNote', () => {
@@ -55,8 +52,6 @@ function activate(context) {
     context.subscriptions.push(deleteNote);
 }
 exports.activate = activate;
-function deactivate() { }
-exports.deactivate = deactivate;
 function getWebviewContent(noteTitle, noteContent) {
     return `<!DOCTYPE html>
 <html lang="en">
@@ -71,4 +66,6 @@ function getWebviewContent(noteTitle, noteContent) {
 </body>
 </html>`;
 }
+function deactivate() { }
+exports.deactivate = deactivate;
 //# sourceMappingURL=extension.js.map

@@ -26,7 +26,6 @@ class TreeItem extends vscode.TreeItem {
         this.command = {
             title: '',
             command: 'notepad.showNoteDetailView',
-            arguments: [vscode.Uri.parse('https://www.google.com')],
         };
     }
 }

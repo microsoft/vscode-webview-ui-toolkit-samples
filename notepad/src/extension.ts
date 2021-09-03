@@ -8,28 +8,25 @@ export interface Note {
 }
 
 export function activate(context: vscode.ExtensionContext) {
-  const notesData = (): Note[] => {
-    return [
-      {
-        id: '1',
-        title: 'Note 1',
-        content: 'Note 1 content',
-      },
-      {
-        id: '2',
-        title: 'Note 2',
-        content: 'Note 2 content',
-      },
-      {
-        id: '3',
-        title: 'Note 3',
-        content: 'Note 3 content',
-      },
-    ];
-  };
+  const notesData: Note[] = [
+    {
+      id: '1',
+      title: 'Figma plugin idea',
+      content: 'Note 1 content',
+    },
+    {
+      id: '2',
+      title: 'Meeting notes',
+      content: 'Note 2 content',
+    },
+    {
+      id: '3',
+      title: 'Conference notes',
+      content: 'Note 3 content',
+    },
+  ];
 
-  const notes = notesData();
-  const treeDataProvider = new NoteDataProvider(notes);
+  const treeDataProvider = new NoteDataProvider(notesData);
 
   const treeView = vscode.window.createTreeView('notepad.notesList', {
     treeDataProvider,
@@ -44,14 +41,19 @@ export function activate(context: vscode.ExtensionContext) {
     const selectedTreeViewItem = treeView.selection[0];
 
     // Match the selected Tree View item with the note in the notes array
-    const matchingNote = notes.find((note) => note.id === selectedTreeViewItem.id);
+    const matchingNote = notesData.find((note) => note.id === selectedTreeViewItem.id);
 
     const selectedNoteTitle = matchingNote ? matchingNote.title : '';
     const selectedNoteContent = matchingNote ? matchingNote.content : '';
 
     currentNotePanel
       ? currentNotePanel.reveal(columnToShowIn)
-      : (currentNotePanel = vscode.window.createWebviewPanel('noteDetailView', 'Note', vscode.ViewColumn.One, {}));
+      : (currentNotePanel = vscode.window.createWebviewPanel(
+          'noteDetailView',
+          selectedNoteTitle,
+          vscode.ViewColumn.One,
+          { enableScripts: true }
+        ));
 
     currentNotePanel.webview.html = getWebviewContent(selectedNoteTitle, selectedNoteContent);
   });
@@ -70,8 +72,6 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(deleteNote);
 }
 
-export function deactivate() {}
-
 function getWebviewContent(noteTitle?: string | vscode.TreeItemLabel, noteContent?: string) {
   return `<!DOCTYPE html>
 <html lang="en">
@@ -86,3 +86,5 @@ function getWebviewContent(noteTitle?: string | vscode.TreeItemLabel, noteConten
 </body>
 </html>`;
 }
+
+export function deactivate() {}

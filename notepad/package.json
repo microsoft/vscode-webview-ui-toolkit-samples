@@ -53,6 +53,7 @@
           "id": "notepad.detailView",
           "name": "Note",
           "type": "webview",
+          "icon": "$(notebook)",
           "when": "showNoteDetailView",
           "contextualTitle": "Note Details"
         }
