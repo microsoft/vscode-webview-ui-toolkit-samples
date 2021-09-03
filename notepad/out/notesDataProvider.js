@@ -1,16 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TreeDataProvider = void 0;
+exports.NoteDataProvider = void 0;
 const vscode = require("vscode");
-class TreeDataProvider {
+class NoteDataProvider {
     // Note: Just for demo purposes. Will reimplement later.
-    constructor() {
-        this.data = [
-            new TreeItem('Extension idea'),
-            new TreeItem('Conference notes'),
-            new TreeItem('Figma plugin'),
-            new TreeItem('Contractor meeting'),
-        ];
+    constructor(notesData) {
+        this.data = notesData.map((note) => new TreeItem(note.id, note.title));
     }
     getTreeItem(element) {
         return element;
@@ -22,10 +17,11 @@ class TreeDataProvider {
         return element.children;
     }
 }
-exports.TreeDataProvider = TreeDataProvider;
+exports.NoteDataProvider = NoteDataProvider;
 class TreeItem extends vscode.TreeItem {
-    constructor(label) {
-        super(label);
+    constructor(noteId, noteTitle) {
+        super(noteTitle);
+        this.id = noteId;
         this.iconPath = new vscode.ThemeIcon('note');
         this.command = {
             title: '',
@@ -34,4 +30,4 @@ class TreeItem extends vscode.TreeItem {
         };
     }
 }
-//# sourceMappingURL=treeDataProvider.js.map
+//# sourceMappingURL=notesDataProvider.js.map

@@ -1,8 +1,35 @@
 import * as vscode from 'vscode';
-import { TreeDataProvider } from './treeDataProvider';
+import { NoteDataProvider } from './notesDataProvider';
+
+export interface Note {
+  id: string;
+  title: string;
+  content?: string;
+}
 
 export function activate(context: vscode.ExtensionContext) {
-  const treeDataProvider = new TreeDataProvider();
+  const notesData = (): Note[] => {
+    return [
+      {
+        id: '1',
+        title: 'Note 1',
+        content: 'Note 1 content',
+      },
+      {
+        id: '2',
+        title: 'Note 2',
+        content: 'Note 2 content',
+      },
+      {
+        id: '3',
+        title: 'Note 3',
+        content: 'Note 3 content',
+      },
+    ];
+  };
+
+  const notes = notesData();
+  const treeDataProvider = new NoteDataProvider(notes);
 
   const treeView = vscode.window.createTreeView('notepad.notesList', {
     treeDataProvider,
@@ -10,10 +37,23 @@ export function activate(context: vscode.ExtensionContext) {
     canSelectMany: true,
   });
 
-  const showNote = vscode.commands.registerCommand('notepad.showNoteDetailView', () => {
-    const noteDetailsView = vscode.window.createWebviewPanel('noteDetailView', 'Note', vscode.ViewColumn.One, {});
+  let currentNotePanel: vscode.WebviewPanel | undefined = undefined;
 
-    noteDetailsView.webview.html = getWebviewContent();
+  const showNote = vscode.commands.registerCommand('notepad.showNoteDetailView', () => {
+    const columnToShowIn = vscode.window.activeTextEditor ? vscode.window.activeTextEditor.viewColumn : undefined;
+    const selectedTreeViewItem = treeView.selection[0];
+
+    // Match the selected Tree View item with the note in the notes array
+    const matchingNote = notes.find((note) => note.id === selectedTreeViewItem.id);
+
+    const selectedNoteTitle = matchingNote ? matchingNote.title : '';
+    const selectedNoteContent = matchingNote ? matchingNote.content : '';
+
+    currentNotePanel
+      ? currentNotePanel.reveal(columnToShowIn)
+      : (currentNotePanel = vscode.window.createWebviewPanel('noteDetailView', 'Note', vscode.ViewColumn.One, {}));
+
+    currentNotePanel.webview.html = getWebviewContent(selectedNoteTitle, selectedNoteContent);
   });
 
   const createNote = vscode.commands.registerCommand('notepad.createNote', () => {
@@ -32,7 +72,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 export function deactivate() {}
 
-function getWebviewContent() {
+function getWebviewContent(noteTitle?: string | vscode.TreeItemLabel, noteContent?: string) {
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,7 +81,8 @@ function getWebviewContent() {
     <title>Cat Coding</title>
 </head>
 <body>
-    <h1>Hello World</h1>
+    <h1>${noteTitle}</h1>
+    <p>${noteContent}</p>
 </body>
 </html>`;
 }

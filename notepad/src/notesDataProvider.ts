@@ -1,18 +1,14 @@
 import * as vscode from 'vscode';
+import { Note } from './extension';
 
-export class TreeDataProvider implements vscode.TreeDataProvider<TreeItem> {
+export class NoteDataProvider implements vscode.TreeDataProvider<TreeItem> {
   onDidChangeTreeData?: vscode.Event<TreeItem | null | undefined> | undefined;
 
   data: TreeItem[];
 
   // Note: Just for demo purposes. Will reimplement later.
-  constructor() {
-    this.data = [
-      new TreeItem('Extension idea'),
-      new TreeItem('Conference notes'),
-      new TreeItem('Figma plugin'),
-      new TreeItem('Contractor meeting'),
-    ];
+  constructor(notesData: Note[]) {
+    this.data = notesData.map((note) => new TreeItem(note.id, note.title));
   }
 
   getTreeItem(element: TreeItem): vscode.TreeItem | Thenable<vscode.TreeItem> {
@@ -28,14 +24,15 @@ export class TreeDataProvider implements vscode.TreeDataProvider<TreeItem> {
 }
 
 class TreeItem extends vscode.TreeItem {
-  children: TreeItem[] | undefined;
+  children?: TreeItem[];
 
-  constructor(label: string) {
-    super(label);
+  constructor(noteId: string, noteTitle: string) {
+    super(noteTitle);
+    this.id = noteId;
     this.iconPath = new vscode.ThemeIcon('note');
     this.command = {
       title: '',
-      command: 'vscode.open',
+      command: 'notepad.showNoteDetailView',
       arguments: [vscode.Uri.parse('https://www.google.com')],
     };
   }
