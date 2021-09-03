@@ -21,6 +21,9 @@ class NoteDataProvider {
         }
         return element.children;
     }
+    getParent() {
+        return null;
+    }
 }
 exports.NoteDataProvider = NoteDataProvider;
 class TreeItem extends vscode.TreeItem {

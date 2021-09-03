@@ -34,9 +34,9 @@ export function activate(context: vscode.ExtensionContext) {
   });
 
   let currentNotePanel: vscode.WebviewPanel | undefined = undefined;
+  const columnToShowIn = vscode.window.activeTextEditor ? vscode.window.activeTextEditor.viewColumn : undefined;
 
   const openNote = vscode.commands.registerCommand('notepad.showNoteDetailView', () => {
-    const columnToShowIn = vscode.window.activeTextEditor ? vscode.window.activeTextEditor.viewColumn : undefined;
     const selectedTreeViewItem = treeView.selection[0];
 
     // Match the selected Tree View item with the note in the notes array
@@ -75,6 +75,17 @@ export function activate(context: vscode.ExtensionContext) {
 
     notesData.push(newNote);
     treeDataProvider.refresh(notesData);
+    treeView.reveal(newNote);
+    currentNotePanel
+      ? currentNotePanel.reveal(columnToShowIn)
+      : (currentNotePanel = vscode.window.createWebviewPanel(
+          'noteDetailView',
+          newNote.title,
+          vscode.ViewColumn.One,
+          {}
+        ));
+
+    currentNotePanel.webview.html = getWebviewContent(newNote.title, newNote.content);
   });
 
   const deleteNote = vscode.commands.registerCommand('notepad.deleteNote', () => {

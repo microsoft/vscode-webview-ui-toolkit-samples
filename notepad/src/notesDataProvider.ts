@@ -28,6 +28,10 @@ export class NoteDataProvider implements vscode.TreeDataProvider<TreeItem> {
     }
     return element.children;
   }
+
+  getParent() {
+    return null;
+  }
 }
 
 class TreeItem extends vscode.TreeItem {
