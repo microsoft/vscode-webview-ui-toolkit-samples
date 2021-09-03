@@ -8,7 +8,7 @@ export interface Note {
 }
 
 export function activate(context: vscode.ExtensionContext) {
-  const notesData: Note[] = [
+  let notesData: Note[] = [
     {
       id: '1',
       title: 'Figma plugin idea',
@@ -31,7 +31,6 @@ export function activate(context: vscode.ExtensionContext) {
   const treeView = vscode.window.createTreeView('notepad.notesList', {
     treeDataProvider,
     showCollapseAll: false,
-    canSelectMany: true,
   });
 
   let currentNotePanel: vscode.WebviewPanel | undefined = undefined;
@@ -56,6 +55,8 @@ export function activate(context: vscode.ExtensionContext) {
         ));
 
     currentNotePanel.webview.html = getWebviewContent(selectedNoteTitle, selectedNoteContent);
+
+    // Ensure the panel reopens after closing
     currentNotePanel.onDidDispose(
       () => {
         currentNotePanel = undefined;
@@ -66,7 +67,14 @@ export function activate(context: vscode.ExtensionContext) {
   });
 
   const createNote = vscode.commands.registerCommand('notepad.createNote', () => {
-    vscode.window.showInformationMessage('Created a note');
+    const newNote: Note = {
+      id: (notesData.length + 1).toString(),
+      title: 'Untitled',
+      content: `Hello! I\'m page ${(notesData.length + 1).toString()}`,
+    };
+
+    notesData.push(newNote);
+    treeDataProvider.refresh(notesData);
   });
 
   const deleteNote = vscode.commands.registerCommand('notepad.deleteNote', () => {

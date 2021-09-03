@@ -2,11 +2,18 @@ import * as vscode from 'vscode';
 import { Note } from './extension';
 
 export class NoteDataProvider implements vscode.TreeDataProvider<TreeItem> {
-  onDidChangeTreeData?: vscode.Event<TreeItem | null | undefined> | undefined;
+  private _onDidChangeTreeData: vscode.EventEmitter<TreeItem | undefined | null | void> = new vscode.EventEmitter<
+    TreeItem | undefined | null | void
+  >();
+  readonly onDidChangeTreeData: vscode.Event<TreeItem | undefined | null | void> = this._onDidChangeTreeData.event;
 
   data: TreeItem[];
 
-  // Note: Just for demo purposes. Will reimplement later.
+  refresh(notesData: Note[]): void {
+    this._onDidChangeTreeData.fire();
+    this.data = notesData.map((note) => new TreeItem(note.id, note.title));
+  }
+
   constructor(notesData: Note[]) {
     this.data = notesData.map((note) => new TreeItem(note.id, note.title));
   }

@@ -4,7 +4,7 @@ exports.deactivate = exports.activate = void 0;
 const vscode = require("vscode");
 const notesDataProvider_1 = require("./notesDataProvider");
 function activate(context) {
-    const notesData = [
+    let notesData = [
         {
             id: '1',
             title: 'Figma plugin idea',
@@ -25,7 +25,6 @@ function activate(context) {
     const treeView = vscode.window.createTreeView('notepad.notesList', {
         treeDataProvider,
         showCollapseAll: false,
-        canSelectMany: true,
     });
     let currentNotePanel = undefined;
     const openNote = vscode.commands.registerCommand('notepad.showNoteDetailView', () => {
@@ -39,12 +38,19 @@ function activate(context) {
             ? currentNotePanel.reveal(columnToShowIn)
             : (currentNotePanel = vscode.window.createWebviewPanel('noteDetailView', selectedNoteTitle, vscode.ViewColumn.One, {}));
         currentNotePanel.webview.html = getWebviewContent(selectedNoteTitle, selectedNoteContent);
+        // Ensure the panel reopens after closing
         currentNotePanel.onDidDispose(() => {
             currentNotePanel = undefined;
         }, null, context.subscriptions);
     });
     const createNote = vscode.commands.registerCommand('notepad.createNote', () => {
-        vscode.window.showInformationMessage('Created a note');
+        const newNote = {
+            id: (notesData.length + 1).toString(),
+            title: 'Untitled',
+            content: `Hello! I\'m page ${(notesData.length + 1).toString()}`,
+        };
+        notesData.push(newNote);
+        treeDataProvider.refresh(notesData);
     });
     const deleteNote = vscode.commands.registerCommand('notepad.deleteNote', () => {
         vscode.window.showInformationMessage('Deleted the note');

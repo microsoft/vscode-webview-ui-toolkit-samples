@@ -25,6 +25,11 @@
         "command": "notepad.deleteNote",
         "title": "Delete note",
         "icon": "$(trash)"
+      },
+      {
+        "command": "notepad.refresh",
+        "title": "Refresh notes",
+        "category": "Notepad"
       }
     ],
     "viewsContainers": {
