@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import { NoteDataProvider } from './notesDataProvider';
+import { v4 as uuidv4 } from 'uuid';
 
 export interface Note {
   id: string;
@@ -79,10 +80,12 @@ export function activate(context: vscode.ExtensionContext) {
   const createNote = vscode.commands.registerCommand(
     'notepad.createNote',
     () => {
+      let id = uuidv4();
+
       const newNote: Note = {
-        id: (notesData.length + 1).toString(),
-        title: 'Untitled',
-        content: "What's on your mind?",
+        id: id,
+        title: `Untitled`,
+        content: id,
       };
 
       notesData.push(newNote);
@@ -114,6 +117,8 @@ export function activate(context: vscode.ExtensionContext) {
       );
       notesData.splice(selectedNoteIndex, 1);
       treeDataProvider.refresh(notesData);
+
+      currentNotePanel?.dispose();
     }
   );
 

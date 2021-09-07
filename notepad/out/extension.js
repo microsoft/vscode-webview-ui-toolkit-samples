@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.deactivate = exports.activate = void 0;
 const vscode = require("vscode");
 const notesDataProvider_1 = require("./notesDataProvider");
+const uuid_1 = require("uuid");
 function activate(context) {
     let notesData = [
         {
@@ -46,10 +47,11 @@ function activate(context) {
         }, null, context.subscriptions);
     });
     const createNote = vscode.commands.registerCommand('notepad.createNote', () => {
+        let id = (0, uuid_1.v4)();
         const newNote = {
-            id: (notesData.length + 1).toString(),
-            title: 'Untitled',
-            content: "What's on your mind?",
+            id: id,
+            title: `Untitled`,
+            content: id,
         };
         notesData.push(newNote);
         treeDataProvider.refresh(notesData);
@@ -64,6 +66,7 @@ function activate(context) {
         const selectedNoteIndex = notesData.findIndex((note) => note.id === selectedTreeViewItem.id);
         notesData.splice(selectedNoteIndex, 1);
         treeDataProvider.refresh(notesData);
+        currentNotePanel === null || currentNotePanel === void 0 ? void 0 : currentNotePanel.dispose();
     });
     context.subscriptions.push(treeView);
     context.subscriptions.push(openNote);

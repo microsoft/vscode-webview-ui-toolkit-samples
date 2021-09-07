@@ -2,10 +2,12 @@ import * as vscode from 'vscode';
 import { Note } from './extension';
 
 export class NoteDataProvider implements vscode.TreeDataProvider<TreeItem> {
-  private _onDidChangeTreeData: vscode.EventEmitter<TreeItem | undefined | null | void> = new vscode.EventEmitter<
+  private _onDidChangeTreeData: vscode.EventEmitter<
     TreeItem | undefined | null | void
-  >();
-  readonly onDidChangeTreeData: vscode.Event<TreeItem | undefined | null | void> = this._onDidChangeTreeData.event;
+  > = new vscode.EventEmitter<TreeItem | undefined | null | void>();
+  readonly onDidChangeTreeData: vscode.Event<
+    TreeItem | undefined | null | void
+  > = this._onDidChangeTreeData.event;
 
   data: TreeItem[];
 
@@ -22,7 +24,9 @@ export class NoteDataProvider implements vscode.TreeDataProvider<TreeItem> {
     return element;
   }
 
-  getChildren(element?: TreeItem | undefined): vscode.ProviderResult<TreeItem[]> {
+  getChildren(
+    element?: TreeItem | undefined
+  ): vscode.ProviderResult<TreeItem[]> {
     if (element === undefined) {
       return this.data;
     }
@@ -41,6 +45,7 @@ class TreeItem extends vscode.TreeItem {
     super(noteTitle);
     this.id = noteId;
     this.iconPath = new vscode.ThemeIcon('note');
+
     this.command = {
       title: '',
       command: 'notepad.showNoteDetailView',

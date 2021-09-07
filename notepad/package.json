@@ -54,7 +54,7 @@
     "viewsWelcome": [
       {
         "view": "notepad.notesList",
-        "contents": "No notes yet"
+        "contents": "No notes yet!"
       }
     ],
     "menus": {
@@ -81,16 +81,20 @@
     "test": "node ./out/test/runTest.js"
   },
   "devDependencies": {
-    "@types/vscode": "^1.59.0",
     "@types/glob": "^7.1.3",
     "@types/mocha": "^8.0.4",
     "@types/node": "^12.11.7",
-    "eslint": "^7.19.0",
+    "@types/uuid": "^8.3.1",
+    "@types/vscode": "^1.59.0",
     "@typescript-eslint/eslint-plugin": "^4.14.1",
     "@typescript-eslint/parser": "^4.14.1",
+    "eslint": "^7.19.0",
     "glob": "^7.1.6",
     "mocha": "^8.2.1",
     "typescript": "^4.1.3",
     "vscode-test": "^1.5.0"
+  },
+  "dependencies": {
+    "uuid": "^8.3.2"
   }
 }
