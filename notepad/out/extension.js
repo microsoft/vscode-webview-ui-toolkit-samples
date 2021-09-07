@@ -27,7 +27,9 @@ function activate(context) {
         showCollapseAll: false,
     });
     let currentNotePanel = undefined;
-    const columnToShowIn = vscode.window.activeTextEditor ? vscode.window.activeTextEditor.viewColumn : undefined;
+    const columnToShowIn = vscode.window.activeTextEditor
+        ? vscode.window.activeTextEditor.viewColumn
+        : undefined;
     const openNote = vscode.commands.registerCommand('notepad.showNoteDetailView', () => {
         const selectedTreeViewItem = treeView.selection[0];
         // Match the selected Tree View item with the note in the notes array
@@ -47,18 +49,21 @@ function activate(context) {
         const newNote = {
             id: (notesData.length + 1).toString(),
             title: 'Untitled',
-            content: `Hello! I\'m page ${(notesData.length + 1).toString()}`,
+            content: "What's on your mind?",
         };
         notesData.push(newNote);
         treeDataProvider.refresh(notesData);
-        treeView.reveal(newNote);
+        treeView.reveal(newNote, { focus: true });
         currentNotePanel
             ? currentNotePanel.reveal(columnToShowIn)
             : (currentNotePanel = vscode.window.createWebviewPanel('noteDetailView', newNote.title, vscode.ViewColumn.One, {}));
         currentNotePanel.webview.html = getWebviewContent(newNote.title, newNote.content);
     });
     const deleteNote = vscode.commands.registerCommand('notepad.deleteNote', () => {
-        vscode.window.showInformationMessage('Deleted the note');
+        const selectedTreeViewItem = treeView.selection[0];
+        const selectedNoteIndex = notesData.findIndex((note) => note.id === selectedTreeViewItem.id);
+        notesData.splice(selectedNoteIndex, 1);
+        treeDataProvider.refresh(notesData);
     });
     context.subscriptions.push(treeView);
     context.subscriptions.push(openNote);
@@ -72,7 +77,7 @@ function getWebviewContent(noteTitle, noteContent) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cat Coding</title>
+    <title>${noteTitle}</title>
 </head>
 <body>
     <h1>${noteTitle}</h1>
