@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 export interface Note {
   id: string;
   title: string;
-  content?: string;
+  content: string;
 }
 
 export function activate(context: vscode.ExtensionContext) {
@@ -33,6 +33,7 @@ export function activate(context: vscode.ExtensionContext) {
     treeDataProvider,
     showCollapseAll: false,
   });
+  context.subscriptions.push(treeView);
 
   let currentNotePanel: vscode.WebviewPanel | undefined = undefined;
   const columnToShowIn = vscode.window.activeTextEditor
@@ -49,8 +50,8 @@ export function activate(context: vscode.ExtensionContext) {
         (note) => note.id === selectedTreeViewItem.id
       );
 
-      const selectedNoteTitle = matchingNote ? matchingNote.title : '';
-      const selectedNoteContent = matchingNote ? matchingNote.content : '';
+      const selectedNoteTitle = matchingNote ? matchingNote.title : 'Foo';
+      const selectedNoteContent = matchingNote ? matchingNote.content : 'Foo';
 
       currentNotePanel
         ? currentNotePanel.reveal(columnToShowIn)
@@ -58,12 +59,16 @@ export function activate(context: vscode.ExtensionContext) {
             'noteDetailView',
             selectedNoteTitle,
             vscode.ViewColumn.One,
-            {}
+            { enableScripts: true }
           ));
+
+      console.log(selectedNoteTitle, selectedNoteContent);
 
       currentNotePanel.webview.html = getWebviewContent(
         selectedNoteTitle,
-        selectedNoteContent
+        selectedNoteContent,
+        currentNotePanel.webview,
+        context.extensionUri
       );
 
       // Ensure the panel reopens after closing
@@ -76,6 +81,7 @@ export function activate(context: vscode.ExtensionContext) {
       );
     }
   );
+  context.subscriptions.push(openNote);
 
   const createNote = vscode.commands.registerCommand(
     'notepad.createNote',
@@ -103,15 +109,18 @@ export function activate(context: vscode.ExtensionContext) {
 
       currentNotePanel.webview.html = getWebviewContent(
         newNote.title,
-        newNote.content
+        newNote.content,
+        currentNotePanel.webview,
+        context.extensionUri
       );
     }
   );
+  context.subscriptions.push(createNote);
 
   const deleteNote = vscode.commands.registerCommand(
     'notepad.deleteNote',
-    () => {
-      const selectedTreeViewItem = treeView.selection[0];
+    (node: Note) => {
+      const selectedTreeViewItem = node;
       const selectedNoteIndex = notesData.findIndex(
         (note) => note.id === selectedTreeViewItem.id
       );
@@ -121,27 +130,53 @@ export function activate(context: vscode.ExtensionContext) {
       currentNotePanel?.dispose();
     }
   );
-
-  context.subscriptions.push(treeView);
-  context.subscriptions.push(openNote);
-  context.subscriptions.push(createNote);
   context.subscriptions.push(deleteNote);
 }
 
-function getWebviewContent(
-  noteTitle?: string | vscode.TreeItemLabel,
-  noteContent?: string
+function getUri(
+  webview: vscode.Webview,
+  extensionUri: vscode.Uri,
+  pathList: string[]
 ) {
-  return `<!DOCTYPE html>
+  return webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, ...pathList));
+}
+
+function getWebviewContent(
+  noteTitle: string,
+  noteContent: string,
+  webview: vscode.Webview,
+  extensionUri: vscode.Uri
+) {
+  const toolkitUri = getUri(webview, extensionUri, [
+    'node_modules',
+    'vscode-webview-ui-toolkit',
+    'dist',
+    'toolkit.js',
+  ]);
+  const styleUri = getUri(webview, extensionUri, ['media', 'style.css']);
+
+  return /*html*/ `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="${styleUri}">
+    <script type="module" src="${toolkitUri}"></script>
     <title>${noteTitle}</title>
 </head>
-<body>
+<body id="webview-body">
     <h1>${noteTitle}</h1>
-    <p>${noteContent}</p>
+    <div id="tags">
+      <vscode-tag>Work</vscode-tag>
+      <vscode-tag>Meetings</vscode-tag>
+      <vscode-tag>Planning</vscode-tag>
+    </div>
+    <form id="notes-form">
+      <vscode-text-field value="${noteTitle}" placeholder="Enter a name">Title</vscode-text-field>
+      <vscode-text-area value="${noteContent}" placeholder="Write your heart out, Shakespeare!" resize="vertical" rows=15>Note</vscode-text-area>
+      <vscode-text-field value="Work, Meetings, Planning" placeholder="Add tags separated by commas">Tags</vscode-text-field>
+      <vscode-button id="submit-button">Save</vscode-button>
+    </form>
 </body>
 </html>`;
 }

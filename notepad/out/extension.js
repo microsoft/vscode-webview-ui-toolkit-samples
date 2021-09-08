@@ -27,6 +27,7 @@ function activate(context) {
         treeDataProvider,
         showCollapseAll: false,
     });
+    context.subscriptions.push(treeView);
     let currentNotePanel = undefined;
     const columnToShowIn = vscode.window.activeTextEditor
         ? vscode.window.activeTextEditor.viewColumn
@@ -35,17 +36,19 @@ function activate(context) {
         const selectedTreeViewItem = treeView.selection[0];
         // Match the selected Tree View item with the note in the notes array
         const matchingNote = notesData.find((note) => note.id === selectedTreeViewItem.id);
-        const selectedNoteTitle = matchingNote ? matchingNote.title : '';
-        const selectedNoteContent = matchingNote ? matchingNote.content : '';
+        const selectedNoteTitle = matchingNote ? matchingNote.title : 'Foo';
+        const selectedNoteContent = matchingNote ? matchingNote.content : 'Foo';
         currentNotePanel
             ? currentNotePanel.reveal(columnToShowIn)
-            : (currentNotePanel = vscode.window.createWebviewPanel('noteDetailView', selectedNoteTitle, vscode.ViewColumn.One, {}));
-        currentNotePanel.webview.html = getWebviewContent(selectedNoteTitle, selectedNoteContent);
+            : (currentNotePanel = vscode.window.createWebviewPanel('noteDetailView', selectedNoteTitle, vscode.ViewColumn.One, { enableScripts: true }));
+        console.log(selectedNoteTitle, selectedNoteContent);
+        currentNotePanel.webview.html = getWebviewContent(selectedNoteTitle, selectedNoteContent, currentNotePanel.webview, context.extensionUri);
         // Ensure the panel reopens after closing
         currentNotePanel.onDidDispose(() => {
             currentNotePanel = undefined;
         }, null, context.subscriptions);
     });
+    context.subscriptions.push(openNote);
     const createNote = vscode.commands.registerCommand('notepad.createNote', () => {
         let id = (0, uuid_1.v4)();
         const newNote = {
@@ -59,32 +62,52 @@ function activate(context) {
         currentNotePanel
             ? currentNotePanel.reveal(columnToShowIn)
             : (currentNotePanel = vscode.window.createWebviewPanel('noteDetailView', newNote.title, vscode.ViewColumn.One, {}));
-        currentNotePanel.webview.html = getWebviewContent(newNote.title, newNote.content);
+        currentNotePanel.webview.html = getWebviewContent(newNote.title, newNote.content, currentNotePanel.webview, context.extensionUri);
     });
-    const deleteNote = vscode.commands.registerCommand('notepad.deleteNote', () => {
-        const selectedTreeViewItem = treeView.selection[0];
+    context.subscriptions.push(createNote);
+    const deleteNote = vscode.commands.registerCommand('notepad.deleteNote', (node) => {
+        const selectedTreeViewItem = node;
         const selectedNoteIndex = notesData.findIndex((note) => note.id === selectedTreeViewItem.id);
         notesData.splice(selectedNoteIndex, 1);
         treeDataProvider.refresh(notesData);
         currentNotePanel === null || currentNotePanel === void 0 ? void 0 : currentNotePanel.dispose();
     });
-    context.subscriptions.push(treeView);
-    context.subscriptions.push(openNote);
-    context.subscriptions.push(createNote);
     context.subscriptions.push(deleteNote);
 }
 exports.activate = activate;
-function getWebviewContent(noteTitle, noteContent) {
-    return `<!DOCTYPE html>
+function getUri(webview, extensionUri, pathList) {
+    return webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, ...pathList));
+}
+function getWebviewContent(noteTitle, noteContent, webview, extensionUri) {
+    const toolkitUri = getUri(webview, extensionUri, [
+        'node_modules',
+        'vscode-webview-ui-toolkit',
+        'dist',
+        'toolkit.js',
+    ]);
+    const styleUri = getUri(webview, extensionUri, ['media', 'style.css']);
+    return /*html*/ `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="${styleUri}">
+    <script type="module" src="${toolkitUri}"></script>
     <title>${noteTitle}</title>
 </head>
-<body>
+<body id="webview-body">
     <h1>${noteTitle}</h1>
-    <p>${noteContent}</p>
+    <div id="tags">
+      <vscode-tag>Work</vscode-tag>
+      <vscode-tag>Meetings</vscode-tag>
+      <vscode-tag>Planning</vscode-tag>
+    </div>
+    <form id="notes-form">
+      <vscode-text-field value="${noteTitle}" placeholder="Enter a name">Title</vscode-text-field>
+      <vscode-text-area value="${noteContent}" placeholder="Write your heart out, Shakespeare!" resize="vertical" rows=15>Note</vscode-text-area>
+      <vscode-text-field value="Work, Meetings, Planning" placeholder="Add tags separated by commas">Tags</vscode-text-field>
+      <vscode-button id="submit-button">Save</vscode-button>
+    </form>
 </body>
 </html>`;
 }
