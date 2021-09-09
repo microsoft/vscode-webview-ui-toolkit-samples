@@ -5,25 +5,17 @@ import { v4 as uuidv4 } from 'uuid';
 export interface Note {
   id: string;
   title: string;
-  content: string;
+  content?: string;
+  tags?: string[];
 }
 
 export function activate(context: vscode.ExtensionContext) {
   let notesData: Note[] = [
     {
-      id: '1',
-      title: 'Figma plugin idea',
-      content: 'Note 1 content',
-    },
-    {
-      id: '2',
-      title: 'Meeting notes',
-      content: 'Note 2 content',
-    },
-    {
-      id: '3',
-      title: 'Conference notes',
-      content: 'Note 3 content',
+      id: uuidv4(),
+      title: 'Untitled',
+      content: 'Note to self: buy more coffee',
+      tags: ['Parenting', 'Personal'],
     },
   ];
 
@@ -44,29 +36,26 @@ export function activate(context: vscode.ExtensionContext) {
     'notepad.showNoteDetailView',
     () => {
       const selectedTreeViewItem = treeView.selection[0];
-
-      // Match the selected Tree View item with the note in the notes array
       const matchingNote = notesData.find(
         (note) => note.id === selectedTreeViewItem.id
       );
 
-      const selectedNoteTitle = matchingNote ? matchingNote.title : 'Foo';
-      const selectedNoteContent = matchingNote ? matchingNote.content : 'Foo';
+      if (!matchingNote) {
+        vscode.window.showErrorMessage('No matching note found');
+        return;
+      }
 
       currentNotePanel
         ? currentNotePanel.reveal(columnToShowIn)
         : (currentNotePanel = vscode.window.createWebviewPanel(
             'noteDetailView',
-            selectedNoteTitle,
+            matchingNote.title,
             vscode.ViewColumn.One,
             { enableScripts: true }
           ));
 
-      console.log(selectedNoteTitle, selectedNoteContent);
-
       currentNotePanel.webview.html = getWebviewContent(
-        selectedNoteTitle,
-        selectedNoteContent,
+        matchingNote,
         currentNotePanel.webview,
         context.extensionUri
       );
@@ -90,8 +79,8 @@ export function activate(context: vscode.ExtensionContext) {
 
       const newNote: Note = {
         id: id,
-        title: `Untitled`,
-        content: id,
+        title: 'Untitled',
+        content: '',
       };
 
       notesData.push(newNote);
@@ -104,12 +93,11 @@ export function activate(context: vscode.ExtensionContext) {
             'noteDetailView',
             newNote.title,
             vscode.ViewColumn.One,
-            {}
+            { enableScripts: true }
           ));
 
       currentNotePanel.webview.html = getWebviewContent(
-        newNote.title,
-        newNote.content,
+        newNote,
         currentNotePanel.webview,
         context.extensionUri
       );
@@ -142,8 +130,7 @@ function getUri(
 }
 
 function getWebviewContent(
-  noteTitle: string,
-  noteContent: string,
+  note: Note,
   webview: vscode.Webview,
   extensionUri: vscode.Uri
 ) {
@@ -157,27 +144,36 @@ function getWebviewContent(
 
   return /*html*/ `<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="${styleUri}">
-    <script type="module" src="${toolkitUri}"></script>
-    <title>${noteTitle}</title>
-</head>
-<body id="webview-body">
-    <h1>${noteTitle}</h1>
-    <div id="tags">
-      <vscode-tag>Work</vscode-tag>
-      <vscode-tag>Meetings</vscode-tag>
-      <vscode-tag>Planning</vscode-tag>
-    </div>
-    <form id="notes-form">
-      <vscode-text-field value="${noteTitle}" placeholder="Enter a name">Title</vscode-text-field>
-      <vscode-text-area value="${noteContent}" placeholder="Write your heart out, Shakespeare!" resize="vertical" rows=15>Note</vscode-text-area>
-      <vscode-text-field value="Work, Meetings, Planning" placeholder="Add tags separated by commas">Tags</vscode-text-field>
-      <vscode-button id="submit-button">Save</vscode-button>
-    </form>
-</body>
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <script type="module" src="${toolkitUri}"></script>
+      
+      <link rel="stylesheet" href="${styleUri}">
+      <title>${note.title}</title>
+  </head>
+  <body id="webview-body">
+    <header>
+      <h1>${note.title}</h1>
+      <div id="tags">
+        <vscode-tag>Work</vscode-tag>
+        <vscode-tag>Meetings</vscode-tag>
+        <vscode-tag>Planning</vscode-tag>
+      </div>
+      </header>
+      <section id="notes-form">
+        <vscode-text-field id="title-input" value="${note.title}" placeholder="Enter a name">Title</vscode-text-field>
+        <vscode-text-area value="${note.content}" placeholder="Write your heart out, Shakespeare!" resize="vertical" rows=15>Note</vscode-text-area>
+        <vscode-text-field value="Work, Meetings, Planning" placeholder="Add tags separated by commas">Tags</vscode-text-field>
+        <vscode-button id="submit-button">Save</vscode-button>
+      </section>
+  </body>
+  <script>
+    const saveButton = document.getElementById('submit-button');
+    saveButton.addEventListener('click', () => {
+      console.log('Saving note');
+    });
+  </script>
 </html>`;
 }
 

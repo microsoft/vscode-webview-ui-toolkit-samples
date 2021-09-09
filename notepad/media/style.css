@@ -20,5 +20,7 @@
 @media screen and (min-width: 1024px) {
   #webview-body {
     padding: 0 8rem;
+    max-width: 1024px;
+    margin: 0 auto;
   }
 }
