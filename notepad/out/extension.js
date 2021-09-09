@@ -34,6 +34,9 @@ function activate(context) {
             ? currentNotePanel.reveal(columnToShowIn)
             : (currentNotePanel = vscode.window.createWebviewPanel('noteDetailView', matchingNote.title, vscode.ViewColumn.One, { enableScripts: true }));
         currentNotePanel.webview.html = getWebviewContent(matchingNote, currentNotePanel.webview, context.extensionUri);
+        currentNotePanel.webview.onDidReceiveMessage((message) => {
+            // TODO Update the notes list with the updated note
+        });
         // Ensure the panel reopens after closing
         currentNotePanel.onDidDispose(() => {
             currentNotePanel = undefined;
@@ -83,7 +86,6 @@ function getWebviewContent(note, webview, extensionUri) {
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <script type="module" src="${toolkitUri}"></script>
-      
       <link rel="stylesheet" href="${styleUri}">
       <title>${note.title}</title>
   </head>
@@ -97,17 +99,27 @@ function getWebviewContent(note, webview, extensionUri) {
       </div>
       </header>
       <section id="notes-form">
-        <vscode-text-field id="title-input" value="${note.title}" placeholder="Enter a name">Title</vscode-text-field>
-        <vscode-text-area value="${note.content}" placeholder="Write your heart out, Shakespeare!" resize="vertical" rows=15>Note</vscode-text-area>
-        <vscode-text-field value="Work, Meetings, Planning" placeholder="Add tags separated by commas">Tags</vscode-text-field>
+        <vscode-text-field id="title" value="${note.title}" placeholder="Enter a name">Title</vscode-text-field>
+        <vscode-text-area id="content"value="${note.content}" placeholder="Write your heart out, Shakespeare!" resize="vertical" rows=15>Note</vscode-text-area>
+        <vscode-text-field id="tags" value="Work, Meetings, Planning" placeholder="Add tags separated by commas">Tags</vscode-text-field>
         <vscode-button id="submit-button">Save</vscode-button>
       </section>
   </body>
   <script>
-    const saveButton = document.getElementById('submit-button');
-    saveButton.addEventListener('click', () => {
-      console.log('Saving note');
+    
+    window.addEventListener('load', () => {
+      const vscode = acquireVsCodeApi();
+      
+      const saveButton = document.getElementById('submit-button');
+      saveButton.addEventListener('click', () => {
+        const noteToUpdate = {
+          id: '${note.id}',
+          title: document.getElementById('title').value,
+          content: document.getElementById('content').value,
+        };
+        vscode.postMessage({ command: 'saveNote', note: noteToUpdate });
     });
+  });
   </script>
 </html>`;
 }
