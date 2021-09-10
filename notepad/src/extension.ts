@@ -61,7 +61,7 @@ export function activate(context: vscode.ExtensionContext) {
       );
 
       currentNotePanel.webview.onDidReceiveMessage((message) => {
-        // TODO Update the notes list with the updated note
+        vscode.window.showInformationMessage('Foo');
       });
 
       // Ensure the panel reopens after closing
@@ -85,6 +85,7 @@ export function activate(context: vscode.ExtensionContext) {
         id: id,
         title: 'Untitled',
         content: '',
+        tags: ['Personal'],
       };
 
       notesData.push(newNote);
@@ -145,6 +146,17 @@ function getWebviewContent(
     'toolkit.js',
   ]);
   const styleUri = getUri(webview, extensionUri, ['media', 'style.css']);
+  const formattedTags = note.tags ? note.tags.join(', ') : null;
+
+  const getTags = () => {
+    if (!note.tags) {
+      return null;
+    }
+    const elements = note.tags?.map((tag) => {
+      return `<vscode-tag>${tag}</vscode-tag>`;
+    });
+    return elements?.join('');
+  };
 
   return /*html*/ `<!DOCTYPE html>
 <html lang="en">
@@ -158,33 +170,41 @@ function getWebviewContent(
   <body id="webview-body">
     <header>
       <h1>${note.title}</h1>
-      <div id="tags">
-        <vscode-tag>Work</vscode-tag>
-        <vscode-tag>Meetings</vscode-tag>
-        <vscode-tag>Planning</vscode-tag>
+      <div id="tags-group">
+        ${getTags()}
       </div>
       </header>
       <section id="notes-form">
-        <vscode-text-field id="title" value="${note.title}" placeholder="Enter a name">Title</vscode-text-field>
-        <vscode-text-area id="content"value="${note.content}" placeholder="Write your heart out, Shakespeare!" resize="vertical" rows=15>Note</vscode-text-area>
-        <vscode-text-field id="tags" value="Work, Meetings, Planning" placeholder="Add tags separated by commas">Tags</vscode-text-field>
+        <vscode-text-field id="title" value="${
+          note.title
+        }" placeholder="Enter a name">Title</vscode-text-field>
+        <vscode-text-area id="content"value="${
+          note.content
+        }" placeholder="Write your heart out, Shakespeare!" resize="vertical" rows=15>Note</vscode-text-area>
+        <vscode-text-field id="tags-input" value="${formattedTags}" placeholder="Add tags separated by commas">Tags</vscode-text-field>
         <vscode-button id="submit-button">Save</vscode-button>
       </section>
   </body>
   <script>
-    
     window.addEventListener('load', () => {
       const vscode = acquireVsCodeApi();
-      
       const saveButton = document.getElementById('submit-button');
-      saveButton.addEventListener('click', () => {
+
+      function saveNote() {
+        const title = document.getElementById('title').value;
+        const content = document.getElementById('content').value;
+        const tags = document.getElementById('tags-input').value.split(',').map(tag => tag.trim()),
+        
         const noteToUpdate = {
           id: '${note.id}',
-          title: document.getElementById('title').value,
-          content: document.getElementById('content').value,
+          title: title,
+          content: content,
+          tags: tags,
         };
-        vscode.postMessage({ command: 'saveNote', note: noteToUpdate });
-    });
+        vscode.postMessage({ command: 'Update note', note: noteToUpdate });
+      }
+
+      saveButton.addEventListener('click', () => saveNote());
   });
   </script>
 </html>`;

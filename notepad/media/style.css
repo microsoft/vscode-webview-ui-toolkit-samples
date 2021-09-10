@@ -13,7 +13,11 @@
   width: fit-content;
 }
 
-#tags {
+#tags-group {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: max-content;
+  grid-column-gap: 0.5rem;
   margin-bottom: 2rem;
 }
 
