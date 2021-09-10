@@ -14,6 +14,7 @@ function main() {
 }
 
 function saveNote() {
+  const noteId = "foo";
   const title = document.getElementById("title").value;
   const content = document.getElementById("content").value;
   const tags = document
@@ -22,7 +23,7 @@ function saveNote() {
     .map((tag) => tag.trim());
 
   const noteToUpdate = {
-    id: "${note.id}",
+    id: noteId,
     title: title,
     content: content,
     tags: tags,

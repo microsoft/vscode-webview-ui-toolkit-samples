@@ -1,4 +1,8 @@
-export function getWebviewContent(note: Note, webview: vscode.Webview, extensionUri: vscode.Uri) {
+import { Webview, Uri } from "vscode";
+import { Note } from "../extension";
+import { getUri } from "../utilities/getUri";
+
+export function getWebviewContent(note: Note, webview: Webview, extensionUri: Uri) {
   const toolkitUri = getUri(webview, extensionUri, [
     "node_modules",
     "vscode-webview-ui-toolkit",

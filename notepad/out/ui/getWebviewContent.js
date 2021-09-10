@@ -1,15 +1,16 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getWebviewContent = void 0;
+const getUri_1 = require("../utilities/getUri");
 function getWebviewContent(note, webview, extensionUri) {
-    const toolkitUri = getUri(webview, extensionUri, [
+    const toolkitUri = (0, getUri_1.getUri)(webview, extensionUri, [
         "node_modules",
         "vscode-webview-ui-toolkit",
         "dist",
         "toolkit.js",
     ]);
-    const styleUri = getUri(webview, extensionUri, ["media", "style.css"]);
-    const mainUri = getUri(webview, extensionUri, ["media", "main.js"]);
+    const styleUri = (0, getUri_1.getUri)(webview, extensionUri, ["media", "style.css"]);
+    const mainUri = (0, getUri_1.getUri)(webview, extensionUri, ["media", "main.js"]);
     const formattedTags = note.tags ? note.tags.join(", ") : null;
     webview.onDidReceiveMessage((message) => {
         const command = message.command;

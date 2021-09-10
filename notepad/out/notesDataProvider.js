@@ -30,10 +30,10 @@ class TreeItem extends vscode.TreeItem {
     constructor(noteId, noteTitle) {
         super(noteTitle);
         this.id = noteId;
-        this.iconPath = new vscode.ThemeIcon('note');
+        this.iconPath = new vscode.ThemeIcon("note");
         this.command = {
-            title: '',
-            command: 'notepad.showNoteDetailView',
+            title: "",
+            command: "notepad.showNoteDetailView",
         };
     }
 }
