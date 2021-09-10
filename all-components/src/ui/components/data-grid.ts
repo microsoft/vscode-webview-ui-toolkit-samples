@@ -18,7 +18,7 @@ export const dataGridDemo = /*html*/ `
       <vscode-data-grid class="basic-grid" generate-header="sticky" grid-template-columns="1fr 1fr 1fr 1fr"></vscode-data-grid>
     </section>
     <section class="component-example">
-      <p>With Variable Column Widths</p>
+      <p>With Custom Column Widths</p>
       <vscode-data-grid class="basic-grid" grid-template-columns="100px 10vw 3fr 30%"></vscode-data-grid>
     </section>
   </section>
