@@ -40,15 +40,15 @@ function saveNote() {
     .map((tag) => tag.trim());
 
   const noteToUpdate = {
-    id: currentNote.id,
+    id: openedNote.id,
     title: titleInputValue,
     content: noteInputValue,
     tags: tagsInputValue,
   };
 
   const noteHeading = document.querySelector("h1");
-  noteHeading.textContent = title;
-  renderTags(tags);
+  noteHeading.textContent = titleInputValue;
+  renderTags(tagsInputValue);
 
   vscode.postMessage({ command: "updateNote", note: noteToUpdate });
 }
