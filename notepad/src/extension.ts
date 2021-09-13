@@ -16,7 +16,7 @@ export function activate(context: vscode.ExtensionContext) {
       id: uuidv4(),
       title: "Untitled",
       content: "",
-      tags: ["Work"],
+      tags: ["Personal"],
     },
   ];
 

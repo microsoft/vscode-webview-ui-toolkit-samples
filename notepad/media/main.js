@@ -7,26 +7,43 @@ const vscode = acquireVsCodeApi();
 window.addEventListener("load", main);
 
 function main() {
+  setVSCodeMessageListener();
+  vscode.postMessage({ command: "requestNoteData" });
+
   const saveButton = document.getElementById("submit-button");
   saveButton.addEventListener("click", () => saveNote());
-  setVSCodeMessageListener();
-  vscode.postMessage({ command: "Gimme Data" });
+}
+
+// Stores the currently opened note info so we know the ID when we update it on save
+let openedNote;
+
+function setVSCodeMessageListener() {
+  window.addEventListener("message", (event) => {
+    const command = event.data.command;
+    const noteData = JSON.parse(event.data.payload);
+
+    switch (command) {
+      case "receiveDataInWebview":
+        openedNote = noteData;
+        renderTags(noteData.tags);
+        break;
+    }
+  });
 }
 
 function saveNote() {
-  const noteId = "foo";
-  const title = document.getElementById("title").value;
-  const content = document.getElementById("content").value;
-  const tags = document
+  const titleInputValue = document.getElementById("title").value;
+  const noteInputValue = document.getElementById("content").value;
+  const tagsInputValue = document
     .getElementById("tags-input")
     .value.split(",")
     .map((tag) => tag.trim());
 
   const noteToUpdate = {
-    id: noteId,
-    title: title,
-    content: content,
-    tags: tags,
+    id: currentNote.id,
+    title: titleInputValue,
+    content: noteInputValue,
+    tags: tagsInputValue,
   };
 
   const noteHeading = document.querySelector("h1");
@@ -34,19 +51,6 @@ function saveNote() {
   renderTags(tags);
 
   vscode.postMessage({ command: "updateNote", note: noteToUpdate });
-}
-
-function setVSCodeMessageListener() {
-  window.addEventListener("message", (event) => {
-    const command = event.data.command;
-    const tagsData = JSON.parse(event.data.payload);
-
-    switch (command) {
-      case "tags":
-        renderTags(tagsData);
-        break;
-    }
-  });
 }
 
 function renderTags(tags) {

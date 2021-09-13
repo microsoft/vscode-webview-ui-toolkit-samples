@@ -17,11 +17,11 @@ export function getWebviewContent(note: Note, webview: Webview, extensionUri: Ur
   webview.onDidReceiveMessage((message) => {
     const command = message.command;
     switch (command) {
-      case "Gimme Data":
+      case "requestNoteData":
         // Pass the note tags data array to the webview
         webview.postMessage({
-          command: "tags",
-          payload: JSON.stringify(note.tags),
+          command: "receiveDataInWebview",
+          payload: JSON.stringify(note),
         });
         break;
     }

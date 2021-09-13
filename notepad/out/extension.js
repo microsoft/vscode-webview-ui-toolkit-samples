@@ -11,7 +11,7 @@ function activate(context) {
             id: (0, uuid_1.v4)(),
             title: "Untitled",
             content: "",
-            tags: ["Work"],
+            tags: ["Personal"],
         },
     ];
     const treeDataProvider = new notesDataProvider_1.NoteDataProvider(notesData);
