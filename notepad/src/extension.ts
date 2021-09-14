@@ -11,70 +11,60 @@ export interface Note {
 }
 
 export function activate(context: vscode.ExtensionContext) {
-  let notesData: Note[] = [
-    {
-      id: uuidv4(),
-      title: "Untitled",
-      content: "",
-      tags: ["Personal"],
-    },
-  ];
+  let notes: Note[] = [];
 
-  const treeDataProvider = new NoteDataProvider(notesData);
+  const treeDataProvider = new NoteDataProvider(notes);
 
   const treeView = vscode.window.createTreeView("notepad.notesList", {
     treeDataProvider,
     showCollapseAll: false,
   });
 
-  let currentNotePanel: vscode.WebviewPanel | undefined = undefined;
-  const columnToShowIn = vscode.window.activeTextEditor
-    ? vscode.window.activeTextEditor.viewColumn
-    : undefined;
+  let panel: vscode.WebviewPanel | undefined = undefined;
 
   const openNote = vscode.commands.registerCommand("notepad.showNoteDetailView", () => {
     const selectedTreeViewItem = treeView.selection[0];
-    const matchingNote = notesData.find((note) => note.id === selectedTreeViewItem.id);
+    const matchingNote = notes.find((note) => note.id === selectedTreeViewItem.id);
 
     if (!matchingNote) {
       vscode.window.showErrorMessage("No matching note found");
       return;
     }
 
-    currentNotePanel
-      ? currentNotePanel.reveal(columnToShowIn)
-      : (currentNotePanel = vscode.window.createWebviewPanel(
-          "noteDetailView",
-          matchingNote.title,
-          vscode.ViewColumn.One,
-          { enableScripts: true }
-        ));
+    // If no panel is open, create a new one
+    if (!panel) {
+      panel = vscode.window.createWebviewPanel(
+        "noteDetailView",
+        matchingNote.title,
+        vscode.ViewColumn.One,
+        { enableScripts: true }
+      );
+    }
 
-    currentNotePanel.webview.html = getWebviewContent(
-      matchingNote,
-      currentNotePanel.webview,
-      context.extensionUri
-    );
+    // Update the panel's content
+    panel.webview.html = getWebviewContent(matchingNote, panel.webview, context.extensionUri);
+    panel.title = matchingNote.title;
 
-    currentNotePanel.webview.onDidReceiveMessage((message) => {
+    panel.webview.onDidReceiveMessage((message) => {
       const command = message.command;
       const note = message.note;
       switch (command) {
         case "updateNote":
           const updatedNoteId = note.id;
-          const copyOfNotesArray = [...notesData];
+          const copyOfNotesArray = [...notes];
           const matchingNoteIndex = copyOfNotesArray.findIndex((note) => note.id === updatedNoteId);
           copyOfNotesArray[matchingNoteIndex] = note;
-          notesData = copyOfNotesArray;
-          treeDataProvider.refresh(notesData);
+          notes = copyOfNotesArray;
+          treeDataProvider.refresh(notes);
+          panel ? (panel.title = note.title) : null;
           break;
       }
     });
 
-    // Ensure the panel reopens after closing
-    currentNotePanel.onDidDispose(
+    panel.onDidDispose(
       () => {
-        currentNotePanel = undefined;
+        // When the panel is closed, cancel any future updates to the webview content
+        panel = undefined;
       },
       null,
       context.subscriptions
@@ -86,40 +76,25 @@ export function activate(context: vscode.ExtensionContext) {
 
     const newNote: Note = {
       id: id,
-      title: "Untitled",
+      title: "New note",
       content: "",
       tags: ["Personal"],
     };
 
-    notesData.push(newNote);
-    treeDataProvider.refresh(notesData);
-    treeView.reveal(newNote, { focus: true });
+    notes.push(newNote);
+    treeDataProvider.refresh(notes);
 
-    currentNotePanel
-      ? currentNotePanel.reveal(columnToShowIn)
-      : (currentNotePanel = vscode.window.createWebviewPanel(
-          "noteDetailView",
-          newNote.title,
-          vscode.ViewColumn.One,
-          {
-            enableScripts: true,
-          }
-        ));
-
-    currentNotePanel.webview.html = getWebviewContent(
-      newNote,
-      currentNotePanel.webview,
-      context.extensionUri
-    );
+    // TODO: Open the new note
   });
 
   const deleteNote = vscode.commands.registerCommand("notepad.deleteNote", (node: Note) => {
     const selectedTreeViewItem = node;
-    const selectedNoteIndex = notesData.findIndex((note) => note.id === selectedTreeViewItem.id);
-    notesData.splice(selectedNoteIndex, 1);
-    treeDataProvider.refresh(notesData);
+    const selectedNoteIndex = notes.findIndex((note) => note.id === selectedTreeViewItem.id);
+    notes.splice(selectedNoteIndex, 1);
+    treeDataProvider.refresh(notes);
 
-    currentNotePanel?.dispose();
+    // Close the panel if it's open
+    panel?.dispose();
   });
 
   context.subscriptions.push(treeView);

@@ -54,7 +54,7 @@
     "viewsWelcome": [
       {
         "view": "notepad.notesList",
-        "contents": "No notes yet!"
+        "contents": "No notes yet!\n[Create a note](command:notepad.createNote)"
       }
     ],
     "menus": {
