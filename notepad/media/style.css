@@ -18,7 +18,6 @@
   grid-auto-flow: column;
   grid-auto-columns: max-content;
   grid-column-gap: 0.5rem;
-  margin-bottom: 2rem;
 }
 
 @media screen and (min-width: 1024px) {

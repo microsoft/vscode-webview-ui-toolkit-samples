@@ -34,32 +34,38 @@ function setVSCodeMessageListener() {
 function saveNote() {
   const titleInputValue = document.getElementById("title").value;
   const noteInputValue = document.getElementById("content").value;
-  const tagsInputValue = document
-    .getElementById("tags-input")
-    .value.split(",")
-    .map((tag) => tag.trim());
+  const tagsInputValue = document.getElementById("tags-input").value;
+
+  let tagsInputList = [];
+  if (tagsInputValue.length > 0) {
+    tagsInputList = tagsInputValue.split(",").map((tag) => tag.trim());
+  }
 
   const noteToUpdate = {
     id: openedNote.id,
     title: titleInputValue,
     content: noteInputValue,
-    tags: tagsInputValue,
+    tags: tagsInputList,
   };
 
   const noteHeading = document.querySelector("h1");
   noteHeading.textContent = titleInputValue;
-  renderTags(tagsInputValue);
+
+  renderTags(tagsInputList);
 
   vscode.postMessage({ command: "updateNote", note: noteToUpdate });
 }
 
 function renderTags(tags) {
-  if (!tags) {
-    return null;
-  }
   const tagsContainer = document.getElementById("tags-group");
   clearTagGroup(tagsContainer);
-  addTagsToTagGroup(tags, tagsContainer);
+  if (tags.length > 0) {
+    addTagsToTagGroup(tags, tagsContainer);
+    tagsContainer.style.marginBottom = "2rem";
+  } else {
+    // Remove tag container bottom margin if there are no tags
+    tagsContainer.style.marginBottom = "0";
+  }
 }
 
 function clearTagGroup(tagsContainer) {

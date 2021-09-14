@@ -18,7 +18,6 @@ export function getWebviewContent(note: Note, webview: Webview, extensionUri: Ur
     const command = message.command;
     switch (command) {
       case "requestNoteData":
-        // Pass the note tags data array to the webview
         webview.postMessage({
           command: "receiveDataInWebview",
           payload: JSON.stringify(note),
