@@ -13,6 +13,21 @@ function activate(context) {
         showCollapseAll: false,
     });
     let panel = undefined;
+    // panel.webview.onDidReceiveMessage((message) => {
+    //   const command = message.command;
+    //   const note = message.note;
+    //   switch (command) {
+    //     case "updateNote":
+    //       const updatedNoteId = note.id;
+    //       const copyOfNotesArray = [...notes];
+    //       const matchingNoteIndex = copyOfNotesArray.findIndex((note) => note.id === updatedNoteId);
+    //       copyOfNotesArray[matchingNoteIndex] = note;
+    //       notes = copyOfNotesArray;
+    //       treeDataProvider.refresh(notes);
+    //       panel ? (panel.title = note.title) : null;
+    //       break;
+    //     }
+    //   });
     const openNote = vscode.commands.registerCommand("notepad.showNoteDetailView", () => {
         const selectedTreeViewItem = treeView.selection[0];
         const matchingNote = notes.find((note) => note.id === selectedTreeViewItem.id);
@@ -20,13 +35,14 @@ function activate(context) {
             vscode.window.showErrorMessage("No matching note found");
             return;
         }
-        // If no panel is open, create a new one
+        // If no panel is open, create a new one and update the HTML
         if (!panel) {
             panel = vscode.window.createWebviewPanel("noteDetailView", matchingNote.title, vscode.ViewColumn.One, { enableScripts: true });
         }
-        // Update the panel's content
-        panel.webview.html = (0, getWebviewContent_1.getWebviewContent)(matchingNote, panel.webview, context.extensionUri);
+        // If a panel is open, update the HTML with the selected item's content
         panel.title = matchingNote.title;
+        panel.webview.html = (0, getWebviewContent_1.getWebviewContent)(matchingNote, panel.webview, context.extensionUri);
+        // If a panel is open and receives an update message, update the notes array and the panel title/html
         panel.webview.onDidReceiveMessage((message) => {
             const command = message.command;
             const note = message.note;
@@ -38,7 +54,7 @@ function activate(context) {
                     copyOfNotesArray[matchingNoteIndex] = note;
                     notes = copyOfNotesArray;
                     treeDataProvider.refresh(notes);
-                    panel ? (panel.title = note.title) : null;
+                    panel ? (panel.title = note.title, panel.webview.html = (0, getWebviewContent_1.getWebviewContent)(note, panel.webview, context.extensionUri)) : null;
                     break;
             }
         });

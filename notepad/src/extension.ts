@@ -3,12 +3,12 @@ import { NoteDataProvider } from "./notesDataProvider";
 import { v4 as uuidv4 } from "uuid";
 import { getWebviewContent } from "./ui/getWebviewContent";
 
-export interface Note {
+export type Note = {
   id: string;
   title: string;
   content?: string;
   tags?: string[];
-}
+};
 
 export function activate(context: vscode.ExtensionContext) {
   let notes: Note[] = [];
@@ -22,6 +22,22 @@ export function activate(context: vscode.ExtensionContext) {
 
   let panel: vscode.WebviewPanel | undefined = undefined;
 
+  // panel.webview.onDidReceiveMessage((message) => {
+  //   const command = message.command;
+  //   const note = message.note;
+  //   switch (command) {
+  //     case "updateNote":
+  //       const updatedNoteId = note.id;
+  //       const copyOfNotesArray = [...notes];
+  //       const matchingNoteIndex = copyOfNotesArray.findIndex((note) => note.id === updatedNoteId);
+  //       copyOfNotesArray[matchingNoteIndex] = note;
+  //       notes = copyOfNotesArray;
+  //       treeDataProvider.refresh(notes);
+  //       panel ? (panel.title = note.title) : null;
+  //       break;
+  //     }
+  //   });
+  
   const openNote = vscode.commands.registerCommand("notepad.showNoteDetailView", () => {
     const selectedTreeViewItem = treeView.selection[0];
     const matchingNote = notes.find((note) => note.id === selectedTreeViewItem.id);
@@ -31,20 +47,23 @@ export function activate(context: vscode.ExtensionContext) {
       return;
     }
 
-    // If no panel is open, create a new one
+    // If no panel is open, create a new one and update the HTML
+    
+    
     if (!panel) {
       panel = vscode.window.createWebviewPanel(
         "noteDetailView",
         matchingNote.title,
         vscode.ViewColumn.One,
         { enableScripts: true }
-      );
-    }
-
-    // Update the panel's content
-    panel.webview.html = getWebviewContent(matchingNote, panel.webview, context.extensionUri);
+        );
+      }
+      
+    // If a panel is open, update the HTML with the selected item's content
     panel.title = matchingNote.title;
+    panel.webview.html = getWebviewContent(matchingNote, panel.webview, context.extensionUri);
 
+    // If a panel is open and receives an update message, update the notes array and the panel title/html
     panel.webview.onDidReceiveMessage((message) => {
       const command = message.command;
       const note = message.note;
@@ -56,10 +75,11 @@ export function activate(context: vscode.ExtensionContext) {
           copyOfNotesArray[matchingNoteIndex] = note;
           notes = copyOfNotesArray;
           treeDataProvider.refresh(notes);
-          panel ? (panel.title = note.title) : null;
+          panel ? (panel.title = note.title, panel.webview.html = getWebviewContent(note, panel.webview, context.extensionUri)) : null;
           break;
       }
     });
+    
 
     panel.onDidDispose(
       () => {
@@ -79,7 +99,7 @@ export function activate(context: vscode.ExtensionContext) {
       title: "New note",
       content: "",
       tags: ["Personal"],
-    };
+    };   
 
     notes.push(newNote);
     treeDataProvider.refresh(notes);
