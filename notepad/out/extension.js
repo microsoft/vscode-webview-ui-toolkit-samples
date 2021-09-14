@@ -13,21 +13,6 @@ function activate(context) {
         showCollapseAll: false,
     });
     let panel = undefined;
-    // panel.webview.onDidReceiveMessage((message) => {
-    //   const command = message.command;
-    //   const note = message.note;
-    //   switch (command) {
-    //     case "updateNote":
-    //       const updatedNoteId = note.id;
-    //       const copyOfNotesArray = [...notes];
-    //       const matchingNoteIndex = copyOfNotesArray.findIndex((note) => note.id === updatedNoteId);
-    //       copyOfNotesArray[matchingNoteIndex] = note;
-    //       notes = copyOfNotesArray;
-    //       treeDataProvider.refresh(notes);
-    //       panel ? (panel.title = note.title) : null;
-    //       break;
-    //     }
-    //   });
     const openNote = vscode.commands.registerCommand("notepad.showNoteDetailView", () => {
         const selectedTreeViewItem = treeView.selection[0];
         const matchingNote = notes.find((note) => note.id === selectedTreeViewItem.id);
@@ -54,7 +39,10 @@ function activate(context) {
                     copyOfNotesArray[matchingNoteIndex] = note;
                     notes = copyOfNotesArray;
                     treeDataProvider.refresh(notes);
-                    panel ? (panel.title = note.title, panel.webview.html = (0, getWebviewContent_1.getWebviewContent)(note, panel.webview, context.extensionUri)) : null;
+                    panel
+                        ? ((panel.title = note.title),
+                            (panel.webview.html = (0, getWebviewContent_1.getWebviewContent)(note, panel.webview, context.extensionUri)))
+                        : null;
                     break;
             }
         });
@@ -73,7 +61,6 @@ function activate(context) {
         };
         notes.push(newNote);
         treeDataProvider.refresh(notes);
-        // TODO: Open the new note
     });
     const deleteNote = vscode.commands.registerCommand("notepad.deleteNote", (node) => {
         const selectedTreeViewItem = node;
