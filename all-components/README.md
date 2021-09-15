@@ -18,4 +18,4 @@ code .
 Once the sample extension is open inside VS Code you can run the extension by doing the following:
 
 - Press `F5` to open a new Extension Development Host window.
-- Open the command palette by pressing (`Ctrl+Shift+P` or `Cmd+Shift+P` on Mac) and type `Explorer: Focus on Weather View`.
+- Open the command palette by pressing (`Ctrl+Shift+P` or `Cmd+Shift+P` on Mac) and type `Webview UI Toolkit: All Components`.
