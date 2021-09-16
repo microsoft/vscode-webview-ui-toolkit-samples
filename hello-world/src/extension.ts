@@ -37,7 +37,7 @@ export function deactivate() {}
  * Sets up an event listener to listen for messages passed from the webview context and
  * executes code based on the message that is recieved.
  *
- * @param panel - The current VS Code webview panel
+ * @param webview - The current VS Code webview
  * @param context - The VS Code extension context
  */
 function setWebviewMessageListener(webview: Webview, context: ExtensionContext) {
