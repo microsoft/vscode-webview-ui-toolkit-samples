@@ -1,6 +1,6 @@
 # Notepad Sample Extension
 
-This is the sample extension that goes along with the Webview UI Toolkit [Getting Started Guide](https://github.com/microsoft/vscode-webview-toolkit/blob/main/docs/getting-started.md).
+This is a sample extension that showcases the toolkit in the context a simple notepad experience that leverages the VS Code TreeView and Webview APIs.
 
 ![A screenshot of the sample extension.](./assets/notepad-screenshot.png)
 
