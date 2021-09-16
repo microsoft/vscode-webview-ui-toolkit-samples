@@ -42,7 +42,7 @@ class TreeItem extends vscode.TreeItem {
     this.iconPath = new vscode.ThemeIcon("note");
 
     this.command = {
-      title: "",
+      title: "Open note",
       command: "notepad.showNoteDetailView",
     };
   }

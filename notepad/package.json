@@ -1,7 +1,7 @@
 {
   "name": "notepad",
   "displayName": "notepad",
-  "description": "",
+  "description": "A sample extension that showcases the Webview UI Toolkit for VS Code alongside the VS Code TreeView and Webview API",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.59.0"
