@@ -1,0 +1,29 @@
+#webview-body {
+  display: flex;
+  flex-direction: column;
+}
+
+#notes-form {
+  display: grid;
+  grid-auto-flow: row;
+  grid-row-gap: 1.5rem;
+}
+
+#submit-button {
+  width: fit-content;
+}
+
+#tags-container {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: max-content;
+  grid-column-gap: 0.5rem;
+}
+
+@media screen and (min-width: 1024px) {
+  #webview-body {
+    padding: 0 8rem;
+    max-width: 1024px;
+    margin: 0 auto;
+  }
+}
