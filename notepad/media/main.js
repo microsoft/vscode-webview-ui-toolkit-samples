@@ -25,7 +25,7 @@ function setVSCodeMessageListener() {
     switch (command) {
       case "receiveDataInWebview":
         openedNote = noteData;
-        renderTags(noteData.tags);
+        renderTags(openedNote.tags);
         break;
     }
   });
@@ -48,16 +48,11 @@ function saveNote() {
     tags: tagsInputList,
   };
 
-  const noteHeading = document.querySelector("h1");
-  noteHeading.textContent = titleInputValue;
-
-  renderTags(tagsInputList);
-
   vscode.postMessage({ command: "updateNote", note: noteToUpdate });
 }
 
 function renderTags(tags) {
-  const tagsContainer = document.getElementById("tags-group");
+  const tagsContainer = document.getElementById("tags-container");
   clearTagGroup(tagsContainer);
   if (tags.length > 0) {
     addTagsToTagGroup(tags, tagsContainer);

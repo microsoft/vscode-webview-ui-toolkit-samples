@@ -9,6 +9,7 @@ export function getWebviewContent(note: Note, webview: Webview, extensionUri: Ur
     "dist",
     "toolkit.js",
   ]);
+
   const styleUri = getUri(webview, extensionUri, ["media", "style.css"]);
   const mainUri = getUri(webview, extensionUri, ["media", "main.js"]);
 
@@ -40,7 +41,7 @@ export function getWebviewContent(note: Note, webview: Webview, extensionUri: Ur
       <body id="webview-body">
         <header>
           <h1>${note.title}</h1>
-          <div id="tags-group"></div>
+          <div id="tags-container"></div>
           </header>
           <section id="notes-form">
             <vscode-text-field id="title" value="${note.title}" placeholder="Enter a name">Title</vscode-text-field>

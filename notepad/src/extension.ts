@@ -32,7 +32,6 @@ export function activate(context: vscode.ExtensionContext) {
     }
 
     // If no panel is open, create a new one and update the HTML
-
     if (!panel) {
       panel = vscode.window.createWebviewPanel(
         "noteDetailView",

@@ -9,15 +9,14 @@ export class NoteDataProvider implements vscode.TreeDataProvider<TreeItem> {
 
   data: TreeItem[];
 
-  refresh(notesData: Note[]): void {
-    this._onDidChangeTreeData.fire();
-    this.data = notesData.map((note) => new TreeItem(note.id, note.title));
-  }
-
   constructor(notesData: Note[]) {
     this.data = notesData.map((note) => new TreeItem(note.id, note.title));
   }
 
+  refresh(notesData: Note[]): void {
+    this._onDidChangeTreeData.fire();
+    this.data = notesData.map((note) => new TreeItem(note.id, note.title));
+  }
   getTreeItem(element: TreeItem): vscode.TreeItem | Thenable<vscode.TreeItem> {
     return element;
   }
