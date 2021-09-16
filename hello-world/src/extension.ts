@@ -1,11 +1,10 @@
-/**
- * This sample extension goes a bit further than the Getting Started Guide on keeping code
- * structure tidy by only importing exactly what we need from the vscode package
- * and moving the getWebviewContent function into a separate ui directory.
- */
-import { commands, ExtensionContext, WebviewPanel, window, ViewColumn } from "vscode";
+// This sample extension goes a bit further than the Getting Started Guide on keeping code
+// structure tidy by only importing exactly what we need from the vscode package
+// and moving the getWebviewContent function into a separate ui directory.
+import { commands, ExtensionContext, Webview, WebviewPanel, window, ViewColumn } from "vscode";
 import { getWebviewContent } from "./ui/getWebviewContent";
 
+// This function is called when the extension is activated.
 export function activate(context: ExtensionContext) {
   let panel: WebviewPanel | undefined;
 
@@ -24,22 +23,25 @@ export function activate(context: ExtensionContext) {
 
       // Sets up an event listener to listen for messages passed from the webview context
       // and executes code based on the message that is recieved
-      setWebviewMessageListener(panel, context);
+      setWebviewMessageListener(panel.webview, context);
     }
   });
 
   context.subscriptions.push(helloDisposable);
 }
 
+// This function is called when the extension is deactivated.
+export function deactivate() {}
+
 /**
  * Sets up an event listener to listen for messages passed from the webview context and
  * executes code based on the message that is recieved.
  *
- * @param panel - The current VS Code webview panel
+ * @param webview - The current VS Code webview
  * @param context - The VS Code extension context
  */
-function setWebviewMessageListener(panel: WebviewPanel, context: ExtensionContext) {
-  panel.webview.onDidReceiveMessage(
+function setWebviewMessageListener(webview: Webview, context: ExtensionContext) {
+  webview.onDidReceiveMessage(
     (message: any) => {
       const command = message.command;
       const text = message.text;
