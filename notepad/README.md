@@ -1,8 +1,8 @@
-# All Components Sample Extension
+# Notepad Sample Extension
 
-This sample extension demonstrates every component in the Webview UI Toolkit for Visual Studio Code.
+This is a sample extension that showcases the toolkit in the context a simple notepad experience that leverages the VS Code TreeView and Webview APIs.
 
-![A screenshot of the sample extension.](./assets/all-components-screenshot.png)
+![A screenshot of the sample extension.](./assets/notepad-screenshot.png)
 
 ## Running The Samples
 
@@ -18,4 +18,4 @@ code .
 Once the sample extension is open inside VS Code you can run the extension by doing the following:
 
 - Press `F5` to open a new Extension Development Host window.
-- Open the command palette by pressing (`Ctrl+Shift+P` or `Cmd+Shift+P` on Mac) and type `Webview UI Toolkit: All Components`.
+- Open the command palette by pressing (`Ctrl+Shift+P` or `Cmd+Shift+P` on Mac) and type `Hello World`.

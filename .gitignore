@@ -107,5 +107,7 @@ dist
 # Misc
 .DS_Store
 out
-.vscode-test
+dist
+node_modules
+.vscode-test/
 *.vsix
