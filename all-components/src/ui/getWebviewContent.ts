@@ -1,17 +1,14 @@
 import { Uri, Webview } from "vscode";
 import { getUri } from "../utilities/getUri";
 import { badgeDemo } from "./components/badge";
-import { breadcrumbDemo } from "./components/breadcrumb";
 import { buttonDemo } from "./components/button";
 import { checkboxDemo } from "./components/checkbox";
-import { comboboxDemo } from "./components/combobox";
 import { dataGridDemo } from "./components/data-grid";
 import { dividerDemo } from "./components/divider";
 import { dropdownDemo } from "./components/dropdown";
 import { linkDemo } from "./components/link";
 import { numberFieldDemo } from "./components/number-field";
 import { panelsDemo } from "./components/panels";
-import { progressBarDemo } from "./components/progress-bar";
 import { progressRingDemo } from "./components/progress-ring";
 import { radioGroupDemo } from "./components/radio-group";
 import { tagDemo } from "./components/tag";
@@ -52,27 +49,22 @@ export function getWebviewContent(webview: Webview, extensionUri: Uri) {
 				<h1>Webview UI Toolkit: All Components</h1>
 				<section class="component-row">
 					${badgeDemo}
-					${breadcrumbDemo}
 					${buttonDemo}
-				</section>
-				<section class="component-row">
 					${checkboxDemo}
-					${comboboxDemo}
-					${dividerDemo}
 				</section>
 				<section id="data-grid-row">
 					${dataGridDemo}
 				</section>
 				<section class="component-row">
+					${dividerDemo}
 					${dropdownDemo}
 					${linkDemo}
-					${numberFieldDemo}
 				</section>
 				<section id="panels-row">
 					${panelsDemo}
 				</section>
 				<section class="component-row">
-					${progressBarDemo}
+					${numberFieldDemo}
 					${progressRingDemo}
 					${radioGroupDemo}
 				</section>
