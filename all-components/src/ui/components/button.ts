@@ -29,7 +29,7 @@ export const buttonDemo = /*html*/ `
     </section>
     <section class="component-example">
       <p>With Icon Only</p>
-      <vscode-button appearance="icon">
+      <vscode-button appearance="icon" aria-label="Confirm">
         <span class="codicon codicon-check"></span>
       </vscode-button>
     </section>
