@@ -21,22 +21,5 @@ export const checkboxDemo = /*html*/ `
       <p>With Readonly</p>
       <vscode-checkbox readonly>Label</vscode-checkbox>
     </section>
-    <section class="component-example">
-      <p>With Value</p>
-      <vscode-checkbox value="baz">Label</vscode-checkbox>
-    </section>
-    <section class="component-example">
-      <p>Inside Form</p>
-      <form>
-        <fieldset>
-          <legend>Fieldset Legend</legend>
-          <vscode-checkbox checked required>Checked + Required</vscode-checkbox>
-          <vscode-checkbox checked readonly>Checked + Readonly</vscode-checkbox>
-          <vscode-checkbox autofocus>Autofocus</vscode-checkbox>
-          <vscode-checkbox disabled>Disabled</vscode-checkbox>
-          <vscode-checkbox value="baz">Value</vscode-checkbox>
-        </fieldset>
-      </form>
-    </section>
   </section>
 `;

@@ -7,7 +7,6 @@ import { dataGridDemo } from "./components/data-grid";
 import { dividerDemo } from "./components/divider";
 import { dropdownDemo } from "./components/dropdown";
 import { linkDemo } from "./components/link";
-import { numberFieldDemo } from "./components/number-field";
 import { panelsDemo } from "./components/panels";
 import { progressRingDemo } from "./components/progress-ring";
 import { radioGroupDemo } from "./components/radio-group";
@@ -64,12 +63,11 @@ export function getWebviewContent(webview: Webview, extensionUri: Uri) {
 					${panelsDemo}
 				</section>
 				<section class="component-row">
-					${numberFieldDemo}
 					${progressRingDemo}
 					${radioGroupDemo}
+					${tagDemo}
 				</section>
 				<section class="component-row">
-					${tagDemo}
 					${textAreaDemo}
 					${textFieldDemo}
 				</section>
