@@ -14,22 +14,15 @@ export const buttonDemo = /*html*/ `
       <vscode-button disabled>Button Text</vscode-button>
     </section>
     <section class="component-example">
-      <p>With Custom Start Icon</p>
+      <p>With Start Icon</p>
       <vscode-button>
         Button Text
-        <span slot="start" class="codicon codicon-git-merge"></span>
-      </vscode-button>
-    </section>
-    <section class="component-example">
-      <p>With Custom End Icon</p>
-      <vscode-button>
-        Button Text
-        <span slot="end" class="codicon codicon-chevron-right"></span>
+        <span slot="start" class="codicon codicon-add"></span>
       </vscode-button>
     </section>
     <section class="component-example">
       <p>With Icon Only</p>
-      <vscode-button appearance="icon">
+      <vscode-button appearance="icon" aria-label="Confirm">
         <span class="codicon codicon-check"></span>
       </vscode-button>
     </section>

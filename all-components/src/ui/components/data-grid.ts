@@ -10,10 +10,6 @@ export const dataGridDemo = /*html*/ `
       <vscode-data-grid class="basic-grid" grid-template-columns="1fr 1fr 1fr 1fr"></vscode-data-grid>
     </section>
     <section class="component-example">
-      <p>With No Header</p>
-      <vscode-data-grid class="basic-grid" generate-header="none" grid-template-columns="1fr 1fr 1fr 1fr"></vscode-data-grid>
-    </section>
-    <section class="component-example">
       <p>With Sticky Header</p>
       <vscode-data-grid class="basic-grid" generate-header="sticky" grid-template-columns="1fr 1fr 1fr 1fr"></vscode-data-grid>
     </section>
