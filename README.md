@@ -1,6 +1,8 @@
 # Webview UI Toolkit Sample Extensions
 
-This is a repository containing all the sample extensions for the [Webview UI Toolkit for Visual Studio Code](https://github.com/microsoft/vscode-webview-toolkit). Each sample is a self contained extension and demonstrates some aspect of the toolkit and/or the [VS Code API](https://code.visualstudio.com/api/references/vscode-api) in relation to the toolkit. You can read, play with, or adapt these samples to create your own extensions.
+This repository contains all the sample extensions for the [Webview UI Toolkit for Visual Studio Code](https://github.com/microsoft/vscode-webview-toolkit).
+
+Each sample is a self contained extension and demonstrates some aspect of the toolkit and/or the [VS Code API](https://code.visualstudio.com/api/references/vscode-api) in relation to the toolkit. You can read, play with, or adapt these samples to create your own extensions.
 
 ## Prerequisites
 
@@ -9,9 +11,9 @@ You need to have [Node and NPM](https://nodejs.org/en/) installed on your system
 ## Usage
 
 - `git clone https://github.com/microsoft/vscode-webview-ui-toolkit-samples.git`
-- `code <any-sample-folder>`
+- `code <sample-extension-folder>`
 - `npm install` in the terminal, then `F5` to run the sample
-- Alternatively, follow the instructions in each of the sample's README for setting up and running the sample
+- Alternatively, follow the instructions found in each of the sample's README files
 
 ## Contributing
 
