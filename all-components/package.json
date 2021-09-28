@@ -49,7 +49,7 @@
     "vscode-test": "^1.5.0"
   },
   "dependencies": {
-    "@vscode/codicons": "^0.0.21",
-    "vscode-webview-ui-toolkit": "^0.6.5"
+    "@microsoft/vscode-webview-ui-toolkit": "^0.8.0",
+    "@vscode/codicons": "^0.0.21"
   }
 }

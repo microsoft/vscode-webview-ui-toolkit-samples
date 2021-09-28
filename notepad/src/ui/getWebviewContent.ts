@@ -5,6 +5,7 @@ import { getUri } from "../utilities/getUri";
 export function getWebviewContent(note: Note, webview: Webview, extensionUri: Uri) {
   const toolkitUri = getUri(webview, extensionUri, [
     "node_modules",
+    "@microsoft",
     "vscode-webview-ui-toolkit",
     "dist",
     "toolkit.js",
