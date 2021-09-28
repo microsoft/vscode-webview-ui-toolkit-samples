@@ -10,12 +10,10 @@ import { getUri } from "../utilities/getUri";
  * - Setting the HTML (and by proxy CSS/JavaScript) content of the webview panel
  * - Setting message listeners so data can be passed between the webview and extension
  * - Properly cleaning up and disposing of webview resources when the panel is closed
- *
  */
 export class HelloWorldPanel {
   public static currentPanel: HelloWorldPanel | undefined;
   private readonly _panel: WebviewPanel;
-  private readonly _extensionUri: Uri;
   private _disposables: Disposable[] = [];
 
   /**
@@ -26,14 +24,13 @@ export class HelloWorldPanel {
    */
   private constructor(panel: WebviewPanel, extensionUri: Uri) {
     this._panel = panel;
-    this._extensionUri = extensionUri;
-
-    // Set the HTML content for the webview panel
-    this._panel.webview.html = this._getWebviewContent(this._panel.webview, this._extensionUri);
 
     // Set an event listener to listen for when the panel is disposed (i.e. when the user closes
     // the panel or when the panel is closed programmatically)
     this._panel.onDidDispose(this.dispose, null, this._disposables);
+
+    // Set the HTML content for the webview panel
+    this._panel.webview.html = this._getWebviewContent(this._panel.webview, extensionUri);
 
     // Set an event listener to listen for messages passed from the webview context
     this._setWebviewMessageListener(this._panel.webview);
@@ -62,11 +59,6 @@ export class HelloWorldPanel {
         {
           // Enable JavaScript in the webview
           enableScripts: true,
-          // Restrict the webview to only load content from the `media` and `node_modules` directories
-          localResourceRoots: [
-            Uri.joinPath(extensionUri, "media"),
-            Uri.joinPath(extensionUri, "node_modules"),
-          ],
         }
       );
 
