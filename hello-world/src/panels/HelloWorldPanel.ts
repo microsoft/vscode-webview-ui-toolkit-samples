@@ -7,7 +7,7 @@ import { getUri } from "../utilities/getUri";
  * It contains all the data and methods for:
  *
  * - Creating and rendering Hello World webview panels
- * - Setting the HTML, CSS, and JavaScript content of the webview panel
+ * - Setting the HTML (and by proxy CSS/JavaScript) content of the webview panel
  * - Setting message listeners so data can be passed between the webview and extension
  * - Properly cleaning up and disposing of webview resources when the panel is closed
  *
