@@ -98,6 +98,7 @@ export class HelloWorldPanel {
   private _getWebviewContent(webview: Webview, extensionUri: Uri) {
     const toolkitUri = getUri(webview, extensionUri, [
       "node_modules",
+      "@microsoft",
       "vscode-webview-ui-toolkit",
       "dist",
       "toolkit.js",
