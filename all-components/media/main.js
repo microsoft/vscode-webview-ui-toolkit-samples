@@ -57,9 +57,9 @@ function main() {
     // Add custom column titles to grid
     basicDataGrid.columnDefinitions = [
       { columnDataKey: "columnKey1", title: "A Custom Header Title" },
-      { columnDataKey: "columnKey2", title: "Another Custom Title" },
+      { columnDataKey: "columnKey2", title: "Custom Title" },
       { columnDataKey: "columnKey3", title: "Title Is Custom" },
-      { columnDataKey: "columnKey4", title: "Custom Title" },
+      { columnDataKey: "columnKey4", title: "Another Custom Title" },
     ];
   }
 }

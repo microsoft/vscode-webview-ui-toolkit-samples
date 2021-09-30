@@ -15,7 +15,7 @@ export const dataGridDemo = /*html*/ `
     </section>
     <section class="component-example">
       <p>With Custom Column Widths</p>
-      <vscode-data-grid class="basic-grid" grid-template-columns="100px 10vw 3fr 30%"></vscode-data-grid>
+      <vscode-data-grid class="basic-grid" grid-template-columns="1fr 120px 1fr 2fr"></vscode-data-grid>
     </section>
   </section>
 `;
