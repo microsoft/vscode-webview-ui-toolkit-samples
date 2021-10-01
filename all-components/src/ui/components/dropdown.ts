@@ -26,17 +26,5 @@ export const dropdownDemo = /*html*/ `
         <vscode-option>Option Label #3</vscode-option>
       </vscode-dropdown>
     </section>
-    <!--
-    <vscode-dropdown open position="above">
-      <vscode-option>Option Label #1</vscode-option>
-      <vscode-option>Option Label #2</vscode-option>
-      <vscode-option>Option Label #3</vscode-option>
-    </vscode-dropdown>
-    <vscode-dropdown open position="below">
-      <vscode-option>Option Label #1</vscode-option>
-      <vscode-option>Option Label #2</vscode-option>
-      <vscode-option>Option Label #3</vscode-option>
-    </vscode-dropdown>
-    -->
   </section>
 `;
