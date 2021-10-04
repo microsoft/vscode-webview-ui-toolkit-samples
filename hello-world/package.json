@@ -41,6 +41,6 @@
     "vscode-test": "^1.5.0"
   },
   "dependencies": {
-    "@microsoft/vscode-webview-ui-toolkit": "^0.8.0"
+    "@vscode/webview-ui-toolkit": "^0.8.0"
   }
 }
