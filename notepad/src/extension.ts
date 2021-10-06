@@ -1,14 +1,8 @@
 import * as vscode from "vscode";
-import { NotepadDataProvider } from "./providers/NotepadDataProvider";
 import { v4 as uuidv4 } from "uuid";
+import { NotepadDataProvider } from "./providers/NotepadDataProvider";
 import { getWebviewContent } from "./ui/getWebviewContent";
-
-export type Note = {
-  id: string;
-  title: string;
-  content?: string;
-  tags?: string[];
-};
+import { Note } from "./types/Note";
 
 export function activate(context: vscode.ExtensionContext) {
   let notes: Note[] = [];

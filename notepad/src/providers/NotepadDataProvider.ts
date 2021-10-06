@@ -1,5 +1,5 @@
 import { Event, EventEmitter, ProviderResult, ThemeIcon, TreeDataProvider, TreeItem } from "vscode";
-import { Note } from "../extension";
+import { Note } from "../types/Note";
 
 type TreeDataOnChangeEvent = NotepadNote | undefined | null | void;
 

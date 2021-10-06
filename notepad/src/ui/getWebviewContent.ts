@@ -1,5 +1,5 @@
 import { Webview, Uri } from "vscode";
-import { Note } from "../extension";
+import { Note } from "../types/Note";
 import { getUri } from "../utilities/getUri";
 
 export function getWebviewContent(note: Note, webview: Webview, extensionUri: Uri) {
