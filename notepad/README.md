@@ -1,6 +1,6 @@
 # Notepad Sample Extension
 
-This is a sample extension that showcases the toolkit in the context a simple notepad experience that leverages the VS Code TreeView and Webview APIs.
+This sample extension showcases the toolkit in the context of a simple notepad experience that leverages the [TreeView API](https://code.visualstudio.com/api/extension-guides/tree-view) and [Webview API](https://code.visualstudio.com/api/extension-guides/webview).
 
 ![A screenshot of the sample extension.](./assets/notepad-screenshot.png)
 
