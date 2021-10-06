@@ -2,16 +2,15 @@
 const vscode = acquireVsCodeApi();
 
 // Just like a regular webpage we need to wait for the webview
-// DOM to load before we can reference any of the HTML elements 
+// DOM to load before we can reference any of the HTML elements
 // or toolkit components
 window.addEventListener("load", main);
 
+// Main function that gets executed once the webview DOM loads
 function main() {
   const checkWeatherButton = document.getElementById("check-weather-button");
   checkWeatherButton.addEventListener("click", checkWeather);
 
-  // Sets up an event listener to listen for messages passed from the VS Code context
-  // and executes code based on the message that is recieved
   setVSCodeMessageListener();
 }
 
@@ -19,7 +18,7 @@ function checkWeather() {
   const locationValue = document.getElementById("location").value;
   const unitValue = document.getElementById("unit").value;
 
-  // Passes a message back to the VS Code context with the location that
+  // Passes a message back to the extension context with the location that
   // should be searched for and the degree unit (F or C) that should be returned
   vscode.postMessage({
     command: "weather",
@@ -28,6 +27,8 @@ function checkWeather() {
   });
 }
 
+// Sets up an event listener to listen for messages passed from the extension context
+// and executes code based on the message that is recieved
 function setVSCodeMessageListener() {
   window.addEventListener("message", (event) => {
     const command = event.data.command;
