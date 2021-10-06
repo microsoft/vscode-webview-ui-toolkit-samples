@@ -17,12 +17,7 @@ _A clear and concise description of what the bug is._
 
 ### To reproduce
 
-_Steps to reproduce the behavior:_
-
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+_Steps to reproduce the behavior._
 
 ### Expected behavior
 
