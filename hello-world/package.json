@@ -1,7 +1,7 @@
 {
   "name": "helloworld",
   "displayName": "helloworld",
-  "description": "A basic sample extension to show off the Webview UI Toolkit for VS Code.",
+  "description": "A hello world sample extension to show off the Webview UI Toolkit for Visual Studio Code.",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.46.0"
