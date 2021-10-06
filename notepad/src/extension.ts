@@ -1,5 +1,5 @@
 import * as vscode from "vscode";
-import { NoteDataProvider } from "./notesDataProvider";
+import { NotepadDataProvider } from "./providers/NotepadDataProvider";
 import { v4 as uuidv4 } from "uuid";
 import { getWebviewContent } from "./ui/getWebviewContent";
 
@@ -13,7 +13,7 @@ export type Note = {
 export function activate(context: vscode.ExtensionContext) {
   let notes: Note[] = [];
 
-  const treeDataProvider = new NoteDataProvider(notes);
+  const treeDataProvider = new NotepadDataProvider(notes);
 
   const treeView = vscode.window.createTreeView("notepad.notesList", {
     treeDataProvider,
