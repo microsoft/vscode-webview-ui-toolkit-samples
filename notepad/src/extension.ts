@@ -6,20 +6,18 @@ import { Note } from "./types/Note";
 
 export function activate(context: ExtensionContext) {
   let notes: Note[] = [];
+  let panel: WebviewPanel | undefined = undefined;
 
-  const treeDataProvider = new NotepadDataProvider(notes);
+  const notepadDataProvider = new NotepadDataProvider(notes);
 
   const treeView = window.createTreeView("notepad.notesList", {
-    treeDataProvider,
+    treeDataProvider: notepadDataProvider,
     showCollapseAll: false,
   });
-
-  let panel: WebviewPanel | undefined = undefined;
 
   const openNote = commands.registerCommand("notepad.showNoteDetailView", () => {
     const selectedTreeViewItem = treeView.selection[0];
     const matchingNote = notes.find((note) => note.id === selectedTreeViewItem.id);
-
     if (!matchingNote) {
       window.showErrorMessage("No matching note found");
       return;
@@ -47,7 +45,7 @@ export function activate(context: ExtensionContext) {
           const matchingNoteIndex = copyOfNotesArray.findIndex((note) => note.id === updatedNoteId);
           copyOfNotesArray[matchingNoteIndex] = note;
           notes = copyOfNotesArray;
-          treeDataProvider.refresh(notes);
+          notepadDataProvider.refresh(notes);
           panel
             ? ((panel.title = note.title),
               (panel.webview.html = getWebviewContent(panel.webview, context.extensionUri, note)))
@@ -67,7 +65,7 @@ export function activate(context: ExtensionContext) {
   });
 
   const createNote = commands.registerCommand("notepad.createNote", () => {
-    let id = uuidv4();
+    const id = uuidv4();
 
     const newNote: Note = {
       id: id,
@@ -77,23 +75,21 @@ export function activate(context: ExtensionContext) {
     };
 
     notes.push(newNote);
-    treeDataProvider.refresh(notes);
+    notepadDataProvider.refresh(notes);
   });
 
   const deleteNote = commands.registerCommand("notepad.deleteNote", (node: Note) => {
     const selectedTreeViewItem = node;
     const selectedNoteIndex = notes.findIndex((note) => note.id === selectedTreeViewItem.id);
     notes.splice(selectedNoteIndex, 1);
-    treeDataProvider.refresh(notes);
+    notepadDataProvider.refresh(notes);
 
     // Close the panel if it's open
     panel?.dispose();
   });
 
-  context.subscriptions.push(treeView);
+  // Add commands to the extension context
   context.subscriptions.push(openNote);
   context.subscriptions.push(createNote);
   context.subscriptions.push(deleteNote);
 }
-
-export function deactivate() {}
