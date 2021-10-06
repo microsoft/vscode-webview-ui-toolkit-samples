@@ -5,7 +5,7 @@
  * https://github.com/microsoft/vscode-extension-samples/tree/main/webview-view-sample
  */
 import { ExtensionContext, window } from "vscode";
-import { WeatherViewProvider } from "./ui/WeatherViewProvider";
+import { WeatherViewProvider } from "./providers/WeatherViewProvider";
 
 export function activate(context: ExtensionContext) {
   // Instantiate a new instance of the WeatherViewProvider class
