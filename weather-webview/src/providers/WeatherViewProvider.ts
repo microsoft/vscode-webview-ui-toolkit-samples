@@ -11,7 +11,6 @@ import * as weather from "weather-js";
 
 export class WeatherViewProvider implements WebviewViewProvider {
   public static readonly viewType = "weather.weatherView";
-  private _view?: WebviewView;
 
   constructor(private readonly _extensionUri: Uri) {}
 
