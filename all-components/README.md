@@ -4,18 +4,12 @@ This sample extension demonstrates every component in the Webview UI Toolkit for
 
 ![A screenshot of the sample extension.](./assets/all-components-screenshot.png)
 
-## Running The Samples
+## Running The Sample
 
-To run the sample locally you will need to clone this entire repository and use your terminal to navigate to this directory. Inside the directory you can run the following commands:
+To run the sample locally you will need to clone this entire repository and then open this specific folder inside Visual Studio Code.
 
-```bash
-# Install dependencies
-npm install
-# Open the extension inside VS Code
-code .
-```
+Once the sample is open inside VS Code you can run the extension by doing the following:
 
-Once the sample extension is open inside VS Code you can run the extension by doing the following:
-
-- Press `F5` to open a new Extension Development Host window.
-- Open the command palette by pressing (`Ctrl+Shift+P` or `Cmd+Shift+P` on Mac) and type `Webview UI Toolkit: All Components`.
+1. Run `npm install` to install the extension dependencies
+2. Press `F5` to open a new Extension Development Host window
+3. Inside the host window, open the command palette (`Ctrl+Shift+P` or `Cmd+Shift+P` on Mac) and type `Webview UI Toolkit: All Components`

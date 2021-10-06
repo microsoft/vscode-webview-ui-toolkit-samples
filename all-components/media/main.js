@@ -7,9 +7,11 @@ const vscode = acquireVsCodeApi();
 window.addEventListener("load", main);
 
 function main() {
+  // Set checkbox indeterminate state
   const checkbox = document.getElementById("basic-checkbox");
   checkbox.indeterminate = true;
 
+  // Define default data grid
   const defaultDataGrid = document.getElementById("default-grid");
   defaultDataGrid.rowsData = [
     {
@@ -32,6 +34,7 @@ function main() {
     },
   ];
 
+  // Define data grid with custom titles
   const basicDataGridList = document.querySelectorAll(".basic-grid");
   for (const basicDataGrid of basicDataGridList) {
     basicDataGrid.rowsData = [
@@ -54,7 +57,6 @@ function main() {
         columnKey4: "Cell Data",
       },
     ];
-    // Add custom column titles to grid
     basicDataGrid.columnDefinitions = [
       { columnDataKey: "columnKey1", title: "A Custom Header Title" },
       { columnDataKey: "columnKey2", title: "Custom Title" },

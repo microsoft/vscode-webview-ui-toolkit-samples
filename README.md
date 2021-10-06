@@ -10,10 +10,9 @@ You need to have [Node and NPM](https://nodejs.org/en/) installed on your system
 
 ## Usage
 
-- `git clone https://github.com/microsoft/vscode-webview-ui-toolkit-samples.git`
-- `code <sample-extension-folder>`
-- `npm install` in the terminal, then `F5` to run the sample
-- Alternatively, follow the instructions found in each of the sample's README files
+- Clone this repository to your local computer
+- Open the desired sample extension folder in Visual Studio Code
+- Follow the instructions in the sample's README file
 
 ## Contributing
 
