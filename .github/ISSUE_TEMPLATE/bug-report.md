@@ -5,7 +5,7 @@ labels: bug
 ---
 
 <!--
-  ⚠️⚠️ Do Not Delete This! bug_report_template ⚠️⚠️
+  ⚠️⚠️ Please do the following before submitting: ⚠️⚠️
 
   📖 Please read our Rules of Conduct: https://opensource.microsoft.com/codeofconduct/
   🔎 Please search existing issues to avoid creating duplicates.
