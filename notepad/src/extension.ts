@@ -37,7 +37,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     // If a panel is open, update the HTML with the selected item's content
     panel.title = matchingNote.title;
-    panel.webview.html = getWebviewContent(matchingNote, panel.webview, context.extensionUri);
+    panel.webview.html = getWebviewContent(panel.webview, context.extensionUri, matchingNote);
 
     // If a panel is open and receives an update message, update the notes array and the panel title/html
     panel.webview.onDidReceiveMessage((message) => {
@@ -53,7 +53,7 @@ export function activate(context: vscode.ExtensionContext) {
           treeDataProvider.refresh(notes);
           panel
             ? ((panel.title = note.title),
-              (panel.webview.html = getWebviewContent(note, panel.webview, context.extensionUri)))
+              (panel.webview.html = getWebviewContent(panel.webview, context.extensionUri, note)))
             : null;
           break;
       }

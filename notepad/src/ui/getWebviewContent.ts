@@ -2,7 +2,19 @@ import { Webview, Uri } from "vscode";
 import { Note } from "../types/Note";
 import { getUri } from "../utilities/getUri";
 
-export function getWebviewContent(note: Note, webview: Webview, extensionUri: Uri) {
+/**
+ * Defines and returns the HTML that should be rendered within the notepad webview panel.
+ *
+ * @remarks This is also the place where references to CSS and JavaScript files/packages
+ * (such as the Webview UI Toolkit) are created and inserted into the webview HTML.
+ *
+ * @param webview A reference to the extension webview
+ * @param extensionUri The URI of the directory containing the extension
+ * @param note An object representing a notepad note
+ * @returns A template string literal containing the HTML that should be
+ * rendered within the webview panel
+ */
+export function getWebviewContent(webview: Webview, extensionUri: Uri, note: Note) {
   const toolkitUri = getUri(webview, extensionUri, [
     "node_modules",
     "@vscode",
