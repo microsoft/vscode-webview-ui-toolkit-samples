@@ -1,8 +1,18 @@
 import { Event, EventEmitter, ProviderResult, ThemeIcon, TreeDataProvider, TreeItem } from "vscode";
 import { Note } from "../types/Note";
 
+// A custom type to keep the code below more tidy
 type TreeDataOnChangeEvent = NotepadNote | undefined | null | void;
 
+/**
+ * An implementation of the TreeDataProvider interface.
+ *
+ * This class is responsible for managing the tree data that the VS Code
+ * TreeView API needs to render a custom tree view.
+ *
+ * Learn more about Tree Data Providers here:
+ * https://code.visualstudio.com/api/extension-guides/tree-view#tree-data-provider
+ */
 export class NotepadDataProvider implements TreeDataProvider<NotepadNote> {
   private _onDidChangeTreeData = new EventEmitter<TreeDataOnChangeEvent>();
   readonly onDidChangeTreeData: Event<TreeDataOnChangeEvent> = this._onDidChangeTreeData.event;
