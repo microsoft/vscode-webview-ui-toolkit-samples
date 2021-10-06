@@ -87,7 +87,7 @@
     "vscode-test": "^1.5.0"
   },
   "dependencies": {
-    "@vscode/webview-ui-toolkit": "^0.8.0",
+    "@vscode/webview-ui-toolkit": "^0.8.1",
     "uuid": "^8.3.2"
   }
 }
