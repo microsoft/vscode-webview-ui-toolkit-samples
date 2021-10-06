@@ -10,7 +10,6 @@ export function getWebviewContent(note: Note, webview: Webview, extensionUri: Ur
     "dist",
     "toolkit.js",
   ]);
-
   const styleUri = getUri(webview, extensionUri, ["media", "style.css"]);
   const mainUri = getUri(webview, extensionUri, ["media", "main.js"]);
 
@@ -29,7 +28,7 @@ export function getWebviewContent(note: Note, webview: Webview, extensionUri: Ur
   });
 
   return /*html*/ `
-  <!DOCTYPE html>
+    <!DOCTYPE html>
     <html lang="en">
       <head>
           <meta charset="UTF-8">
@@ -51,5 +50,6 @@ export function getWebviewContent(note: Note, webview: Webview, extensionUri: Ur
             <vscode-button id="submit-button">Save</vscode-button>
           </section>
       </body>
-    </html>`;
+    </html>
+  `;
 }
