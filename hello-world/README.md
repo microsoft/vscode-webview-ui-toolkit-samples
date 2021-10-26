@@ -4,7 +4,7 @@ This is the sample extension that goes along with the Webview UI Toolkit [Gettin
 
 ![A screenshot of the sample extension.](./assets/helloworld-screenshot.png)
 
-## Running The Sample
+## Run The Sample
 
 ```bash
 # Copy sample extension locally

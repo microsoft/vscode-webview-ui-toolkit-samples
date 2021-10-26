@@ -4,7 +4,7 @@ This sample extension demonstrates every component in the Webview UI Toolkit for
 
 ![A screenshot of the sample extension.](./assets/all-components-screenshot.png)
 
-## Running The Sample
+## Run The Sample
 
 ```bash
 # Copy sample extension locally

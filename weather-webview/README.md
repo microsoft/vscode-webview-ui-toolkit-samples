@@ -4,7 +4,7 @@ This sample extension demonstrates the Webview UI Toolkit for Visual Studio Code
 
 ![A screenshot of the sample extension.](./assets/weather-webview-screenshot.png)
 
-## Running The Sample
+## Run The Sample
 
 ```bash
 # Copy sample extension locally

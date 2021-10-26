@@ -4,7 +4,7 @@ This sample extension showcases the toolkit in the context of a simple notepad e
 
 ![A screenshot of the sample extension.](./assets/notepad-screenshot.png)
 
-## Running The Sample
+## Run The Sample
 
 ```bash
 # Copy sample extension locally
