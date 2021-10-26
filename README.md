@@ -10,9 +10,14 @@ You need to have [Node and NPM](https://nodejs.org/en/) installed on your system
 
 ## Usage
 
-- Clone this repository to your local computer
-- Open the desired sample extension folder in Visual Studio Code
-- Follow the instructions in the sample's README file
+Follow the instructions in the README file of the desired sample extension.
+
+| Sample Extension                     | Description                                                                       |
+| ------------------------------------ | --------------------------------------------------------------------------------- |
+| [all-components](./all-components)   | Demonstrates every component in the Webview UI Toolkit.                           |
+| [hello-world](./hello-world)         | A basic hello world starter extension.                                            |
+| [notepad](./notepad)                 | A simple note taking extension that leverages the VS Code TreeView API.           |
+| [weather-webview](./weather-webview) | Demonstrates the toolkit being used within a Webview View (i.e. VS Code sidebar). |
 
 ## Contributing
 
