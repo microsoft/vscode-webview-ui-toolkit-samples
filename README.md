@@ -10,7 +10,9 @@ You need to have [Node and NPM](https://nodejs.org/en/) installed on your system
 
 ## Usage
 
-Follow the instructions in the README file of the desired sample extension.
+Follow the instructions in the `README` file of the desired sample extension.
+
+## Samples
 
 | Sample Extension                     | Description                                                                       |
 | ------------------------------------ | --------------------------------------------------------------------------------- |
