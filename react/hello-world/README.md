@@ -4,6 +4,10 @@ This is the sample extension that goes along with the Webview UI Toolkit [Gettin
 
 ![A screenshot of the sample extension.](./assets/helloworld-screenshot.png)
 
+## Documentation
+
+For a deeper dive into how this sample works, [read the documentation](./docs/react-toolkit-setup).
+
 ## Run The Sample
 
 ```bash
@@ -15,6 +19,9 @@ cd hello-world-react
 
 # Install sample dependencies
 npm install
+
+# Build React webview code
+npm run build:react
 
 # Open sample in VS Code
 code .
