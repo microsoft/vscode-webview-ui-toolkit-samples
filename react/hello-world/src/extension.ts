@@ -3,7 +3,7 @@ import { HelloWorldPanel } from "./panels/HelloWorldPanel";
 
 export function activate(context: ExtensionContext) {
   // Create the helloworld command
-  const helloCommand = commands.registerCommand("hello-world-react.helloWorld", () => {
+  const helloCommand = commands.registerCommand("hello-world.helloWorld", () => {
     HelloWorldPanel.render(context.extensionUri);
   });
 
