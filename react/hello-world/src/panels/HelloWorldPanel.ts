@@ -87,8 +87,8 @@ export class HelloWorldPanel {
   /**
    * Defines and returns the HTML that should be rendered within the webview panel.
    *
-   * @remarks This is also the place where references to CSS and JavaScript files/packages
-   * (such as the Webview UI Toolkit) are created and inserted into the webview HTML.
+   * @remarks This is also the place where references to the React webview build files
+   * are created and inserted into the webview HTML.
    *
    * @param webview A reference to the extension webview
    * @param extensionUri The URI of the directory containing the extension
@@ -96,29 +96,38 @@ export class HelloWorldPanel {
    * rendered within the webview panel
    */
   private _getWebviewContent(webview: Webview, extensionUri: Uri) {
-    const toolkitUri = getUri(webview, extensionUri, [
-      "node_modules",
-      "@vscode",
-      "webview-ui-toolkit",
-      "dist",
-      "toolkit.js",
+    // The CSS file from the React build output
+    const stylesUri = getUri(webview, extensionUri, [
+      "src-react",
+      "build",
+      "static",
+      "css",
+      "main.css",
     ]);
-    const mainUri = getUri(webview, extensionUri, ["media", "main.js"]);
+    // The JS file from the React build output
+    const scriptUri = getUri(webview, extensionUri, [
+      "src-react",
+      "build",
+      "static",
+      "js",
+      "main.js",
+    ]);
 
     // Tip: Install the es6-string-html VS Code extension to enable code highlighting below
     return /*html*/ `
       <!DOCTYPE html>
       <html lang="en">
         <head>
-          <meta charset="UTF-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <script type="module" src="${toolkitUri}"></script>
-          <script type="module" src="${mainUri}"></script>
-          <title>Hello World!</title>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+          <meta name="theme-color" content="#000000">
+          <link rel="stylesheet" type="text/css" href="${stylesUri}">
+          <title>Hello World</title>
         </head>
         <body>
-          <h1>Hello World!</h1>
-          <vscode-button id="howdy">Howdy!</vscode-button>
+          <noscript>You need to enable JavaScript to run this app.</noscript>
+          <div id="root"></div>
+          <script src="${scriptUri}"></script>
         </body>
       </html>
     `;
