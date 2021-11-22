@@ -1,0 +1,11 @@
+button {
+  border: none;
+  border-radius: 0;
+  padding: 4px 8px;
+  color: var(--vscode-button-foreground);
+  background-color: var(--vscode-button-background);
+}
+
+button:hover {
+  background-color: var(--vscode-button-hoverBackground);
+}
