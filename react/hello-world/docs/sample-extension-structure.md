@@ -1,0 +1,38 @@
+# Sample extension structure
+
+Before we dive into the details of this sample extension, let's cover how this extension is organized and structured.
+
+The two most important directories to take note of are the following:
+
+- `src`: Contains all of the extension source code
+- `src-react`: Contains all of the webview source code
+
+## `src` directory
+
+The `src` directory contains all of the extension-related source code and can be thought of as containing the "backend" code/logic for the entire extension.
+
+Inside of this directory you'll find a `panels` directory, `utilities` directory, and `extension.ts` file
+
+The `panels` directory contains all of the webview-related code that will be executed within the extension context. It can be thought of as the place where all of the "backend" code of a webview panel is contained.
+
+This directory will typically contain individual TypeScript or JavaScript files that contain a class which manages the state and behavior of a given webview panel. Each class is usually in charge of:
+
+- Creating and rendering the webview panel
+- Properly cleaning up and disposing of webview resources when the panel is closed
+- Setting message listeners so data can be passed between the webview and extension
+- Setting the HTML (and by proxy CSS/JavaScript) content of the webview panel
+- Other custom logic and behavior related to webview panel management
+
+As the name might suggest, the `utilties` directory contains all of the extension util functions that make setting up and managing an extension easier. In this case, it contains `getUri.ts` which contains a helper function which will get the webview URI of a given file or resource.
+
+Finally, `extension.ts` is where all the logic for activating and deactiving the extension usually live. This includes work such as a registering extension commands.
+
+## `src-react` directory
+
+The `src-react` directory contains all of the webview-related source code and can be thought of as containing the "frontend" code/logic for the extension.
+
+This directory is special because it contains a full-blown React application which was created using the TypeScript [CRA](https://create-react-app.dev/) template. As a result, `src-react` contains its own `package.json`, `node_modules`, `tsconfig.json`, and so on, separate from the `hello-world` extension in the root directory.
+
+This strays a bit from other extension structures, in that you'll usually find the extension and webview dependencies, configurations, and source code more closely integrated or combined with each other.
+
+However, in this case, there are some unique benefits and reasons for why this sample extension does not follow those patterns such as easier management of conflicting dependencies, configurations, development cycles, and so on. This benefits will be discussed in greater depth in a later section of this documentation.
