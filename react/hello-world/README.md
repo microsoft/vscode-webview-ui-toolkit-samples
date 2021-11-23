@@ -18,7 +18,7 @@ npx degit microsoft/vscode-webview-ui-toolkit-samples/react/hello-world hello-wo
 cd hello-world-react
 
 # Install dependencies for both the extension and React source code
-npm install:all
+npm run install:all
 
 # Build React webview code
 npm run build:react
