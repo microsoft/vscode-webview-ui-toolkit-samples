@@ -1,12 +1,12 @@
 # Hello World React Sample Extension
 
-This is the sample extension that goes along with the Webview UI Toolkit [Getting Started Guide](https://github.com/microsoft/vscode-webview-toolkit/blob/main/docs/getting-started.md).
+This is a React-based reimplementation of the default [hello-world](../default/hello-world) sample extension that demonstrates how to set up and use a React + Webview UI Toolkit webview extension.
 
 ![A screenshot of the sample extension.](./assets/helloworld-screenshot.png)
 
 ## Documentation
 
-For a deeper dive into how this sample works, [read the documentation](./docs/react-toolkit-setup).
+For a deeper dive into how this sample works, [read the documentation](./docs/react-toolkit-guide).
 
 ## Run The Sample
 
@@ -17,8 +17,8 @@ npx degit microsoft/vscode-webview-ui-toolkit-samples/react/hello-world hello-wo
 # Navigate into sample directory
 cd hello-world-react
 
-# Install sample dependencies
-npm install
+# Install dependencies for both the extension and React source code
+npm install:all
 
 # Build React webview code
 npm run build:react
