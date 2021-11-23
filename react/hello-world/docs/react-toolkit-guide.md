@@ -8,7 +8,7 @@ Start here with a [quick introduction](./extension-structure.md) into how this s
 
 ## Extension usage and commands
 
-This guide covers the intended development cycle and associated NPM commands for the sample extension.
+[This guide](./extension-usage.md) covers the intended development cycle and associated NPM commands for the sample extension.
 
 ## Creating this sample from scratch
 
