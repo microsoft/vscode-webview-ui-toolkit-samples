@@ -4,7 +4,7 @@ Below you can find various guides on how to understand, use, and even create thi
 
 ## Sample extension structure
 
-Start here with a [quick introduction](./react-toolkit-guide.md) into how this sample extension is organized and structured.
+Start here with a [quick introduction](./extension-structure.md) into how this sample extension is organized and structured.
 
 ## Extension usage and commands
 
