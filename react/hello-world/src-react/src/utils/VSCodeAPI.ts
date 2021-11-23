@@ -17,9 +17,8 @@
  *
  * Credit:
  *
- * This class wrapper is an adapted version of the VSCodeWrapper found
- * in the React + Snowpack VS Code extension template created by the
- * GitHub Next team.
+ * This class is an adapted version of the VSCodeWrapper found in the
+ * React + Snowpack VS Code extension template created by the GitHub Next team.
  *
  * https://github.com/githubocto/snowpack-vscode-extension-template/blob/main/src/webviews/src/VSCodeAPI.tsx
  */
