@@ -1,6 +1,6 @@
 # Hello World React Sample Extension
 
-This is a React-based reimplementation of the default [hello-world](../default/hello-world) sample extension that demonstrates how to set up and use a React + Webview UI Toolkit webview extension.
+This is a React-based implementation of the default [hello-world](../default/hello-world) sample extension that demonstrates how to set up and use a React + Webview UI Toolkit webview extension.
 
 ![A screenshot of the sample extension.](./assets/helloworld-screenshot.png)
 
