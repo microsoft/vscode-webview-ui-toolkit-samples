@@ -28,14 +28,38 @@ interface VSCodeAPI {
 }
 
 class VSCodeWrapper {
-  private readonly vsCodeAPI: VSCodeAPI = acquireVsCodeApi();
+  private vsCodeApiExists: boolean;
+  private readonly vsCodeAPI: VSCodeAPI;
+
+  constructor() {
+    // Check if the acquireVsCodeApi function exists in the current
+    // development context.
+    //
+    // This mainly enables us to run the webview code inside a web
+    // development server where acquireVsCodeApi will not exist.
+    if (typeof acquireVsCodeApi === "function") {
+      this.vsCodeAPI = acquireVsCodeApi();
+      this.vsCodeApiExists = true;
+    } else {
+      this.vsCodeApiExists = false;
+    }
+  }
 
   /**
    * Send a message (i.e. arbitrary data) to the extension context.
+   *
+   * @remarks When running the webview React code using the a web
+   * development server, postMessage will instead log the given
+   * message to the console.
+   *
    * @param message
    */
   public postMessage(message: unknown) {
-    this.vsCodeAPI.postMessage(message);
+    if (this.vsCodeApiExists) {
+      this.vsCodeAPI.postMessage(message);
+    } else {
+      console.log(message);
+    }
   }
 }
 
