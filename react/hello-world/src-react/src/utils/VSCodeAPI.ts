@@ -1,3 +1,5 @@
+import type { WebviewApi } from "vscode-webview";
+
 /**
  * To get access to the VS Code API from within the webview context
  * we need to call the acquireVsCodeApi() function.
@@ -23,13 +25,9 @@
  * https://github.com/githubocto/snowpack-vscode-extension-template/blob/main/src/webviews/src/VSCodeAPI.tsx
  */
 
-interface VSCodeAPI {
-  postMessage: (message: unknown) => void;
-}
-
-class VSCodeWrapper {
+class VSCodeAPIWrapper {
+  private readonly vsCodeApi: WebviewApi<unknown>;
   private vsCodeApiExists: boolean;
-  private readonly vsCodeAPI: VSCodeAPI;
 
   constructor() {
     // Check if the acquireVsCodeApi function exists in the current
@@ -38,7 +36,7 @@ class VSCodeWrapper {
     // This mainly enables us to run the webview code inside a web
     // development server where acquireVsCodeApi will not exist.
     if (typeof acquireVsCodeApi === "function") {
-      this.vsCodeAPI = acquireVsCodeApi();
+      this.vsCodeApi = acquireVsCodeApi();
       this.vsCodeApiExists = true;
     } else {
       this.vsCodeApiExists = false;
@@ -46,22 +44,60 @@ class VSCodeWrapper {
   }
 
   /**
-   * Send a message (i.e. arbitrary data) to the extension context.
+   * Post a message (i.e. send arbitrary data) to the owner of the webview.
    *
-   * @remarks When running the webview React code using the a web
-   * development server, postMessage will instead log the given
-   * message to the console.
+   * @remarks When running the webview code using a web development
+   * server, postMessage will instead log the given message to the console.
    *
-   * @param message
+   * @param message Abitrary data to send to the extension context. Must be JSON serializable.
    */
   public postMessage(message: unknown) {
     if (this.vsCodeApiExists) {
-      this.vsCodeAPI.postMessage(message);
+      this.vsCodeApi.postMessage(message);
     } else {
       console.log(message);
+    }
+  }
+
+  /**
+   * Get the persistent state stored for this webview.
+   *
+   * @remarks When running the webview source code using a web development
+   * server, getState will retrieve state from local storage
+   * (https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage).
+   *
+   * @return The current state or `undefined` if no state has been set.
+   */
+  public getState(): unknown | undefined {
+    if (this.vsCodeApiExists) {
+      return this.vsCodeApi.getState();
+    } else {
+      const state = localStorage.getItem("vscodeState");
+      return state ? JSON.parse(state) : undefined;
+    }
+  }
+
+  /**
+   * Set the persistent state stored for this webview.
+   *
+   * @remarks When running the webview source code using a web development
+   * server, setState will set the given state using local storage
+   * (https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage).
+   *
+   * @param newState New persisted state. This must be a JSON serializable object. Can be retrieved
+   * using {@link getState}.
+   *
+   * @return The new state.
+   */
+  public setState<T extends unknown | undefined>(newState: T): T {
+    if (this.vsCodeApiExists) {
+      return this.vsCodeApi.setState(newState);
+    } else {
+      localStorage.setItem("vscodeState", JSON.stringify(newState));
+      return newState;
     }
   }
 }
 
 // Singleton to prevent multiple invocations of the acquireVsCodeApi() function.
-export const vscode: VSCodeWrapper = new VSCodeWrapper();
+export const vscode = new VSCodeAPIWrapper();
