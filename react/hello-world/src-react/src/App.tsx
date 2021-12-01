@@ -1,4 +1,4 @@
-import { vscode } from "./utils/vscode";
+import { vscode } from "./utilities/vscode";
 // import { VSCodeButton } from "@vscode/webview-ui-toolkit/react";
 
 function App() {
