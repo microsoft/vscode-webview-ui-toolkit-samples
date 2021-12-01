@@ -22,9 +22,10 @@
     ]
   },
   "scripts": {
-    "dev": "npm --prefix ./src-react run start",
     "install:all": "npm install && npm --prefix ./src-react install ./src-react",
-    "build:react": "npm --prefix ./src-react run build:nosplit",
+    "start:react": "npm --prefix ./src-react run start",
+    "test:react": "npm --prefix ./src-react run test",
+    "build:react": "npm --prefix ./src-react run build",
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
