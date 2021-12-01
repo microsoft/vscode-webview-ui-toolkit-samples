@@ -4,8 +4,7 @@
   "private": true,
   "scripts": {
     "start": "EXTEND_ESLINT=true react-scripts start",
-    "build": "EXTEND_ESLINT=true react-scripts build",
-    "build:nosplit": "node ./scripts/build-react-no-split.js",
+    "build": "node ./scripts/build-react-no-split.js",
     "test": "EXTEND_ESLINT=true react-scripts test",
     "eject": "react-scripts eject"
   },
