@@ -13,3 +13,13 @@
   - `npm run watch`
   - Mention commands available inside `src-react`
 - Maybe some notes on the `.vscode` config files?
+
+## Commands
+
+```
+npm run install:all      Install package dependencies for both the extension and React webview source code.
+npm run start:react      Runs the React webview source code in development mode. Open http://localhost:3000 to view it in the browser. 
+npm run test:react       Runs the React test watcher in an interactive mode.
+npm run build:react      Build React webview source code. Must be executed before compiling or running the extension.
+npm run compile          Compile VS Code extension
+```
