@@ -1,7 +1,7 @@
 {
-  "name": "hello-world",
-  "displayName": "hello-world",
-  "description": "A hello world sample extension to demonstrate using React with the Webview UI Toolkit for VS Code.",
+  "name": "hello-world-cra",
+  "displayName": "hello-world-cra",
+  "description": "A hello world sample extension to demonstrate using React + CRA with the Webview UI Toolkit for VS Code.",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.46.0"

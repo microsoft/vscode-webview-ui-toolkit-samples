@@ -12,7 +12,7 @@ For a deeper dive into how this sample works, [read the documentation](./docs/re
 
 ```bash
 # Copy sample extension locally
-npx degit microsoft/vscode-webview-ui-toolkit-samples/react/hello-world hello-world
+npx degit microsoft/vscode-webview-ui-toolkit-samples/react/hello-world-cra hello-world
 
 # Navigate into sample directory
 cd hello-world
