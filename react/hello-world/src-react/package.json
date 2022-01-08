@@ -9,7 +9,8 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
-    "@vscode/webview-ui-toolkit": "^0.8.4",
+    "@microsoft/fast-react-wrapper": "^0.1.18",
+    "@vscode/webview-ui-toolkit": "^0.8.5",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
