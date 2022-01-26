@@ -1,6 +1,6 @@
 {
-  "name": "hello-world-cra",
-  "displayName": "hello-world-cra",
+  "name": "hello-world-react-cra",
+  "displayName": "hello-world-react-cra",
   "description": "A hello world sample extension to demonstrate using React + CRA with the Webview UI Toolkit for VS Code.",
   "version": "0.0.1",
   "engines": {
@@ -22,10 +22,10 @@
     ]
   },
   "scripts": {
-    "install:all": "npm install && npm --prefix ./src-react install ./src-react",
-    "start:react": "npm --prefix ./src-react run start",
-    "test:react": "npm --prefix ./src-react run test",
-    "build:react": "npm --prefix ./src-react run build",
+    "install:all": "npm install && npm --prefix ./webview-ui install ./webview-ui",
+    "start:react": "npm --prefix ./webview-ui run start",
+    "test:react": "npm --prefix ./webview-ui run test",
+    "build:react": "npm --prefix ./webview-ui run build",
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",

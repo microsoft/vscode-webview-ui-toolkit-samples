@@ -11,7 +11,7 @@
   - `npm run build:react`
   - `npm run compile`
   - `npm run watch`
-  - Mention commands available inside `src-react`
+  - Mention commands available inside `webview-ui`
 - Maybe some notes on the `.vscode` config files?
 
 ## Commands

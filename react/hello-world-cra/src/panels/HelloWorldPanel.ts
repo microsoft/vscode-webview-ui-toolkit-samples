@@ -98,7 +98,7 @@ export class HelloWorldPanel {
   private _getWebviewContent(webview: Webview, extensionUri: Uri) {
     // The CSS file from the React build output
     const stylesUri = getUri(webview, extensionUri, [
-      "src-react",
+      "webview-ui",
       "build",
       "static",
       "css",
@@ -106,7 +106,7 @@ export class HelloWorldPanel {
     ]);
     // The JS file from the React build output
     const scriptUri = getUri(webview, extensionUri, [
-      "src-react",
+      "webview-ui",
       "build",
       "static",
       "js",
