@@ -21,7 +21,7 @@ cd hello-world
 npm run install:all
 
 # Build React webview code
-npm run build:react
+npm run build:webview
 
 # Open sample in VS Code
 code .
