@@ -21,10 +21,10 @@ npx degit microsoft/vscode-webview-ui-toolkit-samples/react/hello-world-vite hel
 # Navigate into sample directory
 cd hello-world
 
-# Install dependencies for both the extension and React source code
+# Install dependencies for both the extension and webview UI source code
 npm run install:all
 
-# Build React webview code
+# Build webview UI source code
 npm run build:webview
 
 # Open sample in VS Code
