@@ -12,7 +12,7 @@ You need to have [Node and NPM](https://nodejs.org/en/) installed on your system
 
 Follow the instructions in the `README` file of the desired sample extension.
 
-## Default Samples
+### Default Samples
 
 A set of sample extensions using vanilla HTML, CSS, and JavaScript to render the Webview UI.
 
@@ -23,7 +23,7 @@ A set of sample extensions using vanilla HTML, CSS, and JavaScript to render the
 | [notepad](./default/notepad)                 | A simple note taking extension that leverages the VS Code TreeView API.           |
 | [weather-webview](./default/weather-webview) | Demonstrates the toolkit being used within a Webview View (i.e. VS Code sidebar). |
 
-## React Samples
+### React Samples
 
 A set of sample extensions using React to render the Webview UI.
 
@@ -32,19 +32,19 @@ A set of sample extensions using React to render the Webview UI.
 | [hello-world-cra](./react/hello-world-cra)   | A basic hello world starter extension using React + Create React App. |
 | [hello-world-vite](./react/hello-world-vite) | A basic hello world starter extension using React + Vite.             |
 
-## Svelte Samples
+### Svelte Samples
 
 _Coming in the future._
 
-## Vue Samples
+### Vue Samples
 
 _Coming in the future._
 
-## Angular Samples
+### Angular Samples
 
 _Coming in the future._
 
-## Other Samples
+### Other Samples
 
 Don't see a demonstration for your desired framework, API, use case, and so on? Feel free to open an issue and request it!
 
