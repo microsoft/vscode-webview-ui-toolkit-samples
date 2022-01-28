@@ -23,6 +23,6 @@ Once you're ready to start building other parts of your extension, simply shift 
 
 ## Dependency management and project configuration
 
-As mentioned above, the `webview-ui` directory holds a self-contained and isolated React application. The VS Code extension configs have been adjusted to ignore the this folder so you can (for the most part) treat the development of your webview UI in the same you would treat the development of a regular React application.
+As mentioned above, the `webview-ui` directory holds a self-contained and isolated React application meaning you can (for the most part) treat the development of your webview UI in the same way you would treat the development of a regular React application.
 
 To install webview-specific dependencies simply navigate (i.e. `cd`) into the `webview-ui` directory and install any packages you need or set up any React specific configurations you want.
