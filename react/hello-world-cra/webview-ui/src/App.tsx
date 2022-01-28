@@ -1,5 +1,5 @@
 import { vscode } from "./utilities/vscode";
-import { VSCodeButton } from "./utilities/components";
+import { VSCodeButton } from "@vscode/webview-ui-toolkit/react";
 
 function App() {
   function handleHowdyClick() {
