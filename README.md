@@ -34,15 +34,27 @@ A set of sample extensions using React to render the Webview UI.
 
 ### Svelte Samples
 
-_Coming in the future._
+A set of sample extensions using Svelte to render the Webview UI.
+
+| Sample Extension        | Description       |
+| ------------------------| ----------------- |
+| _Coming in the future!_ | To be determined. |
 
 ### Vue Samples
 
-_Coming in the future._
+A set of sample extensions using Vue to render the Webview UI.
+
+| Sample Extension        | Description       |
+| ------------------------| ----------------- |
+| _Coming in the future!_ | To be determined. |
 
 ### Angular Samples
 
-_Coming in the future._
+A set of sample extensions using Angular to render the Webview UI.
+
+| Sample Extension        | Description       |
+| ------------------------| ----------------- |
+| _Coming in the future!_ | To be determined. |
 
 ### Other Samples
 
