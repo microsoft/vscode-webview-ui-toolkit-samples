@@ -1,12 +1,16 @@
-# Hello World (React + CRA)
+# Hello World (React + Create React App)
 
-This is an implementation of the default [Hello World](../default/hello-world) sample extension that demonstrates how to set up and use a [React](https://reactjs.org/) + [Create React App](https://create-react-app.dev/) + Webview UI Toolkit webview extension.
+This is an implementation of the default [Hello World](../default/hello-world) sample extension that demonstrates how to set up and use a [React](https://reactjs.org/) + [Create React App](https://create-react-app.dev/) + [Webview UI Toolkit](https://github.com/microsoft/vscode-webview-ui-toolkit) webview extension.
 
 ![A screenshot of the sample extension.](./assets/helloworld-screenshot.png)
 
 ## Documentation
 
-For a deeper dive into how this sample works, [read the documentation](./docs/react-toolkit-guide).
+For a deeper dive into how this sample works, read the guides below.
+
+- [Extension structure](./docs/extension-structure.md)
+- [Extension commands](./docs/extension-commands.md)
+- [Extension development cycle](./docs/extension-development-cycle.md)
 
 ## Run The Sample
 
@@ -17,10 +21,10 @@ npx degit microsoft/vscode-webview-ui-toolkit-samples/react/hello-world-cra hell
 # Navigate into sample directory
 cd hello-world
 
-# Install dependencies for both the extension and React source code
+# Install dependencies for both the extension and webview UI source code
 npm run install:all
 
-# Build React webview code
+# Build webview UI source code
 npm run build:webview
 
 # Open sample in VS Code

@@ -1,11 +1,11 @@
-# Sample extension structure
+# Extension structure
 
-Before we dive into the details of this sample extension, let's cover how this extension is organized and structured.
+This section provides a quick introduction into how this sample extension is organized and structured.
 
 The two most important directories to take note of are the following:
 
 - `src`: Contains all of the extension source code
-- `webview-ui`: Contains all of the webview source code
+- `webview-ui`: Contains all of the webview UI source code
 
 ## `src` directory
 
@@ -15,7 +15,7 @@ The `src` directory contains all of the extension-related source code and can be
 - `utilities` directory
 - `extension.ts` file
 
-The `panels` directory contains all of the webview-related code that will be executed within the extension context. It can be thought of as the place where all of the "backend" code of a webview panel is contained.
+The `panels` directory contains all of the webview-related code that will be executed within the extension context. It can be thought of as the place where all of the "backend" code for each webview panel is contained.
 
 This directory will typically contain individual TypeScript or JavaScript files that contain a class which manages the state and behavior of a given webview panel. Each class is usually in charge of:
 
@@ -33,8 +33,8 @@ Finally, `extension.ts` is where all the logic for activating and deactiving the
 
 The `webview-ui` directory contains all of the React-based webview source code and can be thought of as containing the "frontend" code/logic for the extension webview.
 
-This directory is special because it contains a full-blown React application which was created using the TypeScript [Create React App](https://create-react-app.dev/) template. As a result, `webview-ui` contains its own `package.json`, `node_modules`, `tsconfig.json`, and so on, separate from the `hello-world` extension in the root directory.
+This directory is special because it contains a full-blown React application which was created using the TypeScript [Create React App](https://create-react-app.dev/) template. As a result, `webview-ui` contains its own `package.json`, `node_modules`, `tsconfig.json`, and so on––separate from the `hello-world` extension in the root directory.
 
 This strays a bit from other extension structures, in that you'll usually find the extension and webview dependencies, configurations, and source code more closely integrated or combined with each other.
 
-However, in this case, there are some unique benefits and reasons for why this sample extension does not follow those patterns such as easier management of conflicting dependencies and configurations, as well as the ability to use the built in React web dev server which drastically improves the speed of developing your Webview UI, versus recompiling your extension code every time you make a change to the webview.
+However, in this case, there are some unique benefits and reasons for why this sample extension does not follow those patterns such as easier management of conflicting dependencies and configurations, as well as the ability to use the CRA dev server, which drastically improves the speed of developing your webview UI, versus recompiling your extension code every time you make a change to the webview.
