@@ -27,9 +27,26 @@ A set of sample extensions using vanilla HTML, CSS, and JavaScript to render the
 
 A set of sample extensions using React to render the Webview UI.
 
-| Sample Extension                           | Description                                        |
-| ------------------------------------------ | -------------------------------------------------- |
-| [hello-world](./react/hello-world)         | A basic hello world starter extension using React. |
+| Sample Extension                             | Description                                                           |
+| ---------------------------------------------| --------------------------------------------------------------------- |
+| [hello-world-cra](./react/hello-world-cra)   | A basic hello world starter extension using React + Create React App. |
+| [hello-world-vite](./react/hello-world-vite) | A basic hello world starter extension using React + Vite.             |
+
+## Svelte Samples
+
+_Coming in the future._
+
+## Vue Samples
+
+_Coming in the future._
+
+## Angular Samples
+
+_Coming in the future._
+
+## Other Samples
+
+Don't see a demonstration for your desired framework, API, use case, and so on? Feel free to open an issue and request it!
 
 ## Contributing
 
