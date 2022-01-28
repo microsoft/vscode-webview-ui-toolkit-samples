@@ -16,7 +16,7 @@ _Tip: Open the command palette and run the `Simple Browser` command and fill in 
 ### Message passing
 If you need to implement message passing between the webview context and extension context via the VS Code API, a helpful utility is provided in the `webview-ui/src/utilities/vscode.ts` file.
 
-This file contains a utility wrapper around the acquireVsCodeApi() function, which enables message passing and state management between the webview and extension contexts.
+This file contains a utility wrapper around the `acquireVsCodeApi()` function, which enables message passing and state management between the webview and extension contexts.
 
 This utility also enables webview code to be run in the Vite dev server by using native web browser features that mock the functionality enabled by acquireVsCodeApi. This means you can keep building your webview UI with the Vite dev server even when using the VS Code API.
 
