@@ -6,7 +6,7 @@ Each sample is a self contained extension and demonstrates some aspect of the to
 
 ## Prerequisites
 
-You need to have [Node and NPM](https://nodejs.org/en/) installed on your system to run the examples. It is recommended to use the Node version used for VS Code development itself which is documented [here](https://github.com/Microsoft/vscode/wiki/How-to-Contribute#prerequisites).
+You need to have [Node and NPM](https://nodejs.org/en/) installed on your system to run the samples. It is recommended to use the Node version used for VS Code development itself which is documented [here](https://github.com/Microsoft/vscode/wiki/How-to-Contribute#prerequisites).
 
 ## Usage
 
@@ -36,25 +36,25 @@ A set of sample extensions using React to render the Webview UI.
 
 A set of sample extensions using Svelte to render the Webview UI.
 
-| Sample Extension        | Description       |
-| ------------------------| ----------------- |
-| _Coming in the future!_ | To be determined. |
+| Sample Extension                             | Description                                                           |
+| ---------------------------------------------| --------------------------------------------------------------------- |
+| _Coming in the future!_                      |                                                                       |
 
 ### Vue Samples
 
 A set of sample extensions using Vue to render the Webview UI.
 
-| Sample Extension        | Description       |
-| ------------------------| ----------------- |
-| _Coming in the future!_ | To be determined. |
+| Sample Extension                             | Description                                                           |
+| ---------------------------------------------| --------------------------------------------------------------------- |
+| _Coming in the future!_                      |                                                                       |
 
 ### Angular Samples
 
 A set of sample extensions using Angular to render the Webview UI.
 
-| Sample Extension        | Description       |
-| ------------------------| ----------------- |
-| _Coming in the future!_ | To be determined. |
+| Sample Extension                             | Description                                                           |
+| ---------------------------------------------| --------------------------------------------------------------------- |
+| _Coming in the future!_                      |                                                                       |
 
 ### Other Samples
 
