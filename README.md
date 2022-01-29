@@ -6,20 +6,59 @@ Each sample is a self contained extension and demonstrates some aspect of the to
 
 ## Prerequisites
 
-You need to have [Node and NPM](https://nodejs.org/en/) installed on your system to run the examples. It is recommended to use the Node version used for VS Code development itself which is documented [here](https://github.com/Microsoft/vscode/wiki/How-to-Contribute#prerequisites).
+You need to have [Node and NPM](https://nodejs.org/en/) installed on your system to run the samples. It is recommended to use the Node version used for VS Code development itself which is documented [here](https://github.com/Microsoft/vscode/wiki/How-to-Contribute#prerequisites).
 
 ## Usage
 
 Follow the instructions in the `README` file of the desired sample extension.
 
-## Samples
+### Default Samples
 
-| Sample Extension                     | Description                                                                       |
-| ------------------------------------ | --------------------------------------------------------------------------------- |
-| [all-components](./all-components)   | Demonstrates every component in the Webview UI Toolkit.                           |
-| [hello-world](./hello-world)         | A basic hello world starter extension.                                            |
-| [notepad](./notepad)                 | A simple note taking extension that leverages the VS Code TreeView API.           |
-| [weather-webview](./weather-webview) | Demonstrates the toolkit being used within a Webview View (i.e. VS Code sidebar). |
+A set of sample extensions using vanilla HTML, CSS, and JavaScript to render the Webview UI.
+
+| Sample Extension                             | Description                                                                       |
+| -------------------------------------------- | --------------------------------------------------------------------------------- |
+| [all-components](./default/all-components)   | Demonstrates every component in the Webview UI Toolkit.                           |
+| [hello-world](./default/hello-world)         | A basic hello world starter extension.                                            |
+| [notepad](./default/notepad)                 | A simple note taking extension that leverages the VS Code TreeView API.           |
+| [weather-webview](./default/weather-webview) | Demonstrates the toolkit being used within a Webview View (i.e. VS Code sidebar). |
+
+### React Samples
+
+A set of sample extensions using React to render the Webview UI.
+
+| Sample Extension                             | Description                                                           |
+| ---------------------------------------------| --------------------------------------------------------------------- |
+| [hello-world-cra](./react/hello-world-cra)   | A basic hello world starter extension using React + Create React App. |
+| [hello-world-vite](./react/hello-world-vite) | A basic hello world starter extension using React + Vite.             |
+
+### Svelte Samples
+
+A set of sample extensions using Svelte to render the Webview UI.
+
+| Sample Extension        | Description |
+| ------------------------| ----------- |
+| _Coming in the future!_ |             |
+
+### Vue Samples
+
+A set of sample extensions using Vue to render the Webview UI.
+
+| Sample Extension        | Description |
+| ------------------------| ----------- |
+| _Coming in the future!_ |             |
+
+### Angular Samples
+
+A set of sample extensions using Angular to render the Webview UI.
+
+| Sample Extension        | Description |
+| ------------------------| ----------- |
+| _Coming in the future!_ |             |
+
+### Other Samples
+
+Don't see a demonstration for your desired framework, API, use case, and so on? Feel free to open an issue and request it!
 
 ## Contributing
 

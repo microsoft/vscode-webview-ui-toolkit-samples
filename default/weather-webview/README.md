@@ -8,7 +8,7 @@ This sample extension demonstrates the Webview UI Toolkit for Visual Studio Code
 
 ```bash
 # Copy sample extension locally
-npx degit microsoft/vscode-webview-ui-toolkit-samples/weather-webview weather-webview
+npx degit microsoft/vscode-webview-ui-toolkit-samples/default/weather-webview weather-webview
 
 # Navigate into sample directory
 cd weather-webview

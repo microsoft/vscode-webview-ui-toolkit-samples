@@ -8,7 +8,7 @@ This is the sample extension that goes along with the Webview UI Toolkit [Gettin
 
 ```bash
 # Copy sample extension locally
-npx degit microsoft/vscode-webview-ui-toolkit-samples/hello-world hello-world
+npx degit microsoft/vscode-webview-ui-toolkit-samples/default/hello-world hello-world
 
 # Navigate into sample directory
 cd hello-world

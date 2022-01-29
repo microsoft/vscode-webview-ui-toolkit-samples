@@ -8,7 +8,7 @@ This sample extension demonstrates every component in the Webview UI Toolkit for
 
 ```bash
 # Copy sample extension locally
-npx degit microsoft/vscode-webview-ui-toolkit-samples/all-components all-components
+npx degit microsoft/vscode-webview-ui-toolkit-samples/default/all-components all-components
 
 # Navigate into sample directory
 cd all-components
