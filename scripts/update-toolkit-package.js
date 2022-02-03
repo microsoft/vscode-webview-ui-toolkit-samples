@@ -8,6 +8,9 @@ const execShellCommand = util.promisify(exec);
 /**
  * This script installs the latest version of the toolkit package in
  * every sample extension.
+ * 
+ * Run `node scripts/update-toolkit-package.js` from the root directory
+ * of this repository.
  */
 async function main() {
 	console.log('Updating toolkit package to latest version...');
