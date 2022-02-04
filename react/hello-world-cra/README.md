@@ -1,6 +1,6 @@
 # Hello World (React + Create React App)
 
-This is an implementation of the default [Hello World](../default/hello-world) sample extension that demonstrates how to set up and use a [React](https://reactjs.org/) + [Create React App](https://create-react-app.dev/) + [Webview UI Toolkit](https://github.com/microsoft/vscode-webview-ui-toolkit) webview extension.
+This is an implementation of the default [Hello World](https://github.com/microsoft/vscode-webview-ui-toolkit-samples/tree/main/default/hello-world) sample extension that demonstrates how to set up and use a [React](https://reactjs.org/) + [Create React App](https://create-react-app.dev/) + [Webview UI Toolkit](https://github.com/microsoft/vscode-webview-ui-toolkit) webview extension.
 
 ![A screenshot of the sample extension.](./assets/helloworld-screenshot.png)
 
