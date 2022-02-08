@@ -1,4 +1,4 @@
-# All Components Sample Extension
+# All Components Gallery Sample Extension
 
 This sample extension demonstrates every component in the Webview UI Toolkit for Visual Studio Code.
 
@@ -23,4 +23,4 @@ code .
 Once the sample is open inside VS Code you can run the extension by doing the following:
 
 1. Press `F5` to open a new Extension Development Host window
-2. Inside the host window, open the command palette (`Ctrl+Shift+P` or `Cmd+Shift+P` on Mac) and type `Webview UI Toolkit: All Components`
+2. Inside the host window, open the command palette (`Ctrl+Shift+P` or `Cmd+Shift+P` on Mac) and type `Webview UI Toolkit: Open all components gallery`

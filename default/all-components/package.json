@@ -22,7 +22,7 @@
     "commands": [
       {
         "command": "all-components.showAllComponents",
-        "title": "Webview UI Toolkit: All Components"
+        "title": "Webview UI Toolkit: Open all components gallery"
       }
     ]
   },

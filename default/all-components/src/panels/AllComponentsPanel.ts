@@ -61,7 +61,7 @@ export class AllComponentsPanel {
         // Panel view type
         "showAllComponents",
         // Panel title
-        "Webview UI Toolkit: All Components",
+        "Webview UI Toolkit: All Components Gallery",
         // The editor column the panel should be displayed in
         ViewColumn.One,
         // Extra panel configurations
@@ -122,10 +122,10 @@ export class AllComponentsPanel {
     const mainUri = getUri(webview, extensionUri, ["media", "main.js"]);
     const styleUri = getUri(webview, extensionUri, ["media", "style.css"]);
 
-    // Note: Since the below HTML is defined within a JavaScript template literal, all of 
+    // Note: Since the below HTML is defined within a JavaScript template literal, all of
     // the HTML for each component demo can be defined elsewhere and then imported/inserted
     // into the below code. This can help with code readability and organization.
-    // 
+    //
     // Tip: Install the es6-string-html VS Code extension to enable code highlighting below
     return /*html*/ `
       <!DOCTYPE html>
@@ -137,7 +137,7 @@ export class AllComponentsPanel {
             <script type="module" src="${mainUri}"></script>
             <link rel="stylesheet" href="${styleUri}">
             <link rel="stylesheet" href="${codiconsUri}">
-            <title>Webview UI Toolkit: All Components</title>
+            <title>Webview UI Toolkit: All Components Gallery</title>
         </head>
         <body>
           <h1>Webview UI Toolkit Gallery</h1>
