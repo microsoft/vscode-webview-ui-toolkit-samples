@@ -44,7 +44,7 @@
     "vscode-test": "^1.5.0"
   },
   "dependencies": {
-    "@vscode/webview-ui-toolkit": "^0.9.0",
+    "@vscode/webview-ui-toolkit": "^0.9.1",
     "weather-js": "^2.0.0"
   }
 }
