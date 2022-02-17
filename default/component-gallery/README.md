@@ -1,17 +1,17 @@
-# All Components Gallery Sample Extension
+# Component Gallery Sample Extension
 
 This sample extension demonstrates every component in the Webview UI Toolkit for Visual Studio Code.
 
-![A screenshot of the sample extension.](./assets/all-components-screenshot.png)
+![A screenshot of the sample extension.](./assets/component-gallery-screenshot.png)
 
 ## Run The Sample
 
 ```bash
 # Copy sample extension locally
-npx degit microsoft/vscode-webview-ui-toolkit-samples/default/all-components all-components
+npx degit microsoft/vscode-webview-ui-toolkit-samples/default/component-gallery component-gallery
 
 # Navigate into sample directory
-cd all-components
+cd component-gallery
 
 # Install sample dependencies
 npm install
@@ -23,4 +23,4 @@ code .
 Once the sample is open inside VS Code you can run the extension by doing the following:
 
 1. Press `F5` to open a new Extension Development Host window
-2. Inside the host window, open the command palette (`Ctrl+Shift+P` or `Cmd+Shift+P` on Mac) and type `Webview UI Toolkit: Open all components gallery`
+2. Inside the host window, open the command palette (`Ctrl+Shift+P` or `Cmd+Shift+P` on Mac) and type `Component Gallery: Show`

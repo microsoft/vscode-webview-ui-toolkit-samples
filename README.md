@@ -16,12 +16,12 @@ Follow the instructions in the `README` file of the desired sample extension.
 
 A set of sample extensions using vanilla HTML, CSS, and JavaScript to render the Webview UI.
 
-| Sample Extension                             | Description                                                                       |
-| -------------------------------------------- | --------------------------------------------------------------------------------- |
-| [all-components](./default/all-components)   | Demonstrates every component in the Webview UI Toolkit.                           |
-| [hello-world](./default/hello-world)         | A basic hello world starter extension.                                            |
-| [notepad](./default/notepad)                 | A simple note taking extension that leverages the VS Code TreeView API.           |
-| [weather-webview](./default/weather-webview) | Demonstrates the toolkit being used within a Webview View (i.e. VS Code sidebar). |
+| Sample Extension                                 | Description                                                                       |
+| ------------------------------------------------ | --------------------------------------------------------------------------------- |
+| [component-gallery](./default/component-gallery) | Demonstrates every component in the Webview UI Toolkit.                           |
+| [hello-world](./default/hello-world)             | A basic hello world starter extension.                                            |
+| [notepad](./default/notepad)                     | A simple note taking extension that leverages the VS Code TreeView API.           |
+| [weather-webview](./default/weather-webview)     | Demonstrates the toolkit being used within a Webview View (i.e. VS Code sidebar). |
 
 ### React Samples
 
