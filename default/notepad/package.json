@@ -17,13 +17,12 @@
     "commands": [
       {
         "command": "notepad.createNote",
-        "title": "Create a note",
-        "icon": "$(add)",
-        "category": "Notepad"
+        "title": "Notepad: Create a note",
+        "icon": "$(add)"
       },
       {
         "command": "notepad.deleteNote",
-        "title": "Delete note",
+        "title": "Notepad: Delete note",
         "icon": "$(trash)"
       }
     ],
