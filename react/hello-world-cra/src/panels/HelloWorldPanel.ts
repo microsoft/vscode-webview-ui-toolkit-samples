@@ -2,11 +2,11 @@ import { Disposable, Webview, WebviewPanel, window, Uri, ViewColumn } from "vsco
 import { getUri } from "../utilities/getUri";
 
 /**
- * This class manages the state and behavior of Hello World webview panels.
+ * This class manages the state and behavior of HelloWorld webview panels.
  *
  * It contains all the data and methods for:
  *
- * - Creating and rendering Hello World webview panels
+ * - Creating and rendering HelloWorld webview panels
  * - Properly cleaning up and disposing of webview resources when the panel is closed
  * - Setting the HTML (and by proxy CSS/JavaScript) content of the webview panel
  * - Setting message listeners so data can be passed between the webview and extension
@@ -50,7 +50,7 @@ export class HelloWorldPanel {
       // If a webview panel does not already exist create and show a new one
       const panel = window.createWebviewPanel(
         // Panel view type
-        "helloworld",
+        "showHelloWorld",
         // Panel title
         "Hello World",
         // The editor column the panel should be displayed in
