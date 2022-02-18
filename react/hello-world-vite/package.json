@@ -10,14 +10,14 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:hello-world.helloWorld"
+    "onCommand:hello-world.showHelloWorld"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "hello-world.helloWorld",
-        "title": "Hello World"
+        "command": "hello-world.showHelloWorld",
+        "title": "Hello World (React + Vite): Show"
       }
     ]
   },

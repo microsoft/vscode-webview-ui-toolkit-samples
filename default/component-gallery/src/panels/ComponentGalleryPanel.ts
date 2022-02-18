@@ -15,21 +15,21 @@ import { textAreaDemo } from "./demos/text-area";
 import { textFieldDemo } from "./demos/text-field";
 
 /**
- * This class manages the state and behavior of AllComponents webview panels.
+ * This class manages the state and behavior of ComponentGallery webview panels.
  *
  * It contains all the data and methods for:
  *
- * - Creating and rendering AllComponents webview panels
+ * - Creating and rendering ComponentGallery webview panels
  * - Properly cleaning up and disposing of webview resources when the panel is closed
  * - Setting the HTML (and by proxy CSS/JavaScript) content of the webview panel
  */
-export class AllComponentsPanel {
-  public static currentPanel: AllComponentsPanel | undefined;
+export class ComponentGalleryPanel {
+  public static currentPanel: ComponentGalleryPanel | undefined;
   private readonly _panel: WebviewPanel;
   private _disposables: Disposable[] = [];
 
   /**
-   * The AllComponentsPanel class private constructor (called only from the render method).
+   * The ComponentGalleryPanel class private constructor (called only from the render method).
    *
    * @param panel A reference to the webview panel
    * @param extensionUri The URI of the directory containing the extension
@@ -52,16 +52,16 @@ export class AllComponentsPanel {
    * @param extensionUri The URI of the directory containing the extension.
    */
   public static render(extensionUri: Uri) {
-    if (AllComponentsPanel.currentPanel) {
+    if (ComponentGalleryPanel.currentPanel) {
       // If the webview panel already exists reveal it
-      AllComponentsPanel.currentPanel._panel.reveal(ViewColumn.One);
+      ComponentGalleryPanel.currentPanel._panel.reveal(ViewColumn.One);
     } else {
       // If a webview panel does not already exist create and show a new one
       const panel = window.createWebviewPanel(
         // Panel view type
-        "showAllComponents",
+        "showGallery",
         // Panel title
-        "Webview UI Toolkit: All Components Gallery",
+        "Component Gallery",
         // The editor column the panel should be displayed in
         ViewColumn.One,
         // Extra panel configurations
@@ -71,7 +71,7 @@ export class AllComponentsPanel {
         }
       );
 
-      AllComponentsPanel.currentPanel = new AllComponentsPanel(panel, extensionUri);
+      ComponentGalleryPanel.currentPanel = new ComponentGalleryPanel(panel, extensionUri);
     }
   }
 
@@ -79,7 +79,7 @@ export class AllComponentsPanel {
    * Cleans up and disposes of webview resources when the webview panel is closed.
    */
   public dispose() {
-    AllComponentsPanel.currentPanel = undefined;
+    ComponentGalleryPanel.currentPanel = undefined;
 
     // Dispose of the current webview panel
     this._panel.dispose();
@@ -137,10 +137,10 @@ export class AllComponentsPanel {
             <script type="module" src="${mainUri}"></script>
             <link rel="stylesheet" href="${styleUri}">
             <link rel="stylesheet" href="${codiconsUri}">
-            <title>Webview UI Toolkit: All Components Gallery</title>
+            <title>Component Gallery</title>
         </head>
         <body>
-          <h1>Webview UI Toolkit Gallery</h1>
+          <h1>Webview UI Toolkit Component Gallery</h1>
           <section class="component-row">
             ${badgeDemo}
             ${buttonDemo}

@@ -1,8 +1,7 @@
 {
-  "name": "all-components",
-  "displayName": "all-components",
+  "name": "component-gallery",
+  "displayName": "component-gallery",
   "description": "A sample extension to show off all components in the Webview UI Toolkit for Visual Studio Code.",
-  "publisher": "d3-ops",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.46.0"
@@ -15,14 +14,14 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:all-components.showAllComponents"
+    "onCommand:component-gallery.showGallery"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "all-components.showAllComponents",
-        "title": "Webview UI Toolkit: Open all components gallery"
+        "command": "component-gallery.showGallery",
+        "title": "Component Gallery: Show"
       }
     ]
   },
