@@ -103,7 +103,7 @@ export class HelloWorldPanel {
       "dist",
       "toolkit.js",
     ]);
-    const mainUri = getUri(webview, extensionUri, ["media", "main.js"]);
+    const mainUri = getUri(webview, extensionUri, ["webview-ui", "main.js"]);
 
     // Tip: Install the es6-string-html VS Code extension to enable code highlighting below
     return /*html*/ `

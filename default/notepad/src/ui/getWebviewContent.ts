@@ -22,8 +22,8 @@ export function getWebviewContent(webview: Webview, extensionUri: Uri, note: Not
     "dist",
     "toolkit.js",
   ]);
-  const styleUri = getUri(webview, extensionUri, ["media", "style.css"]);
-  const mainUri = getUri(webview, extensionUri, ["media", "main.js"]);
+  const styleUri = getUri(webview, extensionUri, ["webview-ui", "style.css"]);
+  const mainUri = getUri(webview, extensionUri, ["webview-ui", "main.js"]);
 
   const formattedTags = note.tags ? note.tags.join(", ") : null;
 
