@@ -40,8 +40,8 @@ export class WeatherViewProvider implements WebviewViewProvider {
       "dist",
       "toolkit.js",
     ]);
-    const mainUri = getUri(webview, extensionUri, ["media", "main.js"]);
-    const stylesUri = getUri(webview, extensionUri, ["media", "styles.css"]);
+    const mainUri = getUri(webview, extensionUri, ["webview-ui", "main.js"]);
+    const stylesUri = getUri(webview, extensionUri, ["webview-ui", "styles.css"]);
 
     // Tip: Install the es6-string-html VS Code extension to enable code highlighting below
     return /*html*/ `

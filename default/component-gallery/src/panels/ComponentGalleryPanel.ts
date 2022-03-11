@@ -119,8 +119,8 @@ export class ComponentGalleryPanel {
       "dist",
       "codicon.css",
     ]);
-    const mainUri = getUri(webview, extensionUri, ["media", "main.js"]);
-    const styleUri = getUri(webview, extensionUri, ["media", "style.css"]);
+    const mainUri = getUri(webview, extensionUri, ["webview-ui", "main.js"]);
+    const styleUri = getUri(webview, extensionUri, ["webview-ui", "style.css"]);
 
     // Note: Since the below HTML is defined within a JavaScript template literal, all of
     // the HTML for each component demo can be defined elsewhere and then imported/inserted
