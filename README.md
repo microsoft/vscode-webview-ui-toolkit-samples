@@ -2,67 +2,67 @@
 
 This repository contains all the sample extensions for the [Webview UI Toolkit for Visual Studio Code](https://github.com/microsoft/vscode-webview-toolkit).
 
-Each sample is a self contained extension and demonstrates some aspect of the toolkit and/or the [VS Code API](https://code.visualstudio.com/api/references/vscode-api) in relation to the toolkit. You can read, play with, or adapt these samples to create your own extensions.
+Each sample is a self-contained extension, and demonstrates some aspect of the toolkit and/or the [Visual Studio Code API](https://code.visualstudio.com/api/references/vscode-api) in relation to the toolkit. You can read, play with, or adapt these samples to create your own extensions.
 
 ## Prerequisites
 
-You need to have [Node and NPM](https://nodejs.org/en/) installed on your system to run the samples. It is recommended to use the Node version used for VS Code development itself which is documented [here](https://github.com/Microsoft/vscode/wiki/How-to-Contribute#prerequisites).
+You need to have [Node and NPM](https://nodejs.org/en/) installed on your system to run the samples. We recommend you use the Node version used for Visual Studio Code development itself, which is documented [here](https://github.com/Microsoft/vscode/wiki/How-to-Contribute#prerequisites).
 
 ## Usage
 
 Follow the instructions in the `README` file of the desired sample extension.
 
-### Default Samples
+### Default samples
 
-A set of sample extensions using vanilla HTML, CSS, and JavaScript to render the Webview UI.
+A set of sample extensions using vanilla HTML, CSS, and JavaScript to render the webview UI.
 
-| Sample Extension                                 | Description                                                                       |
+| Sample extension                                 | Description                                                                       |
 | ------------------------------------------------ | --------------------------------------------------------------------------------- |
 | [component-gallery](./default/component-gallery) | Demonstrates every component in the Webview UI Toolkit.                           |
-| [hello-world](./default/hello-world)             | A basic hello world starter extension.                                            |
-| [notepad](./default/notepad)                     | A simple note taking extension that leverages the VS Code TreeView API.           |
-| [weather-webview](./default/weather-webview)     | Demonstrates the toolkit being used within a Webview View (i.e. VS Code sidebar). |
+| [hello-world](./default/hello-world)             | A basic hello-world starter extension.                                            |
+| [notepad](./default/notepad)                     | A simple notetaking extension that leverages the VS Code TreeView API.            |
+| [weather-webview](./default/weather-webview)     | Demonstrates the toolkit being used within a webview view – i.e., Visual Studio Code sidebar. |
 
-### React Samples
+### React samples
 
-A set of sample extensions using React to render the Webview UI.
+A set of sample extensions using React to render the webview UI.
 
-| Sample Extension                             | Description                                                           |
+| Sample extension                             | Description                                                           |
 | ---------------------------------------------| --------------------------------------------------------------------- |
-| [hello-world-cra](./react/hello-world-cra)   | A basic hello world starter extension using React + Create React App. |
-| [hello-world-vite](./react/hello-world-vite) | A basic hello world starter extension using React + Vite.             |
+| [hello-world-cra](./react/hello-world-cra)   | A basic hello-world starter extension using React + Create React App. |
+| [hello-world-vite](./react/hello-world-vite) | A basic hello-world starter extension using React + Vite.             |
 
-### Svelte Samples
+### Svelte samples
 
-A set of sample extensions using Svelte to render the Webview UI.
+A set of sample extensions using Svelte to render the webview UI.
 
-| Sample Extension        | Description |
-| ------------------------| ----------- |
-| _Coming in the future!_ |             |
+| Sample extension | Description |
+| -----------------| ----------- |
+| _Coming soon_    |             |
 
-### Vue Samples
+### Vue samples
 
-A set of sample extensions using Vue to render the Webview UI.
+A set of sample extensions using Vue to render the webview UI.
 
-| Sample Extension        | Description |
-| ------------------------| ----------- |
-| _Coming in the future!_ |             |
+| Sample extension | Description |
+| -----------------| ----------- |
+| _Coming soon_    |             |
 
-### Angular Samples
+### Angular samples
 
-A set of sample extensions using Angular to render the Webview UI.
+A set of sample extensions using Angular to render the webview UI.
 
-| Sample Extension        | Description |
-| ------------------------| ----------- |
-| _Coming in the future!_ |             |
+| Sample extension | Description |
+| -----------------| ----------- |
+| _Coming soon_    |             |
 
-### Other Samples
+### Other samples
 
-Don't see a demonstration for your desired framework, API, use case, and so on? Feel free to open an issue and request it!
+Don't see a demonstration for your desired framework, API, use case, etc.? Open an issue and request it.
 
 ## Contributing
 
-See the [contributing](./CONTRIBUTING.md) documentation.
+Read the [contributing](./CONTRIBUTING.md) documentation.
 
 ## Legal notices
 
