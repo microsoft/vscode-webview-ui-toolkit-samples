@@ -14,7 +14,7 @@ Follow the instructions in the `README` file of the desired sample extension.
 
 ### Default samples
 
-A set of sample extensions using vanilla HTML, CSS, and JavaScript to render the webview UI.
+A set of sample extensions using vanilla HTML, CSS, and JavaScript/TypeScript to render the webview UI and demonstrate various VS Code APIs.
 
 | Sample extension                                 | Description                                                                       |
 | ------------------------------------------------ | --------------------------------------------------------------------------------- |
@@ -23,38 +23,18 @@ A set of sample extensions using vanilla HTML, CSS, and JavaScript to render the
 | [notepad](./default/notepad)                     | A simple notetaking extension that leverages the VS Code TreeView API.            |
 | [weather-webview](./default/weather-webview)     | Demonstrates the toolkit being used within a webview view – i.e., Visual Studio Code sidebar. |
 
-### React samples
+### Framework samples
 
-A set of sample extensions using React to render the webview UI.
+A set of sample extensions using various web frameworks to render the webview UI.
 
-| Sample extension                             | Description                                                           |
-| ---------------------------------------------| --------------------------------------------------------------------- |
-| [hello-world-cra](./react/hello-world-cra)   | A basic hello-world starter extension using React + Create React App. |
-| [hello-world-vite](./react/hello-world-vite) | A basic hello-world starter extension using React + Vite.             |
-
-### Svelte samples
-
-A set of sample extensions using Svelte to render the webview UI.
-
-| Sample extension | Description |
-| -----------------| ----------- |
-| _Coming soon_    |             |
-
-### Vue samples
-
-A set of sample extensions using Vue to render the webview UI.
-
-| Sample extension | Description |
-| -----------------| ----------- |
-| _Coming soon_    |             |
-
-### Angular samples
-
-A set of sample extensions using Angular to render the webview UI.
-
-| Sample extension | Description |
-| -----------------| ----------- |
-| _Coming soon_    |             |
+| Sample extension                                              | Description                                                           |
+| --------------------------------------------------------------| --------------------------------------------------------------------- |
+| [hello-world-angular](./frameworks/hello-world-angular)       | A basic hello-world starter extension using Angular.                  |
+| [hello-world-react-cra](./frameworks/hello-world-react-cra)   | A basic hello-world starter extension using React + Create React App. |
+| [hello-world-react-vite](./frameworks/hello-world-react-vite) | A basic hello-world starter extension using React + Vite.             |
+| [hello-world-solidjs](./frameworks/hello-world-solidjs)       | A basic hello-world starter extension using SolidJS + Vite.           |
+| [hello-world-svelte](./frameworks/hello-world-svelte)         | A basic hello-world starter extension using Svelte + Vite.            |
+| [hello-world-vue](./frameworks/hello-world-vue)               | A basic hello-world starter extension using Vue + Vite.               |
 
 ### Other samples
 
