@@ -11,6 +11,28 @@ const execShellCommand = util.promisify(exec);
  * 
  * Run `node scripts/update-toolkit-package.js` from the root directory
  * of this repository.
+ * 
+ * Updating the script:
+ * 
+ * To update this script to include a new directory, add a new call to the
+ * `installLatestToolkitPackage` function within the `main` function below.
+ * 
+ * Rule of thumb: 
+ * 
+ * You should probably only update this script if new samples are being created 
+ * using a new web framework (this should be rare). 
+ * 
+ * If that is the case, however, a root level directory should have been added 
+ * with the name of the web framework. The extension architecture should have 
+ * also followed the conventions of other extensions––meaning the `@vscode/webview-ui-toolkit`
+ * package should be installed within a `webview-ui` directory.
+ * 
+ * Assuming all of the above holds true, you should be able to simply update this 
+ * script by including a new call to the `installLatestToolkitPackage` function
+ * with the following syntax:
+ * 
+ * `await installLatestToolkitPackage('name-of-framework-dir', 'webview-ui');`
+ * 
  */
 async function main() {
 	console.log('Updating toolkit package to latest version...');

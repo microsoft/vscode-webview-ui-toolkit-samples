@@ -42,14 +42,6 @@ git remote add upstream https://github.com/microsoft/vscode-webview-ui-toolkit-s
 git fetch upstream main
 ```
 
-### Install dependencies
-
-Install the project dependencies.
-
-```
-npm install
-```
-
 ### Create a branch
 
 Create a branch for local development. Once that is complete, you can start making your changes locally.
