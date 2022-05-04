@@ -16,7 +16,7 @@ For a deeper dive into how this sample works, read the guides below.
 
 ```bash
 # Copy sample extension locally
-npx degit microsoft/vscode-webview-ui-toolkit-samples/react/hello-world-cra hello-world
+npx degit microsoft/vscode-webview-ui-toolkit-samples/frameworks/hello-world-react-cra hello-world
 
 # Navigate into sample directory
 cd hello-world
