@@ -1,6 +1,6 @@
 import type { Component } from "solid-js";
-import { vscode } from "./utilities/vscode";
 import { provideVSCodeDesignSystem, vsCodeButton } from "@vscode/webview-ui-toolkit";
+import { vscode } from "./utilities/vscode";
 import "./App.css";
 
 // In order to use the Webview UI Toolkit web components they
