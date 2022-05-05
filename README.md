@@ -32,9 +32,9 @@ A set of sample extensions using various web frameworks to render the webview UI
 | [hello-world-angular](./frameworks/hello-world-angular)       | A basic hello-world starter extension using Angular.                  |
 | [hello-world-react-cra](./frameworks/hello-world-react-cra)   | A basic hello-world starter extension using React + Create React App. |
 | [hello-world-react-vite](./frameworks/hello-world-react-vite) | A basic hello-world starter extension using React + Vite.             |
-| [hello-world-solidjs](./frameworks/hello-world-solidjs)       | A basic hello-world starter extension using SolidJS + Vite.           |
-| [hello-world-svelte](./frameworks/hello-world-svelte)         | A basic hello-world starter extension using Svelte + Vite.            |
-| [hello-world-vue](./frameworks/hello-world-vue)               | A basic hello-world starter extension using Vue + Vite.               |
+| [hello-world-solidjs](./frameworks/hello-world-solidjs)       | A basic hello-world starter extension using SolidJS.                  |
+| [hello-world-svelte](./frameworks/hello-world-svelte)         | A basic hello-world starter extension using Svelte.                   |
+| [hello-world-vue](./frameworks/hello-world-vue)               | A basic hello-world starter extension using Vue.                      |
 
 ### Other samples
 

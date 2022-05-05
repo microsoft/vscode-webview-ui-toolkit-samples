@@ -33,7 +33,7 @@ Finally, `extension.ts` is where all the logic for activating and deactiving the
 
 The `webview-ui` directory contains all of the SolidJS-based webview source code and can be thought of as containing the "frontend" code/logic for the extension webview.
 
-This directory is special because it contains a full-blown SolidJS application which was created using the TypeScript + [Vite](https://vitejs.dev/) SolidJS template. As a result, `webview-ui` contains its own `package.json`, `node_modules`, `tsconfig.json`, and so on––separate from the `hello-world` extension in the root directory.
+This directory is special because it contains a full-blown SolidJS application which was created using the TypeScript-based SolidJS template. As a result, `webview-ui` contains its own `package.json`, `node_modules`, `tsconfig.json`, and so on––separate from the `hello-world` extension in the root directory.
 
 This strays a bit from other extension structures, in that you'll usually find the extension and webview dependencies, configurations, and source code more closely integrated or combined with each other.
 
