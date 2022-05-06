@@ -16,6 +16,8 @@ Follow the instructions in the `README` file of the desired sample extension.
 
 A set of sample extensions using vanilla HTML, CSS, and JavaScript/TypeScript to render the webview UI and demonstrate various VS Code APIs.
 
+Don't see a demonstration for your desired use case, VS Code API, etc.? Open an issue and request it.
+
 | Sample extension                                 | Description                                                                                   |
 | ------------------------------------------------ | --------------------------------------------------------------------------------------------- |
 | [component-gallery](./default/component-gallery) | Demonstrates every component in the Webview UI Toolkit.                                       |
@@ -25,7 +27,7 @@ A set of sample extensions using vanilla HTML, CSS, and JavaScript/TypeScript to
 
 ### Framework samples
 
-A set of sample extensions using various web frameworks to render the webview UI.
+A set of sample extensions that demonstrate how to use various web frameworks to render the webview UI.
 
 | Sample extension                                              | Description                                                           |
 | --------------------------------------------------------------| --------------------------------------------------------------------- |
@@ -35,10 +37,6 @@ A set of sample extensions using various web frameworks to render the webview UI
 | [hello-world-solidjs](./frameworks/hello-world-solidjs)       | A basic hello-world starter extension using SolidJS.                  |
 | [hello-world-svelte](./frameworks/hello-world-svelte)         | A basic hello-world starter extension using Svelte.                   |
 | [hello-world-vue](./frameworks/hello-world-vue)               | A basic hello-world starter extension using Vue.                      |
-
-### Other samples
-
-Don't see a demonstration for your desired framework, API, use case, etc.? Open an issue and request it.
 
 ## Contributing
 
