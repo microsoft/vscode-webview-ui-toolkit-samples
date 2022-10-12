@@ -22,9 +22,9 @@
     ]
   },
   "scripts": {
-    "install:all": "npm install && npm --prefix ./webview-ui install ./webview-ui",
-    "start:webview": "npm --prefix ./webview-ui run dev",
-    "build:webview": "npm --prefix ./webview-ui run build",
+    "install:all": "npm install && cd webview-ui && npm install",
+    "start:webview": "cd webview-ui && npm run dev",
+    "build:webview": "cd webview-ui && npm run build",
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
