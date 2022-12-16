@@ -1,5 +1,6 @@
 import { Disposable, Webview, WebviewPanel, window, Uri, ViewColumn } from "vscode";
 import { getUri } from "../utilities/getUri";
+import { getNonce } from "../utilities/getNonce";
 
 /**
  * This class manages the state and behavior of HelloWorld webview panels.
@@ -31,7 +32,7 @@ export class HelloWorldPanel {
 
     // Set the HTML content for the webview panel
     this._panel.webview.html = this._getWebviewContent(this._panel.webview, extensionUri);
-
+    
     // Set an event listener to listen for messages passed from the webview context
     this._setWebviewMessageListener(this._panel.webview);
   }
@@ -59,6 +60,8 @@ export class HelloWorldPanel {
         {
           // Enable JavaScript in the webview
           enableScripts: true,
+          // Restrict the webview to only load resources from the `dist` directory
+          localResourceRoots: [Uri.joinPath(extensionUri, "dist")],
         }
       );
 
@@ -96,14 +99,8 @@ export class HelloWorldPanel {
    * rendered within the webview panel
    */
   private _getWebviewContent(webview: Webview, extensionUri: Uri) {
-    const toolkitUri = getUri(webview, extensionUri, [
-      "node_modules",
-      "@vscode",
-      "webview-ui-toolkit",
-      "dist",
-      "toolkit.js",
-    ]);
-    const mainUri = getUri(webview, extensionUri, ["webview-ui", "main.js"]);
+    const webviewUri = getUri(webview, extensionUri, ["dist", "webview.js"]);
+    const nonce = getNonce();
 
     // Tip: Install the es6-string-html VS Code extension to enable code highlighting below
     return /*html*/ `
@@ -112,13 +109,13 @@ export class HelloWorldPanel {
         <head>
           <meta charset="UTF-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <script type="module" src="${toolkitUri}"></script>
-          <script type="module" src="${mainUri}"></script>
-          <title>Hello World</title>
+					<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src ${webview.cspSource}; img-src ${webview.cspSource} https:; script-src 'nonce-${nonce}';">
+          <title>Hello World!</title>
         </head>
         <body>
           <h1>Hello World!</h1>
-          <vscode-button id="howdy">Howdy!</vscode-button>
+					<vscode-button id="howdy">Howdy!</vscode-button>
+					<script nonce="${nonce}" src="${webviewUri}"></script>
         </body>
       </html>
     `;
@@ -143,7 +140,7 @@ export class HelloWorldPanel {
             window.showInformationMessage(text);
             return;
           // Add more switch case statements here as more webview message commands
-          // are created within the webview context (i.e. inside media/main.js)
+          // are created within the webview context (i.e. inside src/webview/main.ts)
         }
       },
       undefined,

@@ -1,3 +1,7 @@
+import { provideVSCodeDesignSystem, vsCodeButton } from "@vscode/webview-ui-toolkit";
+
+provideVSCodeDesignSystem().register(vsCodeButton());
+
 // Get access to the VS Code API from within the webview context
 const vscode = acquireVsCodeApi();
 
@@ -9,7 +13,7 @@ window.addEventListener("load", main);
 // Main function that gets executed once the webview DOM loads
 function main() {
   const howdyButton = document.getElementById("howdy");
-  howdyButton.addEventListener("click", handleHowdyClick);
+  howdyButton?.addEventListener("click", handleHowdyClick);
 }
 
 // Callback function that is executed when the howdy button is clicked
