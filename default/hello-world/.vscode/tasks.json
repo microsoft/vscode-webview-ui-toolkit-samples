@@ -6,11 +6,10 @@
     {
       "type": "npm",
       "script": "watch",
-      "problemMatcher": "$ts-webpack-watch",
+      "problemMatcher": "$esbuild-watch",
       "isBackground": true,
       "presentation": {
-        "reveal": "never",
-        "group": "watchers"
+        "reveal": "never"
       },
       "group": {
         "kind": "build",
