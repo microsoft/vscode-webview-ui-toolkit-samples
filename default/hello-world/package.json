@@ -24,7 +24,7 @@
   "scripts": {
     "vscode:prepublish": "npm run package",
     "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node",
-    "esbuild-webview": "esbuild ./src/webview/main.ts --bundle --outfile=dist/webview.js --target=es2020",
+    "esbuild-webview": "esbuild ./src/webview/main.ts --bundle --outfile=dist/webview.js --target=es2020 --format=esm",
     "compile": "npm run esbuild-base -- --sourcemap && npm run esbuild-webview -- --sourcemap",
     "watch": "npm run esbuild-webview -- --sourcemap && npm run esbuild-base -- --sourcemap --watch",
     "package": "npm run esbuild-base -- --minify && npm run esbuild-webview -- --minify",

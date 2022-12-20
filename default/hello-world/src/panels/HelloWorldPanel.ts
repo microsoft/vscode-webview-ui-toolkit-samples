@@ -115,7 +115,7 @@ export class HelloWorldPanel {
         <body>
           <h1>Hello World!</h1>
 					<vscode-button id="howdy">Howdy!</vscode-button>
-					<script nonce="${nonce}" src="${webviewUri}"></script>
+					<script nonce="${nonce}" src="${webviewUri}" type="module"></script>
         </body>
       </html>
     `;
