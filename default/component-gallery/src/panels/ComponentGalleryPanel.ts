@@ -1,5 +1,6 @@
 import { Disposable, Webview, WebviewPanel, window, Uri, ViewColumn } from "vscode";
 import { getUri } from "../utilities/getUri";
+import { getNonce } from "../utilities/getNonce";
 import { badgeDemo } from "./demos/badge";
 import { buttonDemo } from "./demos/button";
 import { checkboxDemo } from "./demos/checkbox";
@@ -68,6 +69,8 @@ export class ComponentGalleryPanel {
         {
           // Enable JavaScript in the webview
           enableScripts: true,
+          // Restrict the webview to only load resources from the `dist` directory
+          localResourceRoots: [Uri.joinPath(extensionUri, "dist")],
         }
       );
 
@@ -84,7 +87,7 @@ export class ComponentGalleryPanel {
     // Dispose of the current webview panel
     this._panel.dispose();
 
-    // Dispose of all disposables (i.e. commands) for the current webview panel
+    // Dispose of all disposables (i.e. commands) associated with the current webview panel
     while (this._disposables.length) {
       const disposable = this._disposables.pop();
       if (disposable) {
@@ -96,8 +99,8 @@ export class ComponentGalleryPanel {
   /**
    * Defines and returns the HTML that should be rendered within the webview panel.
    *
-   * @remarks This is also the place where references to CSS and JavaScript files/packages
-   * (such as the Webview UI Toolkit) are created and inserted into the webview HTML.
+   * @remarks This is also the place where *references* to CSS and JavaScript files
+   * are created and inserted into the webview HTML.
    *
    * @param webview A reference to the extension webview
    * @param extensionUri The URI of the directory containing the extension
@@ -105,22 +108,10 @@ export class ComponentGalleryPanel {
    * rendered within the webview panel
    */
   private _getWebviewContent(webview: Webview, extensionUri: Uri) {
-    const toolkitUri = getUri(webview, extensionUri, [
-      "node_modules",
-      "@vscode",
-      "webview-ui-toolkit",
-      "dist",
-      "toolkit.js",
-    ]);
-    const codiconsUri = getUri(webview, extensionUri, [
-      "node_modules",
-      "@vscode",
-      "codicons",
-      "dist",
-      "codicon.css",
-    ]);
-    const mainUri = getUri(webview, extensionUri, ["webview-ui", "main.js"]);
-    const styleUri = getUri(webview, extensionUri, ["webview-ui", "style.css"]);
+    const webviewUri = getUri(webview, extensionUri, ["dist", "webview.js"]);
+    const styleUri = getUri(webview, extensionUri, ["dist", "style.css"]);
+    const codiconUri = getUri(webview, extensionUri, ["dist", "codicon.css"]);
+    const nonce = getNonce();
 
     // Note: Since the below HTML is defined within a JavaScript template literal, all of
     // the HTML for each component demo can be defined elsewhere and then imported/inserted
@@ -131,13 +122,12 @@ export class ComponentGalleryPanel {
       <!DOCTYPE html>
       <html lang="en">
         <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <script type="module" src="${toolkitUri}"></script>
-            <script type="module" src="${mainUri}"></script>
-            <link rel="stylesheet" href="${styleUri}">
-            <link rel="stylesheet" href="${codiconsUri}">
-            <title>Component Gallery</title>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src ${webview.cspSource}; font-src ${webview.cspSource}; img-src ${webview.cspSource} https:; script-src 'nonce-${nonce}';">
+          <link rel="stylesheet" href="${styleUri}">
+          <link rel="stylesheet" href="${codiconUri}">
+          <title>Component Gallery</title>
         </head>
         <body>
           <h1>Webview UI Toolkit Component Gallery</h1>
@@ -166,6 +156,7 @@ export class ComponentGalleryPanel {
             ${textAreaDemo}
             ${textFieldDemo}
           </section>
+          <script nonce="${nonce}" src="${webviewUri}" type="module"></script>
         </body>
       </html>
     `;
