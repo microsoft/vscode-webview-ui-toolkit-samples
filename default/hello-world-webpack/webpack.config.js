@@ -15,7 +15,6 @@ const baseConfig = {
     // modules added here also need to be added in the .vscodeignore file
   },
   resolve: {
-    // support reading TypeScript and JavaScript files, 📖 -> https://github.com/TypeStrong/ts-loader
     extensions: [".ts", ".js"],
   },
   devtool: "nosources-source-map",
@@ -33,28 +32,28 @@ const baseConfig = {
   },
 };
 
+// Config for extension source code (to be run in a Node-based context)
 /** @type WebpackConfig */
 const extensionConfig = {
   ...baseConfig,
-  target: "node", // VS Code extensions run in a Node.js-context 📖 -> https://webpack.js.org/configuration/node/
-  entry: "./src/extension.ts", // the entry point of this extension, 📖 -> https://webpack.js.org/configuration/entry-context/
+  target: "node",
+  entry: "./src/extension.ts",
   externals: ["vscode"],
   output: {
-    // the bundle is stored in the 'dist' folder (check package.json), 📖 -> https://webpack.js.org/configuration/output/
     path: path.resolve(__dirname, "dist"),
     filename: "extension.js",
     libraryTarget: "commonjs2",
   },
 };
 
+// Config for webview source code (to be run in a web-based context)
 /** @type WebpackConfig */
 const webviewConfig = {
   ...baseConfig,
-  target: ["web", "es2020"], // VS Code webview code runs in a web-context 📖 -> https://webpack.js.org/configuration/target/
-  entry: "./src/webview/main.ts", // the entry points of this extension, 📖 -> https://webpack.js.org/configuration/entry-context/
+  target: ["web", "es2020"],
+  entry: "./src/webview/main.ts",
   experiments: { outputModule: true },
   output: {
-    // the bundle is stored in the 'dist' folder (check package.json), 📖 -> https://webpack.js.org/configuration/output/
     path: path.resolve(__dirname, "dist"),
     filename: "webview.js",
     libraryTarget: "module",

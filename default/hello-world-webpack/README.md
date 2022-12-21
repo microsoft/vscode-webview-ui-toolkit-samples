@@ -1,6 +1,6 @@
-# Hello World Sample Extension
+# Hello World Sample Extension (Webpack)
 
-This is the sample extension that goes along with the Webview UI Toolkit [Getting Started Guide](https://github.com/microsoft/vscode-webview-toolkit/blob/main/docs/getting-started.md).
+This is a version of the Hello World sample extension that uses Webpack instead of esbuild.
 
 ![A screenshot of the sample extension.](./assets/hello-world-screenshot.png)
 
@@ -8,7 +8,7 @@ This is the sample extension that goes along with the Webview UI Toolkit [Gettin
 
 ```bash
 # Copy sample extension locally
-npx degit microsoft/vscode-webview-ui-toolkit-samples/default/hello-world hello-world
+npx degit microsoft/vscode-webview-ui-toolkit-samples/default/hello-world-webpack hello-world
 
 # Navigate into sample directory
 cd hello-world
