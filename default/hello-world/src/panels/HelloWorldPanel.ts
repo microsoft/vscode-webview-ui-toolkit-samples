@@ -78,7 +78,7 @@ export class HelloWorldPanel {
     // Dispose of the current webview panel
     this._panel.dispose();
 
-    // Dispose of all disposables (i.e. commands) for the current webview panel
+    // Dispose of all disposables (i.e. commands) associated with the current webview panel
     while (this._disposables.length) {
       const disposable = this._disposables.pop();
       if (disposable) {
@@ -90,8 +90,8 @@ export class HelloWorldPanel {
   /**
    * Defines and returns the HTML that should be rendered within the webview panel.
    *
-   * @remarks This is also the place where references to CSS and JavaScript files/packages
-   * (such as the Webview UI Toolkit) are created and inserted into the webview HTML.
+   * @remarks This is also the place where *references* to CSS and JavaScript files
+   * are created and inserted into the webview HTML.
    *
    * @param webview A reference to the extension webview
    * @param extensionUri The URI of the directory containing the extension
@@ -126,7 +126,6 @@ export class HelloWorldPanel {
    * executes code based on the message that is recieved.
    *
    * @param webview A reference to the extension webview
-   * @param context A reference to the extension context
    */
   private _setWebviewMessageListener(webview: Webview) {
     webview.onDidReceiveMessage(

@@ -25,9 +25,9 @@ window.addEventListener("load", main);
 
 // Main function that gets executed once the webview DOM loads
 function main() {
-  // To get improved type annotations/IntelliSense the associated class for 
-  // a given toolkit component can be imported and used to cast a reference 
-  // to the element (using the `as ClassName` syntax)
+  // To get improved type annotations/IntelliSense the associated class for
+  // a given toolkit component can be imported and used to type cast a reference
+  // to the element (i.e. the `as Button` syntax)
   const howdyButton = document.getElementById("howdy") as Button;
   howdyButton?.addEventListener("click", handleHowdyClick);
 }
@@ -40,7 +40,7 @@ function handleHowdyClick() {
   // JavaScript can be executed and rendered (i.e. it's basically an iframe).
   //
   // Because of this sandboxed nature, VS Code uses a mechanism of message
-  // passing to get data from the extension context (i.e. src/extension.ts)
+  // passing to get data from the extension context (i.e. src/panels/HelloWorldPanel.ts)
   // to the webview context (this file), all while maintaining security.
   //
   // vscode.postMessage() is the API that can be used to pass data from

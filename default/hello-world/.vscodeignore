@@ -3,6 +3,7 @@
 out/**
 node_modules/**
 src/**
+esbuild.js
 .gitignore
 .yarnrc
 vsc-extension-quickstart.md
