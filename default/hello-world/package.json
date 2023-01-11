@@ -12,7 +12,7 @@
   "activationEvents": [
     "onCommand:hello-world.showHelloWorld"
   ],
-  "main": "./dist/extension.js",
+  "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
@@ -23,9 +23,9 @@
   },
   "scripts": {
     "vscode:prepublish": "npm run package",
-    "build": "node ./esbuild.js",
-    "watch": "node ./esbuild.js --watch",
+    "compile": "node ./esbuild.js",
     "package": "NODE_ENV=production node ./esbuild.js",
+    "watch": "node ./esbuild.js --watch",
     "lint": "eslint src --ext ts"
   },
   "devDependencies": {

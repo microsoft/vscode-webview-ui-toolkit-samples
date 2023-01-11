@@ -60,8 +60,8 @@ export class HelloWorldPanel {
         {
           // Enable JavaScript in the webview
           enableScripts: true,
-          // Restrict the webview to only load resources from the `dist` directory
-          localResourceRoots: [Uri.joinPath(extensionUri, "dist")],
+          // Restrict the webview to only load resources from the `out` directory
+          localResourceRoots: [Uri.joinPath(extensionUri, "out")],
         }
       );
 
@@ -99,7 +99,7 @@ export class HelloWorldPanel {
    * rendered within the webview panel
    */
   private _getWebviewContent(webview: Webview, extensionUri: Uri) {
-    const webviewUri = getUri(webview, extensionUri, ["dist", "webview.js"]);
+    const webviewUri = getUri(webview, extensionUri, ["out", "webview.js"]);
     const nonce = getNonce();
 
     // Tip: Install the es6-string-html VS Code extension to enable code highlighting below

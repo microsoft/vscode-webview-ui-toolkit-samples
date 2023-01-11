@@ -40,7 +40,7 @@ const extensionConfig = {
   entry: "./src/extension.ts",
   externals: ["vscode"],
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "out"),
     filename: "extension.js",
     libraryTarget: "commonjs2",
   },
@@ -54,7 +54,7 @@ const webviewConfig = {
   entry: "./src/webview/main.ts",
   experiments: { outputModule: true },
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "out"),
     filename: "webview.js",
     libraryTarget: "module",
     chunkFormat: "module",

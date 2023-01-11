@@ -18,7 +18,7 @@ const extensionConfig = {
   platform: "node",
   format: "cjs",
   entryPoints: ["./src/extension.ts"],
-  outfile: "./dist/extension.js",
+  outfile: "./out/extension.js",
   external: ["vscode"],
 };
 
@@ -29,14 +29,14 @@ const webviewConfig = {
   target: "es2020",
   format: "esm",
   entryPoints: ["./src/webview/main.ts"],
-  outfile: "./dist/webview.js",
+  outfile: "./out/webview.js",
   plugins: [
-    // Copy webview css and ttf files to `dist` directory unaltered
+    // Copy webview css and ttf files to `out` directory unaltered
     copy({
       resolveFrom: "cwd",
       assets: {
         from: ["./src/webview/*.css", "./src/webview/*.ttf"],
-        to: ["./dist"],
+        to: ["./out"],
       },
     }),
   ],

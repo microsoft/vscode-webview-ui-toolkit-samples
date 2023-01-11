@@ -69,8 +69,8 @@ export class ComponentGalleryPanel {
         {
           // Enable JavaScript in the webview
           enableScripts: true,
-          // Restrict the webview to only load resources from the `dist` directory
-          localResourceRoots: [Uri.joinPath(extensionUri, "dist")],
+          // Restrict the webview to only load resources from the `out` directory
+          localResourceRoots: [Uri.joinPath(extensionUri, "out")],
         }
       );
 
@@ -108,9 +108,9 @@ export class ComponentGalleryPanel {
    * rendered within the webview panel
    */
   private _getWebviewContent(webview: Webview, extensionUri: Uri) {
-    const webviewUri = getUri(webview, extensionUri, ["dist", "webview.js"]);
-    const styleUri = getUri(webview, extensionUri, ["dist", "style.css"]);
-    const codiconUri = getUri(webview, extensionUri, ["dist", "codicon.css"]);
+    const webviewUri = getUri(webview, extensionUri, ["out", "webview.js"]);
+    const styleUri = getUri(webview, extensionUri, ["out", "style.css"]);
+    const codiconUri = getUri(webview, extensionUri, ["out", "codicon.css"]);
     const nonce = getNonce();
 
     // Note: Since the below HTML is defined within a JavaScript template literal, all of

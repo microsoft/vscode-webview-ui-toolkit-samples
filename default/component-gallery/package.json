@@ -2,10 +2,6 @@
   "name": "component-gallery",
   "displayName": "component-gallery",
   "description": "A sample extension to show off all components in the Webview UI Toolkit for Visual Studio Code.",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/microsoft/vscode-webview-ui-toolkit.git"
-  },
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.74.0"
@@ -16,7 +12,7 @@
   "activationEvents": [
     "onCommand:component-gallery.showGallery"
   ],
-  "main": "./dist/extension.js",
+  "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
@@ -27,9 +23,9 @@
   },
   "scripts": {
     "vscode:prepublish": "npm run package",
-    "build": "node ./esbuild.js",
-    "watch": "node ./esbuild.js --watch",
+    "compile": "node ./esbuild.js",
     "package": "NODE_ENV=production node ./esbuild.js",
+    "watch": "node ./esbuild.js --watch",
     "lint": "eslint src --ext ts"
   },
   "devDependencies": {
