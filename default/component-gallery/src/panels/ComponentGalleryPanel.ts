@@ -124,7 +124,7 @@ export class ComponentGalleryPanel {
         <head>
           <meta charset="UTF-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src ${webview.cspSource}; font-src ${webview.cspSource}; img-src ${webview.cspSource} https:; script-src 'nonce-${nonce}';">
+          <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src ${webview.cspSource}; font-src ${webview.cspSource}; script-src 'nonce-${nonce}';">
           <link rel="stylesheet" href="${styleUri}">
           <link rel="stylesheet" href="${codiconUri}">
           <title>Component Gallery</title>
@@ -156,7 +156,7 @@ export class ComponentGalleryPanel {
             ${textAreaDemo}
             ${textFieldDemo}
           </section>
-          <script nonce="${nonce}" src="${webviewUri}" type="module"></script>
+          <script type="module" nonce="${nonce}" src="${webviewUri}"></script>
         </body>
       </html>
     `;
