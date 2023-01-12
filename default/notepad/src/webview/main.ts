@@ -1,3 +1,25 @@
+import {
+  provideVSCodeDesignSystem,
+  Button,
+  Tag,
+  TextArea,
+  TextField,
+  vsCodeButton,
+  vsCodeTag,
+  vsCodeTextArea,
+  vsCodeTextField,
+} from "@vscode/webview-ui-toolkit";
+
+// In order to use the Webview UI Toolkit web components they
+// must be registered with the browser (i.e. webview) using the
+// syntax below.
+provideVSCodeDesignSystem().register(
+  vsCodeButton(),
+  vsCodeTag(),
+  vsCodeTextArea(),
+  vsCodeTextField()
+);
+
 // Get access to the VS Code API from within the webview context
 const vscode = acquireVsCodeApi();
 
@@ -10,7 +32,10 @@ function main() {
   setVSCodeMessageListener();
   vscode.postMessage({ command: "requestNoteData" });
 
-  const saveButton = document.getElementById("submit-button");
+  // To get improved type annotations/IntelliSense the associated class for
+  // a given toolkit component can be imported and used to type cast a reference
+  // to the element (i.e. the `as Button` syntax)
+  const saveButton = document.getElementById("submit-button") as Button;
   saveButton.addEventListener("click", () => saveNote());
 }
 
@@ -32,20 +57,19 @@ function setVSCodeMessageListener() {
 }
 
 function saveNote() {
-  const titleInputValue = document.getElementById("title").value;
-  const noteInputValue = document.getElementById("content").value;
-  const tagsInputValue = document.getElementById("tags-input").value;
+  const titleInput = document.getElementById("title") as TextField;
+  const noteInput = document.getElementById("content") as TextArea;
+  const tagsInput = document.getElementById("tags-input") as TextField;
 
-  let tagsInputList = [];
-  if (tagsInputValue.length > 0) {
-    tagsInputList = tagsInputValue.split(",").map((tag) => tag.trim());
-  }
+  const titleInputValue = titleInput?.value;
+  const noteInputValue = noteInput?.value;
+  const tagsInputValue = tagsInput?.value;
 
   const noteToUpdate = {
     id: openedNote.id,
     title: titleInputValue,
     content: noteInputValue,
-    tags: tagsInputList,
+    tags: tagsInputValue.length > 0 ? tagsInputValue.split(",").map((tag) => tag.trim()) : [],
   };
 
   vscode.postMessage({ command: "updateNote", note: noteToUpdate });
@@ -56,10 +80,14 @@ function renderTags(tags) {
   clearTagGroup(tagsContainer);
   if (tags.length > 0) {
     addTagsToTagGroup(tags, tagsContainer);
-    tagsContainer.style.marginBottom = "2rem";
+    if (tagsContainer) {
+      tagsContainer.style.marginBottom = "2rem";
+    }
   } else {
     // Remove tag container bottom margin if there are no tags
-    tagsContainer.style.marginBottom = "0";
+    if (tagsContainer) {
+      tagsContainer.style.marginBottom = "0";
+    }
   }
 }
 
@@ -71,7 +99,7 @@ function clearTagGroup(tagsContainer) {
 
 function addTagsToTagGroup(tags, tagsContainer) {
   for (const tagString of tags) {
-    const vscodeTag = document.createElement("vscode-tag");
+    const vscodeTag = document.createElement("vscode-tag") as Tag;
     vscodeTag.textContent = tagString;
     tagsContainer.appendChild(vscodeTag);
   }
