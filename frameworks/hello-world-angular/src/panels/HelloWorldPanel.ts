@@ -1,5 +1,6 @@
 import { Disposable, Webview, WebviewPanel, window, Uri, ViewColumn } from "vscode";
 import { getUri } from "../utilities/getUri";
+import { getNonce } from "../utilities/getNonce";
 
 /**
  * This class manages the state and behavior of HelloWorld webview panels.
@@ -59,6 +60,8 @@ export class HelloWorldPanel {
         {
           // Enable JavaScript in the webview
           enableScripts: true,
+          // Restrict the webview to only load resources from the `out` and `webview-ui/build` directories
+          localResourceRoots: [Uri.joinPath(extensionUri, "out"), Uri.joinPath(extensionUri, "webview-ui/build")],
         }
       );
 
@@ -103,6 +106,8 @@ export class HelloWorldPanel {
     const polyfillsUri = getUri(webview, extensionUri, ["webview-ui", "build", "polyfills.js"]);
     const scriptUri = getUri(webview, extensionUri, ["webview-ui", "build", "main.js"]);
 
+    const nonce = getNonce();
+
     // Tip: Install the es6-string-html VS Code extension to enable code highlighting below
     return /*html*/ `
       <!DOCTYPE html>
@@ -110,14 +115,15 @@ export class HelloWorldPanel {
         <head>
           <meta charset="UTF-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src ${webview.cspSource}; script-src 'nonce-${nonce}';">
           <link rel="stylesheet" type="text/css" href="${stylesUri}">
           <title>Hello World</title>
         </head>
         <body>
           <app-root></app-root>
-          <script type="module" src="${runtimeUri}"></script>
-          <script type="module" src="${polyfillsUri}"></script>
-          <script type="module" src="${scriptUri}"></script>
+          <script type="module" nonce="${nonce}" src="${runtimeUri}"></script>
+          <script type="module" nonce="${nonce}" src="${polyfillsUri}"></script>
+          <script type="module" nonce="${nonce}" src="${scriptUri}"></script>
         </body>
       </html>
     `;
