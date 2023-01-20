@@ -15,11 +15,6 @@ provideVSCodeDesignSystem().register(vsCodeButton());
 //   vsCodeButton(),
 //   vsCodeCheckbox()
 // );
-//
-// Finally, if you would like to register all of the toolkit
-// components at once, there's a handy convenience function:
-//
-// provideVSCodeDesignSystem().register(allComponents.register());
 
 @Component({
   selector: "app-root",

@@ -9,7 +9,7 @@
     "typecheck": "vue-tsc --noEmit"
   },
   "dependencies": {
-    "@vscode/webview-ui-toolkit": "^1.0.0",
+    "@vscode/webview-ui-toolkit": "^1.2.1",
     "vue": "^3.2.33"
   },
   "devDependencies": {

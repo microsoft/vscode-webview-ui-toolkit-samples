@@ -1,4 +1,4 @@
-import { commands, ExtensionContext, WebviewPanel, window, ViewColumn } from "vscode";
+import { commands, ExtensionContext, WebviewPanel, window, ViewColumn, Uri } from "vscode";
 import { v4 as uuidv4 } from "uuid";
 import { NotepadDataProvider } from "./providers/NotepadDataProvider";
 import { getWebviewContent } from "./ui/getWebviewContent";
@@ -10,11 +10,13 @@ export function activate(context: ExtensionContext) {
 
   const notepadDataProvider = new NotepadDataProvider(notes);
 
+  // Create a tree view to contain the list of notepad notes
   const treeView = window.createTreeView("notepad.notesList", {
     treeDataProvider: notepadDataProvider,
     showCollapseAll: false,
   });
 
+  // Command to render a webview-based note view
   const openNote = commands.registerCommand("notepad.showNoteDetailView", () => {
     const selectedTreeViewItem = treeView.selection[0];
     const matchingNote = notes.find((note) => note.id === selectedTreeViewItem.id);
@@ -26,7 +28,10 @@ export function activate(context: ExtensionContext) {
     // If no panel is open, create a new one and update the HTML
     if (!panel) {
       panel = window.createWebviewPanel("noteDetailView", matchingNote.title, ViewColumn.One, {
+        // Enable JavaScript in the webview
         enableScripts: true,
+        // Restrict the webview to only load resources from the `out` directory
+        localResourceRoots: [Uri.joinPath(context.extensionUri, "out")],
       });
     }
 
@@ -64,6 +69,7 @@ export function activate(context: ExtensionContext) {
     );
   });
 
+  // Command to create a new note
   const createNote = commands.registerCommand("notepad.createNote", () => {
     const id = uuidv4();
 
@@ -78,6 +84,7 @@ export function activate(context: ExtensionContext) {
     notepadDataProvider.refresh(notes);
   });
 
+  // Command to delete a given note
   const deleteNote = commands.registerCommand("notepad.deleteNote", (node: Note) => {
     const selectedTreeViewItem = node;
     const selectedNoteIndex = notes.findIndex((note) => note.id === selectedTreeViewItem.id);

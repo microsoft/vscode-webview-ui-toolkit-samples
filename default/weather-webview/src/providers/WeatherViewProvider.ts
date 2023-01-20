@@ -7,6 +7,7 @@ import {
   WebviewViewResolveContext,
 } from "vscode";
 import { getUri } from "../utilities/getUri";
+import { getNonce } from "../utilities/getNonce";
 import * as weather from "weather-js";
 
 export class WeatherViewProvider implements WebviewViewProvider {
@@ -21,7 +22,10 @@ export class WeatherViewProvider implements WebviewViewProvider {
   ) {
     // Allow scripts in the webview
     webviewView.webview.options = {
+      // Enable JavaScript in the webview
       enableScripts: true,
+      // Restrict the webview to only load resources from the `out` directory
+      localResourceRoots: [Uri.joinPath(this._extensionUri, "out")],
     };
 
     // Set the HTML content that will fill the webview view
@@ -33,15 +37,9 @@ export class WeatherViewProvider implements WebviewViewProvider {
   }
 
   private _getWebviewContent(webview: Webview, extensionUri: Uri) {
-    const toolkitUri = getUri(webview, extensionUri, [
-      "node_modules",
-      "@vscode",
-      "webview-ui-toolkit",
-      "dist",
-      "toolkit.js",
-    ]);
-    const mainUri = getUri(webview, extensionUri, ["webview-ui", "main.js"]);
-    const stylesUri = getUri(webview, extensionUri, ["webview-ui", "styles.css"]);
+    const webviewUri = getUri(webview, extensionUri, ["out", "webview.js"]);
+    const stylesUri = getUri(webview, extensionUri, ["out", "styles.css"]);
+    const nonce = getNonce();
 
     // Tip: Install the es6-string-html VS Code extension to enable code highlighting below
     return /*html*/ `
@@ -50,8 +48,7 @@ export class WeatherViewProvider implements WebviewViewProvider {
 				<head>
 					<meta charset="UTF-8">
 					<meta name="viewport" content="width=device-width, initial-scale=1.0">
-					<script type="module" src="${toolkitUri}"></script>
-					<script type="module" src="${mainUri}"></script>
+          <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src ${webview.cspSource}; script-src 'nonce-${nonce}';">
 					<link rel="stylesheet" href="${stylesUri}">
 					<title>Weather Checker</title>
 				</head>
@@ -71,9 +68,11 @@ export class WeatherViewProvider implements WebviewViewProvider {
           <vscode-button id="check-weather-button">Check</vscode-button>
           <h2>Current Weather</h2>
           <section id="results-container">
+            <vscode-progress-ring id="loading" class="hidden"></vscode-progress-ring>
             <p id="icon"></p>
             <p id="summary"></p>
           </section>
+          <script type="module" nonce="${nonce}" src="${webviewUri}"></script>
 				</body>
 			</html>
 		`;
@@ -89,6 +88,10 @@ export class WeatherViewProvider implements WebviewViewProvider {
         case "weather":
           weather.find({ search: location, degreeType: unit }, (err: any, result: any) => {
             if (err) {
+              webviewView.webview.postMessage({
+                command: "error",
+                message: "Sorry couldn't get weather at this time...",
+              });
               return;
             }
             // Get the weather forecast results

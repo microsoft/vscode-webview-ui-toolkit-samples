@@ -1,5 +1,52 @@
-// Get access to the VS Code API from within the webview context
-const vscode = acquireVsCodeApi();
+import {
+  provideVSCodeDesignSystem,
+  Checkbox,
+  DataGrid,
+  vsCodeBadge,
+  vsCodeButton,
+  vsCodeCheckbox,
+  vsCodeDataGrid,
+  vsCodeDataGridCell,
+  vsCodeDataGridRow,
+  vsCodeDivider,
+  vsCodeDropdown,
+  vsCodeLink,
+  vsCodeOption,
+  vsCodePanels,
+  vsCodePanelTab,
+  vsCodePanelView,
+  vsCodeProgressRing,
+  vsCodeRadio,
+  vsCodeRadioGroup,
+  vsCodeTag,
+  vsCodeTextArea,
+  vsCodeTextField,
+} from "@vscode/webview-ui-toolkit";
+
+// In order to use the Webview UI Toolkit web components they
+// must be registered with the browser (i.e. webview) using the
+// syntax below.
+provideVSCodeDesignSystem().register(
+  vsCodeBadge(),
+  vsCodeButton(),
+  vsCodeCheckbox(),
+  vsCodeDataGrid(),
+  vsCodeDataGridCell(),
+  vsCodeDataGridRow(),
+  vsCodeDivider(),
+  vsCodeDropdown(),
+  vsCodeLink(),
+  vsCodeOption(),
+  vsCodePanels(),
+  vsCodePanelTab(),
+  vsCodePanelView(),
+  vsCodeProgressRing(),
+  vsCodeRadio(),
+  vsCodeRadioGroup(),
+  vsCodeTag(),
+  vsCodeTextArea(),
+  vsCodeTextField()
+);
 
 // Just like a regular webpage we need to wait for the webview
 // DOM to load before we can reference any of the HTML elements
@@ -8,11 +55,11 @@ window.addEventListener("load", main);
 
 function main() {
   // Set checkbox indeterminate state
-  const checkbox = document.getElementById("basic-checkbox");
+  const checkbox = document.getElementById("basic-checkbox") as Checkbox;
   checkbox.indeterminate = true;
 
   // Define default data grid
-  const defaultDataGrid = document.getElementById("default-grid");
+  const defaultDataGrid = document.getElementById("default-grid") as DataGrid;
   defaultDataGrid.rowsData = [
     {
       column1: "Cell Data",
@@ -35,7 +82,7 @@ function main() {
   ];
 
   // Define data grid with custom titles
-  const basicDataGridList = document.querySelectorAll(".basic-grid");
+  const basicDataGridList = document.querySelectorAll(".basic-grid") as NodeListOf<DataGrid>;
   for (const basicDataGrid of basicDataGridList) {
     basicDataGrid.rowsData = [
       {
