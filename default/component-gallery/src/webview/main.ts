@@ -1,52 +1,14 @@
 import {
+  allComponents,
   provideVSCodeDesignSystem,
   Checkbox,
   DataGrid,
-  vsCodeBadge,
-  vsCodeButton,
-  vsCodeCheckbox,
-  vsCodeDataGrid,
-  vsCodeDataGridCell,
-  vsCodeDataGridRow,
-  vsCodeDivider,
-  vsCodeDropdown,
-  vsCodeLink,
-  vsCodeOption,
-  vsCodePanels,
-  vsCodePanelTab,
-  vsCodePanelView,
-  vsCodeProgressRing,
-  vsCodeRadio,
-  vsCodeRadioGroup,
-  vsCodeTag,
-  vsCodeTextArea,
-  vsCodeTextField,
 } from "@vscode/webview-ui-toolkit";
 
-// In order to use the Webview UI Toolkit web components they
+// In order to use all the Webview UI Toolkit web components they
 // must be registered with the browser (i.e. webview) using the
 // syntax below.
-provideVSCodeDesignSystem().register(
-  vsCodeBadge(),
-  vsCodeButton(),
-  vsCodeCheckbox(),
-  vsCodeDataGrid(),
-  vsCodeDataGridCell(),
-  vsCodeDataGridRow(),
-  vsCodeDivider(),
-  vsCodeDropdown(),
-  vsCodeLink(),
-  vsCodeOption(),
-  vsCodePanels(),
-  vsCodePanelTab(),
-  vsCodePanelView(),
-  vsCodeProgressRing(),
-  vsCodeRadio(),
-  vsCodeRadioGroup(),
-  vsCodeTag(),
-  vsCodeTextArea(),
-  vsCodeTextField()
-);
+provideVSCodeDesignSystem().register(allComponents);
 
 // Just like a regular webpage we need to wait for the webview
 // DOM to load before we can reference any of the HTML elements
