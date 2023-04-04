@@ -13,6 +13,11 @@ import { provideVSCodeDesignSystem, vsCodeButton, Button } from "@vscode/webview
 //   vsCodeCheckbox()
 // );
 //
+// Finally, if you would like to register all of the toolkit
+// components at once, there's a handy convenience function:
+//
+// provideVSCodeDesignSystem().register(allComponents);
+// 
 provideVSCodeDesignSystem().register(vsCodeButton());
 
 // Get access to the VS Code API from within the webview context
