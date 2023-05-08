@@ -1,20 +1,26 @@
-import { vscode } from "./utilities/vscode";
-import { VSCodeButton } from "@vscode/webview-ui-toolkit/react";
 import "./App.css";
 
+import { MemoryRouter, Route, Routes } from "react-router-dom";
+
+import HalloWelt from "./HalloWelt";
+import HelloWorld from "./HelloWorld";
+
 function App() {
-  function handleHowdyClick() {
-    vscode.postMessage({
-      command: "hello",
-      text: "Hey there partner! 🤠",
-    });
+  let initialIndex = 0;
+  if (viewType !== undefined && viewType === "showHalloWelt") {
+    initialIndex = 1;
   }
 
   return (
-    <main>
-      <h1>Hello World!</h1>
-      <VSCodeButton onClick={handleHowdyClick}>Howdy!</VSCodeButton>
-    </main>
+    <MemoryRouter
+      initialEntries={["/hello-world", "/hallo-welt"]}
+      initialIndex={initialIndex}
+    >
+      <Routes>
+      <Route path="/hello-world" Component={HelloWorld} />
+      <Route path="/hallo-welt" Component={HalloWelt} />
+      </Routes>
+    </MemoryRouter>
   );
 }
 

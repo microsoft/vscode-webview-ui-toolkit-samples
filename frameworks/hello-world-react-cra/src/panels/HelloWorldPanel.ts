@@ -1,6 +1,7 @@
-import { Disposable, Webview, WebviewPanel, window, Uri, ViewColumn } from "vscode";
-import { getUri } from "../utilities/getUri";
+import { Disposable, Uri, ViewColumn, Webview, WebviewPanel, window } from "vscode";
+
 import { getNonce } from "../utilities/getNonce";
+import { getUri } from "../utilities/getUri";
 
 /**
  * This class manages the state and behavior of HelloWorld webview panels.
@@ -13,7 +14,7 @@ import { getNonce } from "../utilities/getNonce";
  * - Setting message listeners so data can be passed between the webview and extension
  */
 export class HelloWorldPanel {
-  public static currentPanel: HelloWorldPanel | undefined;
+  public static currentPanels: HelloWorldPanel[] = [];
   private readonly _panel: WebviewPanel;
   private _disposables: Disposable[] = [];
 
@@ -23,7 +24,7 @@ export class HelloWorldPanel {
    * @param panel A reference to the webview panel
    * @param extensionUri The URI of the directory containing the extension
    */
-  private constructor(panel: WebviewPanel, extensionUri: Uri) {
+  private constructor(panel: WebviewPanel, extensionUri: Uri, viewType: string) {
     this._panel = panel;
 
     // Set an event listener to listen for when the panel is disposed (i.e. when the user closes
@@ -31,7 +32,7 @@ export class HelloWorldPanel {
     this._panel.onDidDispose(() => this.dispose(), null, this._disposables);
 
     // Set the HTML content for the webview panel
-    this._panel.webview.html = this._getWebviewContent(this._panel.webview, extensionUri);
+    this._panel.webview.html = this._getWebviewContent(this._panel.webview, extensionUri, viewType);
 
     // Set an event listener to listen for messages passed from the webview context
     this._setWebviewMessageListener(this._panel.webview);
@@ -43,17 +44,18 @@ export class HelloWorldPanel {
    *
    * @param extensionUri The URI of the directory containing the extension.
    */
-  public static render(extensionUri: Uri) {
-    if (HelloWorldPanel.currentPanel) {
+  public static render(extensionUri: Uri, viewType: string, title: string) {
+    const currentPanel = HelloWorldPanel.currentPanels.find((panel) => panel._panel.viewType === viewType);
+    if (currentPanel) {
       // If the webview panel already exists reveal it
-      HelloWorldPanel.currentPanel._panel.reveal(ViewColumn.One);
+      currentPanel._panel.reveal(ViewColumn.One);
     } else {
       // If a webview panel does not already exist create and show a new one
       const panel = window.createWebviewPanel(
         // Panel view type
-        "showHelloWorld",
+        viewType,
         // Panel title
-        "Hello World",
+        title,
         // The editor column the panel should be displayed in
         ViewColumn.One,
         // Extra panel configurations
@@ -65,7 +67,7 @@ export class HelloWorldPanel {
         }
       );
 
-      HelloWorldPanel.currentPanel = new HelloWorldPanel(panel, extensionUri);
+      HelloWorldPanel.currentPanels.push(new HelloWorldPanel(panel, extensionUri, viewType));
     }
   }
 
@@ -73,10 +75,8 @@ export class HelloWorldPanel {
    * Cleans up and disposes of webview resources when the webview panel is closed.
    */
   public dispose() {
-    HelloWorldPanel.currentPanel = undefined;
-
-    // Dispose of the current webview panel
-    this._panel.dispose();
+    HelloWorldPanel.currentPanels.forEach((panel) => panel.dispose());
+    HelloWorldPanel.currentPanels = [];
 
     // Dispose of all disposables (i.e. commands) for the current webview panel
     while (this._disposables.length) {
@@ -98,7 +98,7 @@ export class HelloWorldPanel {
    * @returns A template string literal containing the HTML that should be
    * rendered within the webview panel
    */
-  private _getWebviewContent(webview: Webview, extensionUri: Uri) {
+  private _getWebviewContent(webview: Webview, extensionUri: Uri, viewType: string) {
     // The CSS file from the React build output
     const stylesUri = getUri(webview, extensionUri, [
       "webview-ui",
@@ -133,6 +133,9 @@ export class HelloWorldPanel {
         <body>
           <noscript>You need to enable JavaScript to run this app.</noscript>
           <div id="root"></div>
+          <script nonce="${nonce}">
+            const viewType = '${viewType}';
+          </script>
           <script nonce="${nonce}" src="${scriptUri}"></script>
         </body>
       </html>
@@ -155,9 +158,13 @@ export class HelloWorldPanel {
         switch (command) {
           case "hello":
             // Code that should run in response to the hello message command
-            window.showInformationMessage(text);
+            window.showInformationMessage(`From HelloWorld: ${text}`);
             return;
-          // Add more switch case statements here as more webview message commands
+          case "hallo":
+            // Code that should run in response to the hallo message command
+            window.showInformationMessage(`From HalloWelt: ${text}`);
+            return;
+            // Add more switch case statements here as more webview message commands
           // are created within the webview context (i.e. inside media/main.js)
         }
       },
