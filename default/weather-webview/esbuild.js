@@ -16,6 +16,7 @@ const baseConfig = {
 const extensionConfig = {
   ...baseConfig,
   platform: "node",
+  mainFields: ["module", "main"],
   format: "cjs",
   entryPoints: ["./src/extension.ts"],
   outfile: "./out/extension.js",
