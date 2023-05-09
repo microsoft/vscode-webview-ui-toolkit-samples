@@ -18,12 +18,13 @@ A set of sample extensions using vanilla HTML, CSS, and JavaScript/TypeScript to
 
 Don't see a demonstration for your desired use case, VS Code API, etc.? Open an issue and request it.
 
-| Sample extension                                 | Description                                                                                   |
-| ------------------------------------------------ | --------------------------------------------------------------------------------------------- |
-| [component-gallery](./default/component-gallery) | Demonstrates every component in the Webview UI Toolkit.                                       |
-| [hello-world](./default/hello-world)             | A basic hello-world starter extension.                                                        |
-| [notepad](./default/notepad)                     | A simple notetaking extension that leverages the VS Code TreeView API.                        |
-| [weather-webview](./default/weather-webview)     | Demonstrates the toolkit being used within a webview view – i.e., Visual Studio Code sidebar. |
+| Sample extension                                     | Description                                                                                   |
+| ----------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| [component-gallery](./default/component-gallery)     | Demonstrates every component in the Webview UI Toolkit.                                       |
+| [hello-world](./default/hello-world)                 | A basic hello-world starter extension.                                                        |
+| [hello-world-webpack](./default/hello-world-webpack) | A basic hello-world starter extension (built using Webpack instead of esbuild).                                                        |
+| [notepad](./default/notepad)                         | A simple notetaking extension that leverages the VS Code TreeView API.                        |
+| [weather-webview](./default/weather-webview)         | Demonstrates the toolkit being used within a webview view – i.e., Visual Studio Code sidebar. |
 
 ### Framework samples
 
