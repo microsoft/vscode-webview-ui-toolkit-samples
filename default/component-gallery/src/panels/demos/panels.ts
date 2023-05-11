@@ -32,18 +32,18 @@ export const panelsDemo = /*html*/ `
       <vscode-panels aria-label="With Badge">
         <vscode-panel-tab id="tab-1">
           PROBLEMS
-          <vscode-badge appearance="secondary">1</vscode-badge>
+          <vscode-badge>1</vscode-badge>
         </vscode-panel-tab>
         <vscode-panel-tab id="tab-2">
           OUTPUT
-          <vscode-badge appearance="secondary">1</vscode-badge>
+          <vscode-badge>1</vscode-badge>
         </vscode-panel-tab>
         <vscode-panel-tab id="tab-3">
           DEBUG CONSOLE
         </vscode-panel-tab>
         <vscode-panel-tab id="tab-4">
           TERMINAL
-          <vscode-badge appearance="secondary">1</vscode-badge>
+          <vscode-badge>1</vscode-badge>
         </vscode-panel-tab>
         <vscode-panel-view id="view-1"> Problems Content </vscode-panel-view>
         <vscode-panel-view id="view-2"> Output Content </vscode-panel-view>
