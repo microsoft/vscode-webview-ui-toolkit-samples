@@ -2,7 +2,7 @@
 
 This sample extension demonstrates every component in the Webview UI Toolkit for Visual Studio Code.
 
-![A screenshot of the sample extension.](./assets/component-gallery-screenshot.png)
+![A screenshot of the sample extension.](./assets/component-gallery.png)
 
 ## Run The Sample
 

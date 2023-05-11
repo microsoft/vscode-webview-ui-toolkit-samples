@@ -2,7 +2,7 @@
 
 This is an implementation of the default [Hello World](https://github.com/microsoft/vscode-webview-ui-toolkit-samples/tree/main/default/hello-world) sample extension that demonstrates how to set up and use a [SolidJS](https://www.solidjs.com/) + [Webview UI Toolkit](https://github.com/microsoft/vscode-webview-ui-toolkit) webview extension.
 
-![A screenshot of the sample extension.](./assets/hello-world-screenshot.png)
+![A screenshot of the sample extension.](./assets/hello-world.png)
 
 ## Documentation
 

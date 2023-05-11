@@ -2,7 +2,7 @@
 
 This is a version of the Hello World sample extension that uses Webpack instead of esbuild.
 
-![A screenshot of the sample extension.](./assets/hello-world-screenshot.png)
+![A screenshot of the sample extension.](./assets/hello-world.png)
 
 ## Run The Sample
 

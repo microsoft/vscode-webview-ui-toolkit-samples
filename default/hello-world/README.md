@@ -2,7 +2,7 @@
 
 This is the sample extension that goes along with the Webview UI Toolkit [Getting Started Guide](https://github.com/microsoft/vscode-webview-toolkit/blob/main/docs/getting-started.md).
 
-![A screenshot of the sample extension.](./assets/hello-world-screenshot.png)
+![A screenshot of the sample extension.](./assets/hello-world.png)
 
 ## Run The Sample
 

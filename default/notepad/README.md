@@ -2,7 +2,7 @@
 
 This sample extension showcases the toolkit in the context of a simple notepad experience that leverages the [TreeView API](https://code.visualstudio.com/api/extension-guides/tree-view) and [Webview API](https://code.visualstudio.com/api/extension-guides/webview).
 
-![A screenshot of the sample extension.](./assets/notepad-screenshot.png)
+![A screenshot of the sample extension.](./assets/notepad.png)
 
 ## Run The Sample
 
