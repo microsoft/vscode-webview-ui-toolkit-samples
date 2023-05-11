@@ -4,14 +4,8 @@
   "description": "A hello world sample extension to show off the Webview UI Toolkit for Visual Studio Code.",
   "version": "0.0.1",
   "engines": {
-    "vscode": "^1.74.0"
+    "vscode": "^1.75.0"
   },
-  "categories": [
-    "Other"
-  ],
-  "activationEvents": [
-    "onCommand:hello-world.showHelloWorld"
-  ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
