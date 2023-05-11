@@ -30,14 +30,15 @@ Don't see a demonstration for your desired use case, VS Code API, etc.? Open an 
 
 A set of sample extensions that demonstrate how to use various web frameworks to render the webview UI.
 
-| Sample extension                                              | Description                                                           |
-| --------------------------------------------------------------| --------------------------------------------------------------------- |
-| [hello-world-angular](./frameworks/hello-world-angular)       | A basic hello-world starter extension using Angular.                  |
-| [hello-world-react-cra](./frameworks/hello-world-react-cra)   | A basic hello-world starter extension using React + Create React App. |
-| [hello-world-react-vite](./frameworks/hello-world-react-vite) | A basic hello-world starter extension using React + Vite.             |
-| [hello-world-solidjs](./frameworks/hello-world-solidjs)       | A basic hello-world starter extension using SolidJS.                  |
-| [hello-world-svelte](./frameworks/hello-world-svelte)         | A basic hello-world starter extension using Svelte.                   |
-| [hello-world-vue](./frameworks/hello-world-vue)               | A basic hello-world starter extension using Vue.                      |
+| Sample extension                                                | Description                                                           |
+| ---------------------------------------------------------------- | --------------------------------------------------------------------- |
+| [component-gallery-react](./frameworks/component-gallery-react) | Demonstrates every React component in the Webview UI Toolkit.                  |
+| [hello-world-angular](./frameworks/hello-world-angular)         | A basic hello-world starter extension using Angular.                  |
+| [hello-world-react-cra](./frameworks/hello-world-react-cra)     | A basic hello-world starter extension using React + Create React App. |
+| [hello-world-react-vite](./frameworks/hello-world-react-vite)   | A basic hello-world starter extension using React + Vite.             |
+| [hello-world-solidjs](./frameworks/hello-world-solidjs)         | A basic hello-world starter extension using SolidJS.                  |
+| [hello-world-svelte](./frameworks/hello-world-svelte)           | A basic hello-world starter extension using Svelte.                   |
+| [hello-world-vue](./frameworks/hello-world-vue)                 | A basic hello-world starter extension using Vue.                      |
 
 ## Contributing
 
