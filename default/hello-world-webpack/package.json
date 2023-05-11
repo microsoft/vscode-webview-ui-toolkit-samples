@@ -44,6 +44,6 @@
     "webpack-cli": "^4.10.0"
   },
   "dependencies": {
-    "@vscode/webview-ui-toolkit": "^1.2.1"
+    "@vscode/webview-ui-toolkit": "^1.2.2"
   }
 }

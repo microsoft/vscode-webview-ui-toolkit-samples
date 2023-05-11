@@ -89,7 +89,7 @@
     "typescript": "^4.8.4"
   },
   "dependencies": {
-    "@vscode/webview-ui-toolkit": "^1.2.1",
+    "@vscode/webview-ui-toolkit": "^1.2.2",
     "uuid": "^9.0.0"
   }
 }
