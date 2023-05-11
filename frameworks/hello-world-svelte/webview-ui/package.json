@@ -9,7 +9,7 @@
     "check": "svelte-check --tsconfig ./tsconfig.json"
   },
   "dependencies": {
-    "@vscode/webview-ui-toolkit": "^1.2.1",
+    "@vscode/webview-ui-toolkit": "^1.2.2",
     "sirv-cli": "^2.0.0"
   },
   "devDependencies": {

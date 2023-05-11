@@ -2,7 +2,7 @@
 
 This sample extension demonstrates the Webview UI Toolkit for Visual Studio Code being used within a Webview View.
 
-![A screenshot of the sample extension.](./assets/weather-webview-screenshot.png)
+![A screenshot of the sample extension.](./assets/weather-webview.png)
 
 ## Run The Sample
 

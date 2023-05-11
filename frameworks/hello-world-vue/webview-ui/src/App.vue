@@ -44,8 +44,4 @@ main {
   align-items: flex-start;
   height: 100%;
 }
-
-main > * {
-  margin: 1rem 0;
-}
 </style>
