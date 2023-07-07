@@ -13,7 +13,7 @@ There have been many requests (such as [this issue](https://github.com/microsoft
 
 The Webview UI Toolkit is implemented using a set of unstyled based components from [FAST](https://www.fast.design/). They offer a `data-grid` component which, at this time, statically renders data in a table-like format but does not implement any APIs for interactivity or editability.
 
-Because FAST owns the underlying data grid implementation, first-party support for interactivity will need to come from them. With that said, workaround solutions are possible and this sample extension demonstrates one such solution (initially inspired by another solution from [@worksofliam](https://github.com/worksofliam)).
+Because FAST owns the underlying data grid implementation, first-party support for interactivity will need to come from them. With that said, workaround solutions are possible and this sample extension demonstrates one such solution (initially inspired by [another solution](https://github.com/microsoft/vscode-webview-ui-toolkit/issues/493#issuecomment-1603559439) from [@worksofliam](https://github.com/worksofliam)).
 
 Issues and improvements to this solution are welcomed and encouraged!
 
