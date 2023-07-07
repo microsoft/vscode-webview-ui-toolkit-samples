@@ -21,6 +21,7 @@ Don't see a demonstration for your desired use case, VS Code API, etc.? Open an 
 | Sample extension                                     | Description                                                                                   |
 | ----------------------------------------------------- | --------------------------------------------------------------------------------------------- |
 | [component-gallery](./default/component-gallery)     | Demonstrates every component in the Webview UI Toolkit.                                       |
+| [editable-data-grid](./default/editable-data-grid)   | Demonstrates a workaround solution to create an editable data grid.                                       |
 | [hello-world](./default/hello-world)                 | A basic hello-world starter extension.                                                        |
 | [hello-world-webpack](./default/hello-world-webpack) | A basic hello-world starter extension (built using Webpack instead of esbuild).                                                        |
 | [notepad](./default/notepad)                         | A simple notetaking extension that leverages the VS Code TreeView API.                        |
