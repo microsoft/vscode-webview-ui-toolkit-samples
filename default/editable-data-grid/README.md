@@ -6,7 +6,7 @@ This is a sample extension that demonstrates a workaround solution for making th
 
 ## Context
 
-> **Warning**
+> **Warning**<br>
 > This is not a fully tested (nor first-party) editable data grid. Proceed with caution.
 
 There have been many requests (such as [this issue](https://github.com/microsoft/vscode-webview-ui-toolkit/issues/493)) asking for a more interactive data grid.
