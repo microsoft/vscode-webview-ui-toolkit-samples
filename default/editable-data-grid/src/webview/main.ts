@@ -120,8 +120,8 @@ function initEditableDataGrid(id: string) {
     };
 
     cell.addEventListener("keydown", handleKeydownClosure);
-    // Run the click listener once so that if a cell's text is clicked a 
-    // second time the cursor will move to the given position in the string 
+    // Run the click listener once so that if a cell's text is clicked a
+    // second time the cursor will move to the given position in the string
     // (versus reselecting the cell text again)
     cell.addEventListener("click", handleClickClosure, { once: true });
     cell.addEventListener("blur", handleBlurClosure);

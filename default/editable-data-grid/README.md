@@ -1,6 +1,6 @@
 # Editable Data Grid Sample Extension
 
-This is a sample extension that demonstrates a workaround solution for making the `vscode-data-grid` component editable.
+This is a sample extension that demonstrates a reference/workaround implementation for making the `vscode-data-grid` component editable.
 
 ![A screenshot of the sample extension.](./assets/editable-data-grid.png)
 
@@ -28,6 +28,10 @@ This solution implements the following features:
 - Mouse click and blur will enter/exit edit mode
 - Cell text will be automatically highlighted when entering edit mode
 - Cell changes will be synced with the underlying `vscode-data-grid` data structure
+
+## Known issues
+
+- Arrow keys don't work in edit mode
 
 ## Run The Sample
 
